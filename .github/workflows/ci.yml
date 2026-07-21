@@ -177,7 +177,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build Tauri app
-        uses: tauri-apps/tauri-action@v0
+        uses: tauri-apps/tauri-action@v1
         with:
           # No tagName/releaseName means only build, no release
           uploadWorkflowArtifacts: true
