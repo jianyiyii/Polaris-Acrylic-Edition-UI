@@ -61,7 +61,7 @@
     "highlight.js": "^11.11.1",
     "i18next": "^24.2.3",
     "lucide-react": "^0.562.0",
-    "marked": "^17.0.1",
+    "marked": "^18.0.7",
     "mermaid": "^11.12.2",
     "postcss": "^8.5.6",
     "react": "^19.1.0",
