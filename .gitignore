@@ -64,3 +64,6 @@ blob-report/
 
 # Coverage
 coverage/
+
+# Claude / Polaris local data
+.polaris/
