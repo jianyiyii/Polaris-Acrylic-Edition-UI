@@ -1,103 +1,52 @@
-# Polaris
+# Polaris Acrylic Edition
+一款基于 Polaris 二次定制、采用现代毛玻璃拟态UI的AI桌面客户端
 
-> 多引擎 AI 编程助手的跨平台桌面客户端
+## 功能亮点
+- 借鉴 Apple Vision Pro 风格的亚克力磨砂玻璃界面
+- 动态壁纸背景系统，支持背景自动切换
+- 全局统一通透毛玻璃面板视觉体系
+- 针对 Git 面板、终端面板、内置浏览器面板专门优化亚克力样式
+- 重构弹窗模态系统，动画与交互更加流畅自然
+- 重新设计响应式下拉菜单布局，解决原始界面布局瑕疵
+- 完整中文代理文本本地化适配
+- 大规模UI优化：间距、阴影、视觉层级统一调整
+- 优化窗口交互、悬浮反馈与过渡动画
 
-## 简介
+## 项目介绍
+本项目是开源项目 Polaris 的界面二次美化改版分支。
+程序底层核心业务逻辑与原版保持一致。
+修改内容集中在视觉表现、页面布局、样式美化与交互体验优化。
 
-Polaris 是一款基于 Tauri 2.x 构建的跨平台桌面应用，为多种 AI 编程 CLI 工具提供统一的图形化操作界面。支持 **OpenAI Codex CLI**、**Claude Code CLI** 引擎，让你无需命令行也能享受 AI 辅助编程的体验。
+> ⚠️ 本分支为非官方定制版本，不属于 Polaris 官方项目。
 
-## 技术栈
+## 源码来源
+基础原版项目：
+https://github.com/misxzaiz/Polaris
 
-| 层级 | 技术 |
-|------|------|
-| 前端 | React 19 + TypeScript 5.8 + Vite 7 |
-| 样式 | Tailwind CSS 3.4 |
-| 状态管理 | Zustand 5 + Persist |
-| 代码编辑 | CodeMirror 6 |
-| 图表渲染 | Mermaid + KaTeX |
-| 终端 | xterm.js 5 |
-| 虚拟滚动 | react-virtuoso 4 |
-| 桌面框架 | Tauri 2.x (Rust) |
-| 后端服务 | Tokio + MCP Server |
-| 测试 | Vitest 4 + fast-check |
+## 开源声明
+- 本仓库代码仅用于学习交流。
+- 项目遵循原 Polaris 仓库开源协议。
+- 所有底层核心代码版权归原项目作者所有。
+- 本分支全部UI美化、视觉改动由分支维护者独立完成。
 
-## 环境要求
+## 上游同步说明
+你可以手动拉取上游原版仓库的最新更新。
+由于大量界面样式文件改动，合并上游更新时需要人工处理代码冲突。
 
-- **Node.js** >= 18
-- **Rust** >= 1.70
-- **OpenAI Codex CLI**（使用 Codex 引擎时）
-- **Claude Code CLI**（使用 Claude 引擎时）
+## 效果预览
+（你可以在此粘贴截图图片链接）
 
-## 快速开始
-
-### 1. 安装依赖
-
+## 编译运行
 ```bash
-pnpm install
-```
+# 克隆仓库
+git clone https://github.com/jianyiyii/Polaris-AcrylicEdition-UI.git
+cd Polaris-AcrylicEdition-UI
 
-### 2. 启动开发模式
+# 安装依赖
+npm install
 
-```bash
-pnpm run tauri:dev
-```
+# 启动开发调试
+npm run dev
 
-### 3. 构建
-
-```bash
-# 构建前端
-pnpm run build
-
-# 构建 Tauri 应用（包含 MCP 功能）
-pnpm run tauri:build      # Linux/Mac
-pnpm run tauri:build:win  # Windows
-```
-
-#### Web 独立服务打包（无 GUI 服务器部署）
-
-将 Polaris 打包为独立 Web 服务（脱离桌面壳、无需 WebKit），通过浏览器访问，适用于 Linux 服务器、WSL 等无图形界面环境：
-
-```bash
-pnpm run package:web
-```
-
-该命令产出自包含的 `polaris-web/` 目录（二进制 + `dist/` + 启动/停止脚本）。详见 **[打包与部署指南](docs/deployment/README.md)**：
-
-- [Windows 指南](docs/deployment/web-only-windows.md)
-- [Linux / 服务器指南](docs/deployment/web-only-linux.md)
-
-## 社区
-
-[linux.do](https://linux.do/) - 讨论与反馈
-
-扫码加入 QQ 群交流：
-
-<img src="docs/assets/qq-group-qrcode.jpg" alt="Polaris QQ 群二维码" width="240" />
-
-## 致谢
-
-本项目在开发和灵感阶段参考或使用了以下服务与工具，特此感谢：
-
-- [sensenova(商汤)](https://platform.sensenova.cn/)
-- [Claude Code](https://github.com/anthropics/claude-code)
-- [Codex (OpenAI)](https://github.com/openai/codex)
-- [iFlow(白月光)](https://cli.iflow.cn/?)
-- [百度翻译](https://fanyi-api.baidu.com/)
-- [cc-switch](https://github.com/farion1231/cc-switch)
-- [CodeG](https://github.com/xintaofei/codeg)
-- [GLM (智谱)](https://open.bigmodel.cn/)
-- [OpenAI](https://chatgpt.com/)
-- [DeepSeek](https://platform.deepseek.com/)
-- [MiMo](https://mimo.mi.com/)
-- [Ruoli](https://ruoli.dev/)
-- [Agnes](https://agnes-ai.com/)
-
-如有遗漏或需要补充其他工具，欢迎联系我们加上。
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=misxzaiz%2Fpolaris&type=Date)](https://api.star-history.com/svg?repos=misxzaiz%2Fpolaris&type=Date)
-
-## 许可证
-
-MIT
+# 打包正式安装程序
+npm run build

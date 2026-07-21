@@ -1,88 +1,66 @@
-# Dependencies
+# Node
 node_modules/
-.pnp
-.pnp.js
-package-lock.json  # 项目使用 pnpm，忽略 npm 的 lock 文件
-polaris-mobile/
-# Build outputs
+npm-debug.log*
+pnpm-debug.log*
+
+# Build
 dist/
-dist-ssr/
-*.local
-polaris-web/
-*.tar.gz
+build/
 
 # Tauri
-/src-tauri/target/
-/src-tauri/Cargo.lock
-/src-tauri/gen/schemas/
-/src-tauri/dist-web/
+src-tauri/target/
+target/
 
-# Scratch / debugging notes (local-only)
-temp/
+# Rust
+*.rs.bk
 
-# Environment variables
+# Environment
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 
-# Logs
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
-.idea/
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-*.swp
-*.swo
-*~
-
-# Test coverage
-coverage/
-*.lcov
+# Executables
+*.exe
+*.dll
+*.so
+*.dylib
 
 # IDE
-*.iml
+.vscode/
+.idea/
 
-# AI tool artifacts
-prototypes/
-
-# OS generated files
+# OS
+.DS_Store
 Thumbs.db
-Desktop.ini
 
-# AI assistant working directories
-.polaris
-.polaris-handoff/
-.oprcli
-.claude
-.kiro
-.kirocrates/polaris-knowledge-mcp/target/
-crates/*/target/
-ngrok
+# Logs
+*.log
 
-# CodeX / AI tools generated logs
-.codex*
+# Local data
+*.local
+.local/
 
-# APK build outputs
-*.apk
+# User config
+*.json.local
 
-# Auto-generated Tauri bindings
-/src-tauri/gen/
+# Debug symbols
+*.pdb
 
-# Local debugging artifacts
-nul
-test_*.html
-xhs_browser_region.png
+# Rust temporary build directories
+src-tauri/target-*/
+
+# Test reports
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# TypeScript
+*.tsbuildinfo
+
+# Temporary files
+*.tmp
+*.temp
+
+# Coverage
+coverage/
