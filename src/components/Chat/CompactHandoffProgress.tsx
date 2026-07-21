@@ -25,19 +25,19 @@ export function CompactHandoffProgress() {
   if (!task) return null
 
   return (
-    <div className="fixed bottom-4 right-4 z-40 flex items-center gap-2 pl-3 pr-2 py-2 rounded-full bg-background-elevated border border-border shadow-lg max-w-[320px]">
+    <div className="fixed bottom-4 right-4 z-40 flex items-center gap-2 pl-3 pr-2 py-2 rounded-full acrylic-panel max-w-[320px]">
       <Loader2 size={14} className="animate-spin text-primary shrink-0" />
       <div className="flex flex-col min-w-0">
-        <span className="text-xs font-medium text-text-primary truncate">
+        <span className="text-xs font-medium text-zinc-800 truncate">
           {t('compactHandoff.progressTitle', { title: task.sourceTitle })}
         </span>
-        <span className="text-[10px] text-text-tertiary truncate">
+        <span className="text-[10px] text-zinc-500 truncate">
           {t(STAGE_KEYS[task.stage])}
         </span>
       </div>
       <button
         onClick={cancel}
-        className="p-1 rounded-full text-text-tertiary hover:text-danger hover:bg-background-hover shrink-0"
+        className="p-1 rounded-full text-white/60 hover:text-danger hover:bg-white/10 shrink-0"
         title={t('compactHandoff.cancelRun')}
       >
         <X size={14} />

@@ -164,14 +164,14 @@ export const MessageContextMenu = memo(function MessageContextMenu({
   return (
     <div
       ref={menuRef}
-      className="fixed z-[10000] bg-background-surface border border-border rounded-lg shadow-lg py-1 min-w-[180px]"
+      className="fixed z-[10000] acrylic-panel animate-acrylic-enter py-1 min-w-[180px]"
       style={{ left: x, top: y }}
     >
       {/* 跳转到消息开头 */}
       {hasJumpActions && (
         <button
           type="button"
-          className="w-full px-3 py-2 text-left text-sm text-text-secondary hover:bg-background-hover hover:text-text-primary flex items-center gap-2 transition-colors"
+          className="w-full px-3 py-2 text-left text-sm text-text-secondary hover:bg-white/10 hover:text-text-primary flex items-center gap-2 transition-colors"
           onClick={handleScrollToMessage}
         >
           <ArrowUp size={14} />
@@ -183,7 +183,7 @@ export const MessageContextMenu = memo(function MessageContextMenu({
       {onScrollToTop && (
         <button
           type="button"
-          className="w-full px-3 py-2 text-left text-sm text-text-secondary hover:bg-background-hover hover:text-text-primary flex items-center gap-2 transition-colors"
+          className="w-full px-3 py-2 text-left text-sm text-text-secondary hover:bg-white/10 hover:text-text-primary flex items-center gap-2 transition-colors"
           onClick={handleScrollToTop}
         >
           <ChevronsUp size={14} />
@@ -195,7 +195,7 @@ export const MessageContextMenu = memo(function MessageContextMenu({
       {onScrollToBottom && (
         <button
           type="button"
-          className="w-full px-3 py-2 text-left text-sm text-text-secondary hover:bg-background-hover hover:text-text-primary flex items-center gap-2 transition-colors"
+          className="w-full px-3 py-2 text-left text-sm text-text-secondary hover:bg-white/10 hover:text-text-primary flex items-center gap-2 transition-colors"
           onClick={handleScrollToBottom}
         >
           <ChevronsDown size={14} />
@@ -212,7 +212,7 @@ export const MessageContextMenu = memo(function MessageContextMenu({
       {hasCopyAction && (
         <button
           type="button"
-          className="w-full px-3 py-2 text-left text-sm text-text-secondary hover:bg-background-hover hover:text-text-primary flex items-center gap-2 transition-colors"
+          className="w-full px-3 py-2 text-left text-sm text-text-secondary hover:bg-white/10 hover:text-text-primary flex items-center gap-2 transition-colors"
           onClick={handleCopy}
         >
           {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
@@ -224,7 +224,7 @@ export const MessageContextMenu = memo(function MessageContextMenu({
       {hasCopyAction && (
         <button
           type="button"
-          className="w-full px-3 py-2 text-left text-sm text-text-secondary hover:bg-background-hover hover:text-text-primary flex items-center gap-2 transition-colors"
+          className="w-full px-3 py-2 text-left text-sm text-text-secondary hover:bg-white/10 hover:text-text-primary flex items-center gap-2 transition-colors"
           onClick={handleSpeak}
         >
           {ttsService.getStatus() === 'synthesizing' && <Loader2 size={14} className="animate-spin text-warning" />}

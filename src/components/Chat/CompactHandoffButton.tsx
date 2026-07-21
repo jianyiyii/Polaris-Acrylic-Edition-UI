@@ -37,10 +37,10 @@ export const CompactHandoffButton = memo(function CompactHandoffButton() {
         onClick={() => eligibility.enabled && setOpen(true)}
         disabled={!eligibility.enabled}
         className={clsx(
-          'flex items-center px-1.5 py-0.5 rounded transition-colors shrink-0',
+          'flex items-center px-1.5 py-0.5 rounded shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] hover:scale-110 transition-transform',
           eligibility.enabled
-            ? 'text-text-tertiary hover:text-text-primary hover:bg-background-hover'
-            : 'text-text-muted cursor-not-allowed',
+            ? 'text-white hover:text-white hover:bg-white/10'
+            : 'text-white/50 cursor-not-allowed',
         )}
         title={
           eligibility.enabled

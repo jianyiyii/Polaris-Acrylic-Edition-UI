@@ -10,6 +10,7 @@ export { ConnectingOverlay } from './ConnectingOverlay';
 export { ClaudePathSelector } from './ClaudePathSelector';
 export { ErrorBoundary } from './ErrorBoundary';
 export { DropdownMenu } from './DropdownMenu';
+export { AcrylicPanel } from './AcrylicPanel';
 export { LanguageSwitcher } from './LanguageSwitcher';
 export { ToastContainer } from './Toast';
 export { ConfirmDialog } from './ConfirmDialog';

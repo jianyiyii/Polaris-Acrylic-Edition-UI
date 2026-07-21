@@ -354,11 +354,11 @@ export function FileSearchModal({ onClose }: FileSearchModalProps) {
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 flex items-start justify-center z-50 pt-[12vh]"
+      className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-start justify-center z-50 pt-[12vh]"
       onClick={handleBackdropClick}
     >
       <div
-        className="bg-background-elevated rounded-xl w-full max-w-lg border border-border shadow-glow overflow-hidden animate-in fade-in zoom-in-95 duration-150"
+        className="bg-white/45 backdrop-blur-[24px] backdrop-saturate-150 border border-white/45 rounded-xl w-full max-w-lg shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_30px_rgba(0,0,0,0.1)] overflow-hidden animate-in fade-in zoom-in-95 duration-150"
         onKeyDown={handleKeyDown}
       >
         {/* 模式切换 */}

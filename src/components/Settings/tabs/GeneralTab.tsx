@@ -3,9 +3,12 @@
  * 包含语言、主题等全局外观偏好
  */
 
+import { useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Config, WindowSettings, ChatDisplayDensity, ChatDisplayFontFamily } from '@/types';
 import { DEFAULT_CHAT_DISPLAY_SETTINGS, getChatDisplayStyleVars, normalizeChatDisplaySettings } from '@/types';
+import { useThemeStore } from '@/stores';
+import type { BackgroundMode } from '@/stores';
 import { DataStorageCard } from './DataStorageCard';
 import { DispatchSettingsSection } from './DispatchSettingsSection';
 
@@ -19,6 +22,12 @@ export function GeneralTab({ config, onConfigChange, loading }: GeneralTabProps)
   const { t } = useTranslation('settings');
 
   const currentTheme = config.theme ?? 'dark';
+  const background = useThemeStore((s) => s.background);
+  const setBackgroundMode = useThemeStore((s) => s.setBackgroundMode);
+  const setImageUrl = useThemeStore((s) => s.setImageUrl);
+  const setOpacity = useThemeStore((s) => s.setOpacity);
+  const setBlur = useThemeStore((s) => s.setBlur);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const chatDisplay = normalizeChatDisplaySettings(config.chatDisplay);
 
   const updateChatDisplay = (patch: Partial<typeof chatDisplay>) => {
@@ -27,6 +36,38 @@ export function GeneralTab({ config, onConfigChange, loading }: GeneralTabProps)
       chatDisplay: normalizeChatDisplaySettings({ ...chatDisplay, ...patch }),
     });
   };
+
+  /** 压缩图片到最大 1920px，JPEG 0.8 质量 */
+  const compressImage = useCallback(async (file: File): Promise<string> => {
+    const img = new Image();
+    const blobUrl = URL.createObjectURL(file);
+    try {
+      img.src = blobUrl;
+      await img.decode();
+      const MAX = 1920;
+      const scale = Math.min(MAX / img.width, MAX / img.height, 1);
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width * scale;
+      canvas.height = img.height * scale;
+      canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height);
+      return canvas.toDataURL('image/jpeg', 0.8);
+    } finally {
+      URL.revokeObjectURL(blobUrl);
+    }
+  }, []);
+
+  const handleImageUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      const dataUrl = await compressImage(file);
+      await setImageUrl(dataUrl);
+    } catch (err) {
+      console.error('Failed to process image:', err);
+    }
+    // 重置 input 以允许重新选择同一文件
+    e.target.value = '';
+  }, [compressImage, setImageUrl]);
 
   const applyChatDensityPreset = (density: ChatDisplayDensity) => {
     const preset = {
@@ -253,6 +294,112 @@ export function GeneralTab({ config, onConfigChange, loading }: GeneralTabProps)
             </button>
           </div>
         </div>
+      </div>
+
+      {/* 背景样式 */}
+      <div className="p-4 bg-surface rounded-lg border border-border">
+        <h3 className="text-sm font-medium text-text-primary mb-3">{t('background.title')}</h3>
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="text-sm text-text-primary">{t('background.current')}</div>
+            <div className="text-xs text-text-secondary">{t('background.hint')}</div>
+          </div>
+          <div className="flex items-center gap-2">
+            {(['solid', 'gradient', 'aurora', 'image'] as BackgroundMode[]).map((mode) => (
+              <button
+                key={mode}
+                type="button"
+                onClick={() => setBackgroundMode(mode)}
+                className={`px-3 py-1.5 text-xs rounded-lg transition-colors ${
+                  background.mode === mode
+                    ? 'bg-primary text-on-primary'
+                    : 'bg-background-surface border border-border text-text-secondary hover:text-text-primary'
+                }`}
+              >
+                {t(`background.${mode}`)}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 图片模式专属控件 */}
+        {background.mode === 'image' && (
+          <div className="mt-4 pt-4 border-t border-border space-y-4">
+            {/* 图片上传 */}
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-sm text-text-primary">{t('background.uploadImage')}</div>
+                <div className="text-xs text-text-secondary">{t('background.uploadHint')}</div>
+              </div>
+              <div className="flex items-center gap-3">
+                {background.imageUrl && (
+                  <div
+                    className="w-10 h-10 rounded-lg border border-border bg-cover bg-center"
+                    style={{ backgroundImage: `url('${background.imageUrl}')` }}
+                  />
+                )}
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="px-3 py-1.5 text-xs rounded-lg bg-background-surface border border-border text-text-secondary hover:text-text-primary transition-colors"
+                >
+                  {t('background.chooseFile')}
+                </button>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                />
+              </div>
+            </div>
+
+            {/* 透明度滑块 */}
+            <div className="flex items-center justify-between">
+              <div className="flex-1 mr-4">
+                <div className="text-sm text-text-primary">{t('background.opacity')}</div>
+                <div className="text-xs text-text-secondary">{t('background.opacityHint')}</div>
+              </div>
+              <div className="flex items-center gap-3">
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="5"
+                  value={background.opacity ?? 55}
+                  onChange={(e) => setOpacity(parseInt(e.target.value, 10))}
+                  className="w-24 h-1.5 bg-border rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary"
+                />
+                <span className="text-xs text-text-secondary w-10 text-right">
+                  {background.opacity ?? 55}%
+                </span>
+              </div>
+            </div>
+
+            {/* 模糊度滑块 */}
+            <div className="flex items-center justify-between">
+              <div className="flex-1 mr-4">
+                <div className="text-sm text-text-primary">{t('background.blur')}</div>
+                <div className="text-xs text-text-secondary">{t('background.blurHint')}</div>
+              </div>
+              <div className="flex items-center gap-3">
+                <input
+                  type="range"
+                  min="0"
+                  max="20"
+                  step="1"
+                  value={background.blur ?? 0}
+                  onChange={(e) => setBlur(parseInt(e.target.value, 10))}
+                  className="w-24 h-1.5 bg-border rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary"
+                />
+                <span className="text-xs text-text-secondary w-10 text-right">
+                  {background.blur ?? 0}px
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* 对话显示 */}

@@ -1146,7 +1146,7 @@ export function HistoryTab({
 
             {branchSelectOpen && (
               <div
-                className="absolute top-full mt-1 left-0 z-50 min-w-[180px] max-h-[60vh] overflow-y-auto bg-background-elevated border border-border rounded-lg shadow-lg py-1"
+                className="absolute top-full mt-1 left-0 z-50 min-w-[180px] max-h-[60vh] overflow-y-auto acrylic-modal py-1"
                 role="listbox"
               >
                 <button

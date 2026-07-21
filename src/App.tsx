@@ -323,7 +323,7 @@ function App() {
         {/* 全局消息中心：右侧滑出，复用会话历史面板的浮层范式 */}
         {showNotificationCenter && (
           <div
-            className="fixed z-50 bg-background-elevated border border-border rounded-l-xl shadow-xl animate-in slide-in-from-right duration-200"
+            className="fixed z-50 bg-white/40 backdrop-blur-[28px] backdrop-saturate-160 border border-white/45 rounded-l-2xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_32px_rgba(0,0,0,0.08)] animate-in slide-in-from-right duration-200"
             style={{ top: '10%', right: '0', height: '80%', width: 'min(400px, 90vw)' }}
           >
             <NotificationCenterPanel onClose={toggleNotificationCenter} />

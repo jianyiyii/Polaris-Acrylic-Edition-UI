@@ -243,6 +243,22 @@
     "light": "浅色",
     "experimental": "实验性"
   },
+  "background": {
+    "title": "背景样式",
+    "current": "当前背景",
+    "hint": "切换背景视觉效果",
+    "solid": "纯色",
+    "gradient": "渐变",
+    "aurora": "Aurora",
+    "image": "图片",
+    "uploadImage": "背景图片",
+    "uploadHint": "选择本地图片作为背景",
+    "chooseFile": "选择图片",
+    "opacity": "背景透明度",
+    "opacityHint": "调整背景遮罩透明度",
+    "blur": "背景模糊",
+    "blurHint": "调整背景图片模糊度"
+  },
   "chatDisplay": {
     "title": "对话显示",
     "hint": "调整 AI 对话窗口的阅读密度、字号和代码显示。",

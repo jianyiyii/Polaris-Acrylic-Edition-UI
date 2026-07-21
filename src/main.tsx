@@ -22,6 +22,36 @@ import "./i18n";
   }
 })();
 
+// 背景模式预设：同步读取 localStorage 并写入 data-bg-mode，防止首屏闪烁
+(() => {
+  try {
+    const bgConfig = typeof window !== 'undefined' ? window.localStorage.getItem('bg-config') : null;
+    if (bgConfig) {
+      const parsed = JSON.parse(bgConfig);
+      if (parsed.mode && parsed.mode !== 'solid') {
+        document.documentElement.setAttribute('data-bg-mode', parsed.mode);
+      }
+      if (parsed.imageUrl) {
+        document.documentElement.style.setProperty('--bg-image', `url('${parsed.imageUrl}')`);
+      }
+      if (parsed.opacity !== undefined) {
+        document.documentElement.style.setProperty('--bg-image-opacity', `${parsed.opacity / 100}`);
+      }
+      if (parsed.blur !== undefined) {
+        document.documentElement.style.setProperty('--bg-blur', `${parsed.blur}px`);
+      }
+    } else {
+      // 兼容旧版 bg-mode 字符串格式
+      const oldMode = typeof window !== 'undefined' ? window.localStorage.getItem('bg-mode') : null;
+      if (oldMode && oldMode !== 'solid') {
+        document.documentElement.setAttribute('data-bg-mode', oldMode);
+      }
+    }
+  } catch {
+    // 忽略，使用默认纯色背景
+  }
+})();
+
 const root = document.getElementById("root") as HTMLElement;
 
 /**

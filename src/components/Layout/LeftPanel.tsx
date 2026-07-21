@@ -55,7 +55,7 @@ export function LeftPanel({ children, className = '', fillRemaining = false, ful
   if (fullscreen || fillRemaining) {
     return (
       <aside
-        className={`flex flex-col bg-background-elevated border-r border-border relative flex-1 min-w-[200px] ${className}`}
+        className={`flex flex-col bg-transparent relative flex-1 min-w-[200px] ${className}`}
       >
         <div className="flex-1 min-h-0 overflow-hidden">{children}</div>
       </aside>
@@ -72,7 +72,7 @@ export function LeftPanel({ children, className = '', fillRemaining = false, ful
     <>
       {/* 面板容器 */}
       <aside
-        className={`flex flex-col bg-background-elevated border-r border-border shrink-0 relative ${className}`}
+        className={`flex flex-col bg-transparent shrink-0 relative ${className}`}
         style={{ width: `${width}px`, maxWidth: styleMaxWidth }}
       >
         {/* 面板内容 */}
@@ -124,7 +124,7 @@ export function LeftPanelDrawer({ children, onClose }: LeftPanelDrawerProps) {
     >
       {/* 遮罩：点击关闭 */}
       <div
-        className="absolute inset-0 bg-black/50 animate-in fade-in duration-200"
+        className="absolute inset-0 bg-black/20 backdrop-blur-sm animate-in fade-in duration-200"
         onClick={onClose}
       />
 
@@ -132,14 +132,14 @@ export function LeftPanelDrawer({ children, onClose }: LeftPanelDrawerProps) {
       <aside
         ref={drawerRef}
         tabIndex={-1}
-        className="absolute inset-y-0 left-0 flex flex-col bg-background-elevated border-r border-border shadow-xl animate-in slide-in-from-left duration-200 outline-none"
+        className="absolute inset-y-0 left-0 flex flex-col acrylic-panel animate-acrylic-enter-slow outline-none"
         style={{ width: 'min(85vw, 360px)' }}
       >
         {/* 顶部关闭栏 */}
-        <div className="flex items-center justify-end h-9 px-2 border-b border-border shrink-0">
+        <div className="flex items-center justify-end h-9 px-2 border-b border-white/20 shrink-0">
           <button
             onClick={onClose}
-            className="w-7 h-7 rounded-md flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-background-hover transition-colors"
+            className="w-7 h-7 rounded-md flex items-center justify-center text-zinc-500 hover:text-zinc-800 hover:bg-black/5 transition-colors"
       aria-label="导航面板"
             title={t('buttons.close')}
           >

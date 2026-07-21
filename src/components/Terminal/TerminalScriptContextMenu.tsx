@@ -55,12 +55,12 @@ export function TerminalScriptContextMenu({
 
   if (!visible || !script) return null;
 
-  const itemClass = 'w-full px-3 py-2 text-left text-xs flex items-center gap-2 text-text-primary hover:bg-background-hover';
+  const itemClass = 'w-full px-3 py-2 text-left text-xs flex items-center gap-2 text-text-primary hover:bg-white/10';
 
   return (
     <div
       ref={menuRef}
-      className="fixed z-50 min-w-[190px] bg-background-elevated border border-border rounded-md shadow-lg py-1"
+      className="fixed z-50 min-w-[190px] bg-white/45 backdrop-blur-[24px] backdrop-saturate-150 border border-white/55 rounded-2xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_30px_rgba(0,0,0,0.1)] py-1"
       style={{ left: x, top: y }}
       onContextMenu={(e) => e.preventDefault()}
     >

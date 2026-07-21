@@ -36,7 +36,7 @@ export function SnippetParamPanel({ snippet, onExpand, onCancel }: SnippetParamP
 
   return (
     <div className="absolute bottom-full left-0 right-0 mb-1 px-3 z-10">
-      <div className="bg-background-elevated border border-border rounded-xl shadow-lg p-3 space-y-3">
+      <div className="acrylic-panel p-3 space-y-3 animate-acrylic-enter">
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-text-primary">
             /{snippet.name} — {t('chat.fillParams')}

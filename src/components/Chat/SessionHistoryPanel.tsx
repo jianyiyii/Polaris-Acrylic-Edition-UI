@@ -512,7 +512,7 @@ export function SessionHistoryPanel({ onClose }: SessionHistoryPanelProps) {
             </span>
             {item.source !== 'self' && (
               <span
-                className="text-[10px] px-1 py-0.5 rounded bg-background-elevated text-text-muted shrink-0"
+                className="text-[10px] px-1 py-0.5 rounded bg-white/30 text-zinc-500 shrink-0"
                 title={t('history.nativeSourceHint', '引擎原生记录')}
               >
                 {t('history.nativeSource', '原生')}
@@ -521,7 +521,7 @@ export function SessionHistoryPanel({ onClose }: SessionHistoryPanelProps) {
           </div>
 
           {(item.snippet || item.preview) && (
-            <p className="text-xs text-text-secondary line-clamp-2 mb-1.5 leading-snug">
+            <p className="text-xs text-zinc-600 line-clamp-2 mb-1.5 leading-snug">
               {searchResults && item.snippet ? (
                 <SnippetText text={item.snippet} />
               ) : (
@@ -530,7 +530,7 @@ export function SessionHistoryPanel({ onClose }: SessionHistoryPanelProps) {
             </p>
           )}
 
-          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-text-tertiary mb-1.5">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-zinc-400 mb-1.5">
             <span className="flex items-center gap-1">
               <MessageSquare className="w-3 h-3" />
               {t('history.messages', { count: item.messageCount })}
@@ -568,7 +568,7 @@ export function SessionHistoryPanel({ onClose }: SessionHistoryPanelProps) {
             className={`p-1.5 rounded-md transition-colors ${
               item.pinned
                 ? 'text-primary hover:bg-primary/10'
-                : 'text-text-tertiary opacity-0 group-hover:opacity-100 hover:bg-background-elevated hover:text-primary'
+                : 'text-zinc-400 opacity-0 group-hover:opacity-100 hover:bg-black/5 hover:text-primary'
             }`}
             title={item.pinned ? t('history.unpin', '取消置顶') : t('history.pin', '置顶到继续工作区')}
           >
@@ -576,14 +576,14 @@ export function SessionHistoryPanel({ onClose }: SessionHistoryPanelProps) {
           </button>
           <button
             onClick={() => setForkTarget(item)}
-            className="p-1.5 rounded-md hover:bg-amber-100 dark:hover:bg-amber-900/30 text-text-tertiary hover:text-amber-500 transition-colors opacity-0 group-hover:opacity-100"
+            className="p-1.5 rounded-md hover:bg-amber-100 dark:hover:bg-amber-900/30 text-zinc-400 hover:text-amber-500 transition-colors opacity-0 group-hover:opacity-100"
             title={t('history.createBranch')}
           >
             <GitBranch className="w-4 h-4" />
           </button>
           <button
             onClick={() => handleMark(item, { archived: !item.archived })}
-            className="p-1.5 rounded-md hover:bg-background-elevated text-text-tertiary hover:text-text-primary transition-colors opacity-0 group-hover:opacity-100"
+            className="p-1.5 rounded-md hover:bg-black/5 text-zinc-400 hover:text-zinc-700 transition-colors opacity-0 group-hover:opacity-100"
             title={item.archived ? t('history.unarchive', '取消归档') : t('history.archive', '归档')}
           >
             {item.archived ? <ArchiveRestore className="w-4 h-4" /> : <Archive className="w-4 h-4" />}
@@ -591,8 +591,8 @@ export function SessionHistoryPanel({ onClose }: SessionHistoryPanelProps) {
           <button
             onClick={() => handleRestore(item)}
             disabled={isRestoring}
-            className={`p-1.5 rounded-md hover:bg-background-elevated transition-colors ${
-              isRestoring ? 'opacity-50 cursor-not-allowed' : 'text-text-secondary hover:text-text-primary'
+            className={`p-1.5 rounded-md hover:bg-black/5 transition-colors ${
+              isRestoring ? 'opacity-50 cursor-not-allowed' : 'text-zinc-500 hover:text-zinc-700'
             }`}
             title={t('history.restoreSession')}
           >
@@ -769,7 +769,7 @@ export function SessionHistoryPanel({ onClose }: SessionHistoryPanelProps) {
                 return (
                   <div
                     key={`cw-${item.id}`}
-                    className="w-52 shrink-0 rounded-lg border border-border-subtle bg-background-elevated/60 hover:border-primary/40 transition-colors p-2.5 flex flex-col gap-1.5"
+                    className="w-52 shrink-0 rounded-2xl border border-white/40 bg-white/35 backdrop-blur-xl hover:bg-white/45 hover:border-white/60 transition-all p-2.5 flex flex-col gap-1.5"
                   >
                     <div className="flex items-center gap-1.5 min-w-0">
                       {item.pinned && (
@@ -833,8 +833,8 @@ export function SessionHistoryPanel({ onClose }: SessionHistoryPanelProps) {
 
               return (
                 <div key={group} className="mb-2">
-                  <div className="sticky top-0 z-10 px-3 sm:px-4 py-1.5 sm:py-2 bg-background-elevated border-b border-border-subtle">
-                    <span className="text-xs font-medium text-text-tertiary">
+                  <div className="sticky top-0 z-10 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/40 backdrop-blur-md border-b border-white/30">
+                    <span className="text-xs font-medium text-zinc-500">
                       {groupLabels[group]}
                       <span className="ml-2 text-text-muted">({items.length})</span>
                     </span>

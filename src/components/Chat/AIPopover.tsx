@@ -100,18 +100,18 @@ export function AIPopover({ isOpen, onClose }: AIPopoverProps) {
     <>
       {/* 背景遮罩 */}
       <div
-        className="fixed inset-0 bg-black/50 z-50"
+        className="fixed inset-0 bg-white/10 backdrop-blur-md z-50"
         onClick={onClose}
       />
 
       {/* 弹出面板 */}
       <div className="fixed inset-4 z-50 flex items-center justify-center pointer-events-none sm:inset-8 md:inset-16 lg:inset-24">
         <div
-          className="bg-background-elevated border border-border rounded-xl shadow-2xl w-full h-full max-w-4xl max-h-[80vh] flex flex-col pointer-events-auto overflow-hidden"
+          className="acrylic-modal w-full h-full max-w-4xl max-h-[80vh] flex flex-col pointer-events-auto overflow-hidden animate-acrylic-enter-slow"
           onClick={(e) => e.stopPropagation()}
         >
           {/* 头部 */}
-          <div className="flex items-center justify-between px-4 py-3 bg-background-elevated border-b border-border-subtle shrink-0">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-white/20 shrink-0">
             <div className="flex items-center gap-3">
               <span className="text-sm font-medium text-text-primary">{t('labels.aiChat')}</span>
               <select

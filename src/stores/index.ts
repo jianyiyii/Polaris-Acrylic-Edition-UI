@@ -3,7 +3,7 @@
  */
 
 export { useConfigStore } from './configStore';
-export { useThemeStore, type Theme } from './themeStore';
+export { useThemeStore, type Theme, type BackgroundMode, type BackgroundConfig } from './themeStore';
 
 export { useCommandStore } from './commandStore';
 export { useWorkspaceStore } from './workspaceStore';

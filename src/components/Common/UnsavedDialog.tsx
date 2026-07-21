@@ -59,11 +59,11 @@ export function UnsavedDialog({
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50"
       onKeyDown={handleKeyDown}
     >
       <div
-        className="bg-background-elevated rounded-xl p-6 w-full max-w-md border border-border shadow-glow"
+        className="bg-white/45 backdrop-blur-[24px] backdrop-saturate-150 border border-white/45 rounded-xl p-6 w-full max-w-md shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_30px_rgba(0,0,0,0.1)] animate-acrylic-enter-slow"
         role="dialog"
         aria-modal="true"
         aria-labelledby="unsaved-dialog-title"

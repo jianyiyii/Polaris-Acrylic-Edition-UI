@@ -683,8 +683,8 @@ export function BrowserPanel({
   )
 
   return (
-    <div ref={rootRef} className="flex h-full min-h-0 flex-col overflow-hidden bg-background-base">
-      <div className="flex h-11 shrink-0 items-center gap-2 border-b border-border-subtle bg-background-elevated px-3">
+    <div ref={rootRef} className="flex h-full min-h-0 flex-col acrylic-embedded">
+      <div className="flex h-11 shrink-0 items-center gap-2 border-b border-white/20 bg-transparent px-3">
         <div className="flex items-center gap-1">
           <button
             type="button"
@@ -843,26 +843,26 @@ export function BrowserPanel({
       )}
 
       <div className="relative min-h-0 flex-1 overflow-hidden">
-        <div ref={containerRef} className="absolute inset-0 bg-background-base" />
+        <div ref={containerRef} className="absolute inset-0 bg-transparent" />
 
         {status === 'native-unavailable' && (
           <iframe
             title="Polaris Browser"
             src={currentUrl}
-            className="absolute inset-0 h-full w-full border-0 bg-background-base"
+            className="absolute inset-0 h-full w-full border-0 bg-transparent"
             sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts"
           />
         )}
 
         {(loading || status === 'idle') && (
-          <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-2 rounded-md border border-border-subtle bg-background-elevated/95 px-2.5 py-1.5 text-xs text-text-secondary">
+          <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-2 rounded-md border border-white/30 bg-white/35 backdrop-blur-[14px] px-2.5 py-1.5 text-xs text-zinc-600">
             <Loader2 size={13} className="animate-spin text-primary" />
             <span>{t('status.loading')}</span>
           </div>
         )}
 
         {status === 'error' && !loading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-background-base">
+          <div className="absolute inset-0 flex items-center justify-center bg-transparent">
             <div className="flex max-w-md flex-col items-center gap-3 px-6 text-center">
               <Code2 size={36} className="text-text-tertiary" />
               <div className="text-sm font-medium text-text-primary">
@@ -883,7 +883,7 @@ export function BrowserPanel({
       </div>
 
       {aiPanelOpen && (
-        <div className="shrink-0 border-t border-border-subtle bg-background-elevated px-3 py-2">
+        <div className="shrink-0 border-t border-white/20 bg-white/20 backdrop-blur-[14px] px-3 py-2">
           <div className="mb-2 flex items-center justify-between gap-3">
             <div className="flex min-w-0 items-center gap-2 text-xs font-medium text-text-secondary">
               <PanelBottom size={14} className="text-primary" />
@@ -1036,7 +1036,7 @@ export function BrowserPanel({
           type="button"
           onClick={() => setAiPanelOpen(true)}
           disabled={!latestOperation}
-          className="flex h-8 shrink-0 items-center gap-2 border-t border-border-subtle bg-background-elevated px-3 text-left text-xs text-text-secondary hover:bg-background-hover disabled:cursor-default disabled:hover:bg-background-elevated"
+          className="flex h-8 shrink-0 items-center gap-2 border-t border-white/20 bg-transparent px-3 text-left text-xs text-text-secondary hover:bg-white/10 disabled:cursor-default disabled:hover:bg-transparent"
         >
           <Sparkles size={13} className={clsx('shrink-0', latestOperation ? 'text-primary' : 'text-text-tertiary')} />
           <span className="shrink-0 font-medium text-text-primary">
@@ -1052,7 +1052,7 @@ export function BrowserPanel({
         </button>
       )}
 
-      <div className="flex h-7 shrink-0 items-center justify-between border-t border-border-subtle bg-background-elevated px-3 text-[11px] text-text-tertiary">
+      <div className="flex h-7 shrink-0 items-center justify-between border-t border-white/20 bg-transparent px-3 text-[11px] text-text-tertiary">
         <div className="flex min-w-0 items-center gap-2">
           <span
             className={clsx(
@@ -1122,7 +1122,7 @@ export function BrowserLauncherPanel() {
   }, [closeLeftPanel, openBrowserTab])
 
   return (
-    <div className="flex h-full min-h-0 flex-col bg-background-elevated">
+    <div className="flex h-full min-h-0 flex-col acrylic-embedded">
       <div className="flex items-center gap-2 border-b border-border px-4 py-3">
         <Globe2 size={16} className="text-primary" />
         <span className="text-sm font-medium text-text-primary">

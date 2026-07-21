@@ -173,13 +173,14 @@ export const QuickSwitchContent = memo(function QuickSwitchContent({
       className={cn(
         // 尺寸：更紧凑
         'w-56',
-        // 实心背景
-        'bg-[#1A1A1F]',
+        // 半透明玻璃背景
+        'bg-white/35 backdrop-blur-[28px] backdrop-saturate-160',
         // 边框
-        'border border-border/40',
+        'border border-white/45',
+        // 圆角
         'rounded-2xl rounded-tr-none',
         // 阴影
-        'shadow-2xl shadow-black/30',
+        'shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_32px_rgba(0,0,0,0.08)]',
         // 入场动画
         'animate-in fade-in-0 slide-in-from-right-2 duration-200',
         // 内容布局
@@ -476,8 +477,7 @@ const WorkspaceDropdown = memo(function WorkspaceDropdown({
           width: 200,
         }}
         className={cn(
-          'z-50 bg-background-elevated border border-border rounded-xl',
-          'shadow-xl overflow-hidden',
+          'z-50 acrylic-modal',
           'animate-in fade-in-0 zoom-in-95 duration-150'
         )}
       >

@@ -1243,7 +1243,7 @@ export function ChatInput({
               <button
                 onClick={openFileDialog}
                 disabled={disabled || isStreaming}
-                className="shrink-0 p-1.5 rounded-md text-text-tertiary hover:text-text-primary hover:bg-background-hover transition-colors disabled:opacity-50"
+                className="shrink-0 p-1.5 rounded-md text-white hover:bg-white/10 disabled:opacity-50 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] hover:scale-110 transition-transform"
                 title={t('input.addAttachment')}
               >
                 <IconPaperclip size={16} />
@@ -1254,7 +1254,7 @@ export function ChatInput({
                   ref={optimizeButtonRef}
                   onClick={() => setOptimizePickerOpen((v) => !v)}
                   disabled={!canOptimize}
-                  className="shrink-0 p-1.5 rounded-md text-text-tertiary hover:text-primary hover:bg-primary/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="shrink-0 p-1.5 rounded-md text-white hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] hover:scale-110 transition-transform"
                   title={optimizeTitle}
                 >
                   {optimizeRunning ? (
@@ -1266,9 +1266,9 @@ export function ChatInput({
                 {optimizePickerOpen && (
                   <div
                     ref={optimizePickerRef}
-                    className="absolute left-0 bottom-full mb-1 z-50 min-w-[180px] py-1 rounded-lg shadow-lg bg-background-elevated border border-border"
+                    className="absolute left-0 bottom-full mb-1 z-50 min-w-[180px] py-1 acrylic-panel animate-acrylic-enter"
                   >
-                    <div className="px-2 pb-1.5 text-[11px] font-medium text-text-tertiary">
+                    <div className="px-2 pb-1.5 text-[11px] font-medium text-zinc-500">
                       {t('promptOptimize.selectEngine')}
                     </div>
                     {OPTIMIZE_ENGINE_OPTIONS.map(({ id, label, Icon }) => (
@@ -1278,7 +1278,7 @@ export function ChatInput({
                         className={`w-full flex items-center gap-2 px-2.5 py-1.5 text-xs transition-colors ${
                           lastOptimizeEngine === id
                             ? 'text-primary bg-primary/10'
-                            : 'text-text-secondary hover:text-text-primary hover:bg-background-hover'
+                            : 'text-zinc-600 hover:text-zinc-800 hover:bg-black/5'
                         }`}
                         title={getEngineFullName(id)}
                       >
@@ -1292,11 +1292,11 @@ export function ChatInput({
               </div>
               {/* 版本控件：回滚 / 版本指示 / 重做 */}
               {showVersionControls && (
-                <div className="flex items-center gap-0.5 shrink-0 text-text-tertiary">
+                <div className="flex items-center gap-0.5 shrink-0 text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
                   <button
                     onClick={handleUndoOptimize}
                     disabled={!canUndoVersion}
-                    className="p-1 rounded-md hover:text-text-primary hover:bg-background-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="p-1 rounded-md hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed hover:scale-110 transition-transform"
                     title={t('promptOptimize.undo')}
                   >
                     <Undo2 size={14} />
@@ -1307,7 +1307,7 @@ export function ChatInput({
                   <button
                     onClick={handleRedoOptimize}
                     disabled={!canRedoVersion}
-                    className="p-1 rounded-md hover:text-text-primary hover:bg-background-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="p-1 rounded-md hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed hover:scale-110 transition-transform"
                     title={t('promptOptimize.redo')}
                   >
                     <Redo2 size={14} />

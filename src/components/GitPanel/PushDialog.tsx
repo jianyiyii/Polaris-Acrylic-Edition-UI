@@ -206,8 +206,8 @@ export function PushDialog({ isOpen, onClose, defaultRemote, defaultBranch }: Pu
   const isCurrentBranch = selectedBranch === status?.branch
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" onKeyDown={handleKeyDown}>
-      <div className="bg-background-elevated rounded-xl w-full max-w-md border border-border shadow-lg">
+    <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50" onKeyDown={handleKeyDown}>
+      <div className="acrylic-modal w-[min(90vw,480px)] max-w-full max-h-[80vh] flex flex-col overflow-hidden">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
           <div className="flex items-center gap-3">
@@ -265,7 +265,7 @@ export function PushDialog({ isOpen, onClose, defaultRemote, defaultBranch }: Pu
                 </button>
 
                 {showRemoteDropdown && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-background-surface border border-border rounded-lg shadow-lg z-10 max-h-48 overflow-y-auto">
+                  <div className="absolute top-full left-0 right-0 mt-1 acrylic-modal z-10 max-h-48 overflow-y-auto">
                     {remotes.map((remote) => (
                       <button
                         key={remote.name}
@@ -320,7 +320,7 @@ export function PushDialog({ isOpen, onClose, defaultRemote, defaultBranch }: Pu
               </button>
 
               {showBranchDropdown && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-background-surface border border-border rounded-lg shadow-lg z-10 max-h-48 overflow-y-auto">
+                <div className="absolute top-full left-0 right-0 mt-1 acrylic-modal z-10 max-h-48 overflow-y-auto">
                   {localBranches.map((branch) => (
                     <button
                       key={branch.name}
@@ -389,7 +389,7 @@ export function PushDialog({ isOpen, onClose, defaultRemote, defaultBranch }: Pu
                 </div>
 
                 {showRemoteBranchDropdown && remoteBranchesForSelectedRemote.length > 0 && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-background-surface border border-border rounded-lg shadow-lg z-10 max-h-48 overflow-y-auto">
+                  <div className="absolute top-full left-0 right-0 mt-1 acrylic-modal z-10 max-h-48 overflow-y-auto">
                     {remoteBranchesForSelectedRemote.map((branch) => (
                       <button
                         key={branch.name}

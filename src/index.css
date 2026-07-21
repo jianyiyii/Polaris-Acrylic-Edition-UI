@@ -10,6 +10,10 @@
 :root {
   color-scheme: dark;
   --window-opacity: 1.0;
+  position: relative;
+  /* 默认纯色背景（由 data-bg-mode 切换时覆盖） */
+  background-color: rgb(var(--c-bg-base) / var(--window-opacity));
+  transition: background-color 0.3s ease;
 
   /* Primary - Blue */
   --c-primary: 59 130 246;
@@ -67,6 +71,13 @@
   --c-canvas: 255 255 255;
   --c-tag-bg: 255 255 255;
   --c-shadow: 0 0 0;
+
+  /* Background System — 背景视觉模式（通过 data-bg-mode 属性切换） */
+  --bg-image: none;
+  --bg-gradient: none;
+  --bg-overlay-opacity: 0.55;
+  --bg-image-opacity: 0.55;
+  --bg-blur: 0px;
 }
 
 /* === 主题变量（Light） === */
@@ -119,6 +130,10 @@
   --c-overlay: 15 23 42;
   --c-shadow: 15 23 42;
   --c-tag-bg: 15 23 42;
+
+  /* Background System — 亮色主题适配 */
+  --bg-overlay-opacity: 0.35;
+  --bg-image-opacity: 0.35;
 }
 
 * {
@@ -133,7 +148,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(var(--c-bg-base) / var(--window-opacity));
+  background-color: transparent;
   color: rgb(var(--c-text-primary));
   /* 透明度/主题变化时的平滑过渡 */
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -1919,3 +1934,208 @@ body {
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 8px 32px rgba(0, 0, 0, 0.4);
   position: relative;
 }
+
+/* ============================================================================
+   背景视觉系统（Phase 1）
+   通过 <html data-bg-mode="..."> 属性切换，默认无属性 = 纯色（行为不变）
+
+   使用方式：
+   - 纯色（默认）：不设置 data-bg-mode
+   - 图片背景：<html data-bg-mode="image" style="--bg-image: url('/path.jpg')">
+   - 渐变背景：<html data-bg-mode="gradient" style="--bg-gradient: linear-gradient(...)">
+   - Aurora：  <html data-bg-mode="aurora">
+   ============================================================================ */
+
+/* --- 图片背景 --- */
+:root[data-bg-mode="image"] {
+  /* 图片渲染在 ::before 伪元素上，blur 不影响内容 */
+  background-color: rgb(var(--c-bg-base));
+}
+
+:root[data-bg-mode="image"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: blur(var(--bg-blur));
+  /* blur 裁切边缘时用 scale 补偿 */
+  transform: scale(1.02);
+}
+
+:root[data-bg-mode="image"]::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgb(var(--c-bg-base) / var(--bg-image-opacity));
+}
+
+/* --- 渐变背景 --- */
+:root[data-bg-mode="gradient"] {
+  background-image: var(--bg-gradient);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* --- Aurora 动态背景 --- */
+:root[data-bg-mode="aurora"] {
+  /* 深色底色 + 多层径向渐变光斑 */
+  background-color: rgb(var(--c-bg-base));
+  background-image:
+    radial-gradient(
+      ellipse 60% 50% at 15% 60%,
+      rgb(var(--c-accent-ai) / 0.18) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 60% at 80% 25%,
+      rgb(var(--c-primary) / 0.15) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 40% 45% at 50% 85%,
+      rgb(var(--c-accent-prototype) / 0.10) 0%,
+      transparent 60%
+    );
+}
+
+/* Aurora 光斑漂移元素（由 JS 注入或 CSS-only 伪元素） */
+:root[data-bg-mode="aurora"]::before,
+:root[data-bg-mode="aurora"]::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+:root[data-bg-mode="aurora"]::before {
+  width: 45vw;
+  height: 45vh;
+  top: 10%;
+  left: 5%;
+  background: radial-gradient(
+    circle,
+    rgb(var(--c-accent-ai) / 0.20) 0%,
+    transparent 70%
+  );
+  animation: aurora-drift-1 22s ease-in-out infinite;
+}
+
+:root[data-bg-mode="aurora"]::after {
+  width: 40vw;
+  height: 40vh;
+  bottom: 10%;
+  right: 5%;
+  background: radial-gradient(
+    circle,
+    rgb(var(--c-primary) / 0.18) 0%,
+    transparent 70%
+  );
+  animation: aurora-drift-2 28s ease-in-out infinite;
+}
+
+/* Aurora 光斑漂移动画 */
+@keyframes aurora-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25%      { transform: translate(5%, 8%) scale(1.05); }
+  50%      { transform: translate(10%, -3%) scale(1.12); }
+  75%      { transform: translate(-3%, 5%) scale(1.08); }
+}
+
+@keyframes aurora-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25%      { transform: translate(-6%, -4%) scale(1.06); }
+  50%      { transform: translate(-10%, 8%) scale(1.10); }
+  75%      { transform: translate(4%, -6%) scale(1.04); }
+}
+
+/* ============================================================================
+   设置面板 Acrylic 浮现动画
+   ============================================================================ */
+
+@keyframes settings-open {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-settings-open {
+  animation: settings-open 350ms ease-out;
+}
+
+/* ============================================================================
+   Acrylic Material 统一工具类
+   用于所有二级浮层：Dropdown、Modal、Popover、ContextMenu
+   ============================================================================ */
+
+/* 基础亚克力面板 — Dropdown/ContextMenu/Popover */
+.acrylic-panel {
+  background: rgba(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 0.75rem;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* 嵌入式液态玻璃面板 — 侧边栏工作区面板统一材质 */
+.acrylic-embedded {
+  background: rgba(255, 255, 255, 0.28);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.7),
+    0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* 弹窗级亚克力 — Modal/Dialog */
+.acrylic-modal {
+  background: rgba(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 1rem;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* 进入动画 — 浮层浮现 */
+@keyframes acrylic-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* 进入动画 — Dropdown 类（快速） */
+.animate-acrylic-enter {
+  animation: acrylic-enter 150ms ease-out;
+}
+
+/* 进入动画 — Modal 类（从容） */
+.animate-acrylic-enter-slow {
+  animation: acrylic-enter 250ms ease-out;
+}
+
+/* 浮层统一浅色玻璃，Dark 模式也保持浅色 */

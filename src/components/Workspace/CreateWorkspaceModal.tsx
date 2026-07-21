@@ -106,8 +106,8 @@ function ServerDirectoryPicker({
   }
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[110]">
-      <div className="bg-background-elevated rounded-xl w-full max-w-lg border border-border shadow-glow mx-4">
+    <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-[110]">
+      <div className="acrylic-modal w-full max-w-lg mx-4">
         {/* 标题栏 */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-border">
           <h3 className="text-sm font-medium text-text-primary">
@@ -317,11 +317,11 @@ export function CreateWorkspaceModal({ onClose }: CreateWorkspaceModalProps) {
 
       {createPortal(
         <div
-          className="fixed inset-0 bg-black/50 flex items-center justify-center z-[100]"
+          className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-[100]"
           onMouseDown={(e) => e.stopPropagation()}
           onClick={(e) => e.stopPropagation()}
         >
-          <div ref={modalRef} data-modal="create-workspace" className="bg-background-elevated rounded-xl p-6 w-full max-w-md border border-border shadow-glow">
+          <div ref={modalRef} data-modal="create-workspace" className="acrylic-modal p-6 w-full max-w-md mx-4">
             <h2 className="text-lg font-semibold text-text-primary mb-4">
               {t('createModal.title')}
             </h2>

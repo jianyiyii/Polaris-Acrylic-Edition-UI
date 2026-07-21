@@ -100,7 +100,7 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
   };
 
   return (
-    <div className="flex items-center h-10 bg-background-elevated border-b border-border shrink-0">
+    <div className="flex items-center h-10 bg-transparent shrink-0">
       {/* 左侧:Logo/应用名称 - 小屏模式下更紧凑 */}
       <div data-tauri-drag-region className={`flex items-center ${isCompactMode ? 'px-2' : 'pl-4 pr-2'}`}>
         <div className="w-6 h-6 rounded bg-gradient-to-br from-primary to-primary-600 flex items-center justify-center shadow-glow" data-tauri-drag-region={false}>
@@ -149,7 +149,7 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
       {/* 中间:可拖拽区域 (自动填充剩余空间) */}
       <div data-tauri-drag-region className={`flex-1 h-full${isTauri() ? ' cursor-move' : ''}`} />
 
-      {/* 右侧:菜单 + 窗口控制 - 小屏模式下简化 */}
+      {/* 右侧:菜单 + 窗口控制 */}
       <div className="flex items-center">
         {/* 小屏模式：显示置顶按钮和窗口控制按钮 */}
         {isCompactMode ? (
@@ -161,7 +161,7 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
             {onOpenSettings && (
               <button
                 onClick={onOpenSettings}
-                className="p-1.5 rounded-md transition-colors text-text-tertiary hover:text-text-primary hover:bg-background-hover"
+                className="p-1.5 rounded-md transition-colors text-white/80 hover:text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
                 title={t('settings.title')}
                 data-tauri-drag-region={false}
               >
@@ -174,10 +174,10 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
                 {/* 窗口置顶按钮 */}
                 <button
                   onClick={handleToggleAlwaysOnTop}
-                  className={`p-1.5 rounded-md transition-colors ${
+                  className={`p-1.5 rounded-md transition-colors drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] ${
                     isAlwaysOnTop
-                      ? 'text-primary bg-primary/10 hover:bg-primary/20'
-                      : 'text-text-tertiary hover:text-text-primary hover:bg-background-hover'
+                      ? 'text-white bg-white/10 hover:bg-white/20'
+                      : 'text-white/80 hover:text-white hover:bg-white/10'
                   }`}
                   title={isAlwaysOnTop ? t('window.alwaysOnTop') : t('window.alwaysOnTopHint')}
                   data-tauri-drag-region={false}
@@ -192,7 +192,7 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
                 <div className="flex items-center">
                   <button
                     onClick={() => tauri.minimizeWindow()}
-                    className="px-2 py-2 hover:bg-background-hover transition-colors text-text-secondary hover:text-text-primary"
+                    className="px-2 py-2 hover:bg-white/10 transition-colors text-white/80 hover:text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
                     title={t('window.minimize')}
                     data-tauri-drag-region={false}
                   >
@@ -200,7 +200,7 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
                   </button>
                   <button
                     onClick={() => tauri.toggleMaximizeWindow()}
-                    className="px-2 py-2 hover:bg-background-hover transition-colors text-text-secondary hover:text-text-primary"
+                    className="px-2 py-2 hover:bg-white/10 transition-colors text-white/80 hover:text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
                     title={isMaximized ? t('window.restore') : t('window.maximize')}
                     data-tauri-drag-region={false}
                   >
@@ -208,7 +208,7 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
                   </button>
                   <button
                     onClick={() => tauri.closeWindow()}
-                    className="px-2 py-2 hover:bg-red-500 hover:text-white transition-colors text-text-secondary"
+                    className="px-2 py-2 hover:bg-red-500 hover:text-white transition-colors text-white/80 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
                     title={t('window.close')}
                     data-tauri-drag-region={false}
                   >
@@ -225,10 +225,10 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
             {/* ActivityBar 显示/隐藏按钮 */}
             <button
               onClick={toggleActivityBar}
-              className={`p-1.5 rounded-md transition-colors ${
+              className={`p-1.5 rounded-md drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] hover:scale-110 transition-transform ${
                 activityBarCollapsed
-                  ? 'text-text-tertiary hover:text-text-primary hover:bg-background-hover'
-                  : 'text-primary bg-primary/10 hover:bg-primary/20'
+                  ? 'text-white hover:bg-white/10'
+                  : 'text-white bg-white/10 hover:bg-white/20'
               }`}
               title={activityBarCollapsed ? t('labels.showActivityBar') : t('labels.hideActivityBar')}
               data-tauri-drag-region={false}
@@ -239,10 +239,10 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
             {/* 右侧 AI 面板切换按钮 */}
             <button
               onClick={onToggleRightPanel}
-              className={`p-1.5 rounded-md transition-colors ${
+              className={`p-1.5 rounded-md transition-colors drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] ${
                 rightPanelCollapsed
-                  ? 'text-text-tertiary hover:text-text-primary hover:bg-background-hover'
-                  : 'text-primary bg-primary/10 hover:bg-primary/20'
+                  ? 'text-white/80 hover:text-white hover:bg-white/10'
+                  : 'text-white bg-white/10 hover:bg-white/20'
               }`}
               title={rightPanelCollapsed ? t('labels.showAIPanel') : t('labels.hideAIPanel')}
               data-tauri-drag-region={false}
@@ -257,7 +257,7 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
             {onOpenSettings && (
               <button
                 onClick={onOpenSettings}
-                className="p-1.5 rounded-md transition-colors text-text-tertiary hover:text-text-primary hover:bg-background-hover"
+                className="p-1.5 rounded-md transition-colors text-white/80 hover:text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
                 title={t('settings.title')}
                 data-tauri-drag-region={false}
               >
@@ -270,10 +270,10 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
                 {/* 窗口置顶按钮 */}
                 <button
                   onClick={handleToggleAlwaysOnTop}
-                  className={`p-1.5 rounded-md transition-colors ${
+                  className={`p-1.5 rounded-md transition-colors drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] ${
                     isAlwaysOnTop
-                      ? 'text-primary bg-primary/10 hover:bg-primary/20'
-                      : 'text-text-tertiary hover:text-text-primary hover:bg-background-hover'
+                      ? 'text-white bg-white/10 hover:bg-white/20'
+                      : 'text-white/80 hover:text-white hover:bg-white/10'
                   }`}
                   title={isAlwaysOnTop ? t('window.alwaysOnTop') : t('window.alwaysOnTopHint')}
                   data-tauri-drag-region={false}
@@ -287,7 +287,7 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
                 <div className="flex items-center">
                   <button
                     onClick={() => tauri.minimizeWindow()}
-                    className="px-3 py-2 hover:bg-background-hover transition-colors text-text-secondary hover:text-text-primary"
+                    className="px-3 py-2 hover:bg-white/10 transition-colors text-white/80 hover:text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
                     title={t('window.minimize')}
                     data-tauri-drag-region={false}
                   >
@@ -295,7 +295,7 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
                   </button>
                   <button
                     onClick={() => tauri.toggleMaximizeWindow()}
-                    className="px-3 py-2 hover:bg-background-hover transition-colors text-text-secondary hover:text-text-primary"
+                    className="px-3 py-2 hover:bg-white/10 transition-colors text-white/80 hover:text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
                     title={isMaximized ? t('window.restore') : t('window.maximize')}
                     data-tauri-drag-region={false}
                   >
@@ -303,7 +303,7 @@ export function TopMenuBar({ onToggleRightPanel, rightPanelCollapsed, isCompactM
                   </button>
                   <button
                     onClick={() => tauri.closeWindow()}
-                    className="px-3 py-2 hover:bg-red-500 hover:text-white transition-colors text-text-secondary"
+                    className="px-3 py-2 hover:bg-red-500 hover:text-white transition-colors text-white/80 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
                     title={t('window.close')}
                     data-tauri-drag-region={false}
                   >

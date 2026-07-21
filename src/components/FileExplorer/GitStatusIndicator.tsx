@@ -21,7 +21,7 @@ export function GitStatusIndicator() {
   return (
     <button
       onClick={() => toggleGitPanel()}
-      className="flex items-center gap-1.5 px-2 py-1 rounded-md text-xs bg-background-surface hover:bg-background-hover transition-colors group cursor-pointer"
+      className="flex items-center gap-1.5 px-2 py-1 rounded-md text-xs bg-white/20 hover:bg-white/30 transition-colors group cursor-pointer"
       title={`分支: ${status.branch}${totalChanges > 0 ? `\n未提交变更: ${totalChanges}` : ''}`}
     >
       <GitBranch size={12} className="text-text-tertiary" />

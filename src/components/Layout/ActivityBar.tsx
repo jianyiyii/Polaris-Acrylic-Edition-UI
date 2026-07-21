@@ -62,7 +62,7 @@ export function ActivityBar({ className, onOpenSettings, onToggleRightPanel, rig
       {/* 折叠按钮 */}
       <button
         onClick={toggleActivityBar}
-        className="w-10 h-10 mx-1 mb-2 rounded-md flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-background-hover transition-colors"
+        className="w-10 h-10 mx-1 mb-2 rounded-md flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-background-hover transition-all duration-150"
         title={t('labels.hideActivityBar')}
       >
         <PanelRight className="w-5 h-5" />

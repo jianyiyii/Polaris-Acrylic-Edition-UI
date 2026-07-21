@@ -231,13 +231,13 @@ function ReferencesPanelInner({ symbol, loading, items, error, truncated, onClos
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 flex items-start justify-center z-50 pt-[10vh]"
+      className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-start justify-center z-50 pt-[10vh]"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
       <div
-        className="bg-background-elevated rounded-xl w-full max-w-3xl border border-border shadow-glow overflow-hidden animate-in fade-in zoom-in-95 duration-150 flex flex-col"
+        className="bg-white/45 backdrop-blur-[24px] backdrop-saturate-150 border border-white/45 rounded-xl w-full max-w-3xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_30px_rgba(0,0,0,0.1)] overflow-hidden animate-in fade-in zoom-in-95 duration-150 flex flex-col"
         style={{ maxHeight: '78vh' }}
         onKeyDown={handleKeyDown}
         tabIndex={-1}

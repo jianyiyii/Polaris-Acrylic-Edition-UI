@@ -430,7 +430,7 @@ export function GitPanel({
 
   if (!status) {
     return (
-      <div className={`h-full flex flex-col ${className}`}>
+      <div className={`h-full flex flex-col acrylic-embedded ${className}`}>
         <div className="flex items-center justify-between px-4 py-3 border-b border-border-subtle">
           <div className="flex items-center gap-2">
             <GitPullRequest size={16} className="text-primary" />
@@ -472,7 +472,7 @@ export function GitPanel({
                   {t('init.button')}
                 </Button>
               ) : (
-                <div className="w-full max-w-[280px] bg-background-surface border border-border rounded-lg p-3 mt-2">
+                <div className="w-full max-w-[280px] bg-white/45 backdrop-blur-[24px] backdrop-saturate-150 border border-white/45 rounded-2xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_32px_rgba(0,0,0,0.08)] p-3 mt-2">
                   <div className="text-xs text-text-secondary mb-2">{t('init.title')}</div>
                   <div className="flex items-center gap-2 mb-3">
                     <input
@@ -515,7 +515,7 @@ export function GitPanel({
   }
 
   return (
-    <div className={`h-full flex flex-col ${className}`}>
+    <div className={`h-full flex flex-col acrylic-embedded ${className}`}>
       <div className="flex items-center justify-between px-4 py-3 border-b border-border-subtle shrink-0">
         <div className="flex items-center gap-2">
           <GitPullRequest size={16} className="text-primary" />

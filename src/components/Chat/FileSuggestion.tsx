@@ -92,7 +92,7 @@ export function UnifiedSuggestion({
   return (
     <div
       ref={containerRef}
-      className="fixed z-50 bg-background-surface border border-border rounded-lg shadow-lg max-h-80 overflow-auto"
+      className="fixed z-50 acrylic-panel max-h-80 overflow-auto animate-acrylic-enter"
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,

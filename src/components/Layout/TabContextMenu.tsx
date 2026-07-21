@@ -82,7 +82,7 @@ export function TabContextMenu({
           onCloseTab()
           onClose()
         }}
-        className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-background-hover transition-colors"
+        className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-white/10 transition-colors"
       >
         {t('tabs.close')}
       </button>
@@ -91,7 +91,7 @@ export function TabContextMenu({
           onCloseOthers(tabId)
           onClose()
         }}
-        className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-background-hover transition-colors"
+        className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-white/10 transition-colors"
       >
         {t('tabs.closeOthers')}
       </button>
@@ -101,7 +101,7 @@ export function TabContextMenu({
             onCloseRight(tabId)
             onClose()
           }}
-          className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-background-hover transition-colors"
+          className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-white/10 transition-colors"
         >
           {t('tabs.closeRight', '关闭右侧标签页')}
         </button>
@@ -112,7 +112,7 @@ export function TabContextMenu({
             onCloseSaved()
             onClose()
           }}
-          className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-background-hover transition-colors"
+          className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-white/10 transition-colors"
         >
           {t('tabs.closeSaved', '关闭已保存的标签页')}
         </button>
@@ -123,7 +123,7 @@ export function TabContextMenu({
           onCloseAll()
           onClose()
         }}
-        className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-background-hover transition-colors"
+        className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-white/10 transition-colors"
       >
         {t('tabs.closeAll')}
       </button>
@@ -137,7 +137,7 @@ export function TabContextMenu({
               onRefreshTab(tabId)
               onClose()
             }}
-            className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-background-hover transition-colors flex items-center gap-2"
+            className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-white/10 transition-colors flex items-center gap-2"
           >
             <RefreshCw size={12} />
             <span>{t('tabs.refresh', '刷新')}</span>
@@ -155,7 +155,7 @@ export function TabContextMenu({
                 onRevealInExplorer(tabId)
                 onClose()
               }}
-              className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-background-hover transition-colors"
+              className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-white/10 transition-colors"
             >
               {t('tabs.revealInExplorer', '在文件树中定位')}
             </button>
@@ -166,7 +166,7 @@ export function TabContextMenu({
                 onCopyPath(tabId)
                 onClose()
               }}
-              className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-background-hover transition-colors"
+              className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-white/10 transition-colors"
             >
               {t('tabs.copyPath', '复制文件路径')}
             </button>
@@ -177,7 +177,7 @@ export function TabContextMenu({
                 onCopyRelativePath(tabId)
                 onClose()
               }}
-              className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-background-hover transition-colors"
+              className="w-full px-4 py-2 text-left text-sm text-text-primary hover:bg-white/10 transition-colors"
             >
               {t('tabs.copyRelativePath', '复制相对路径')}
             </button>

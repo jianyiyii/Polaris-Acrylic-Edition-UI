@@ -257,16 +257,16 @@ export const CodeBlock = memo(function CodeBlock({ children, className }: CodeBl
   }, [showLineNumbers, codeString]);
 
   return (
-    <div className="chat-code-block relative group rounded-lg overflow-hidden bg-background-base border border-border-subtle">
+    <div className="chat-code-block relative group rounded-2xl overflow-hidden bg-[rgba(10,10,15,0.65)] backdrop-blur-xl border border-[rgba(255,255,255,0.1)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_4px_20px_rgba(0,0,0,0.2)]">
       {/* 顶部工具栏 */}
-      <div className="flex items-center justify-between px-3 py-2 bg-background-elevated border-b border-border-subtle">
+      <div className="flex items-center justify-between px-3 py-2 bg-[rgba(255,255,255,0.05)] border-b border-[rgba(255,255,255,0.08)]">
         {/* 语言标签 */}
         <div className="flex items-center gap-3">
           {displayName && (
-            <span className="text-xs text-text-tertiary font-mono">{displayName}</span>
+            <span className="text-xs text-white/60 font-mono">{displayName}</span>
           )}
           {lineCount > 1 && (
-            <span className="text-xs text-text-muted">{lineCount} {t('codeBlock.lines', { count: lineCount })}</span>
+            <span className="text-xs text-white/40">{lineCount} {t('codeBlock.lines', { count: lineCount })}</span>
           )}
         </div>
 
@@ -275,7 +275,7 @@ export const CodeBlock = memo(function CodeBlock({ children, className }: CodeBl
           {/* 折叠/展开按钮 */}
           {shouldAutoFold && (
             <button
-              className="px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1.5 text-text-tertiary hover:bg-background-hover"
+              className="px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1.5 text-white/60 hover:text-white hover:bg-white/10"
               onClick={toggleCollapse}
               title={isCollapsed ? t('codeBlock.expandCode') : t('codeBlock.collapseCode')}
             >
@@ -297,8 +297,8 @@ export const CodeBlock = memo(function CodeBlock({ children, className }: CodeBl
           <button
             className={`px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1.5 ${
               showLineNumbers
-                ? 'bg-primary/20 text-primary'
-                : 'text-text-tertiary hover:bg-background-hover'
+                ? 'bg-white/15 text-white'
+                : 'text-white/60 hover:text-white hover:bg-white/10'
             }`}
             onClick={toggleLineNumbers}
             title={showLineNumbers ? t('codeBlock.hideLineNumbers') : t('codeBlock.showLineNumbers')}
@@ -320,8 +320,8 @@ export const CodeBlock = memo(function CodeBlock({ children, className }: CodeBl
           <button
             className={`px-2.5 py-1 text-xs rounded-md transition-all flex items-center gap-1.5 ${
               copied
-                ? 'bg-success text-white'
-                : 'text-text-tertiary hover:bg-background-hover'
+                ? 'bg-emerald-500/20 text-emerald-400'
+                : 'text-white/60 hover:text-white hover:bg-white/10'
             }`}
             onClick={handleCopy}
             title={copied ? t('codeBlock.copied') : t('codeBlock.copyCode')}
@@ -346,22 +346,22 @@ export const CodeBlock = memo(function CodeBlock({ children, className }: CodeBl
         {isCollapsed ? (
           /* 折叠状态：显示预览提示 */
           <div
-            className="p-4 bg-background-base cursor-pointer hover:bg-background-hover/30 transition-colors relative"
+            className="p-4 bg-transparent cursor-pointer hover:bg-[rgba(255,255,255,0.05)] transition-colors relative"
             onClick={toggleCollapse}
             title={t('codeBlock.clickToExpand')}
           >
-            <div className="text-xs text-text-muted mb-2">
+            <div className="text-xs text-white/40 mb-2">
               {displayName && <span className="font-mono mr-2">{displayName}</span>}
               <span>{t('codeBlock.linesCollapsed', { count: lineCount })}</span>
             </div>
             {/* 显示前 3 行预览 */}
-            <pre className="chat-code-text text-text-tertiary opacity-60 overflow-hidden" style={{ maxHeight: '4.5em' }}>
+            <pre className="chat-code-text text-white/40 opacity-60 overflow-hidden" style={{ maxHeight: '4.5em' }}>
               <code>{codeString.split('\n').slice(0, 3).join('\n')}</code>
             </pre>
             {/* 渐变遮罩 */}
-            <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-background-base to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[rgba(10,10,15,0.65)] to-transparent pointer-events-none" />
             {/* 展开提示 */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs text-text-muted flex items-center gap-1">
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs text-white/40 flex items-center gap-1">
               <ChevronDown className="w-3.5 h-3.5" />
               {t('codeBlock.clickToExpandShort')}
             </div>
@@ -369,7 +369,7 @@ export const CodeBlock = memo(function CodeBlock({ children, className }: CodeBl
         ) : (
           /* 展开状态：显示完整代码 */
           <pre
-            className={`chat-code-pre !bg-background-base !m-0 !rounded-none ${className || ''}`}
+            className={`chat-code-pre !bg-transparent !m-0 !rounded-none ${className || ''}`}
             style={{
               margin: 0,
             }}
@@ -378,7 +378,7 @@ export const CodeBlock = memo(function CodeBlock({ children, className }: CodeBl
               <code className="hljs chat-code-text">
                 {codeWithLineNumbers?.split('\n').map((line, index) => (
                   <div key={index} className="table-row">
-                    <span className="table-cell pr-4 text-text-muted select-none text-right border-r border-border-subtle mr-4">
+                    <span className="table-cell pr-4 text-white/30 select-none text-right border-r border-[rgba(255,255,255,0.08)] mr-4">
                       {line.split(' | ')[0]}
                     </span>
                     <span className="table-cell pl-4" dangerouslySetInnerHTML={{

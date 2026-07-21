@@ -142,10 +142,10 @@ export const NewSessionButton = memo(function NewSessionButton() {
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(
-          'p-1.5 rounded transition-colors',
+          'p-1.5 rounded drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] hover:scale-105 transition-all',
           isOpen
-            ? 'bg-primary/10 text-primary'
-            : 'text-text-muted hover:text-text-primary hover:bg-background-hover'
+            ? 'bg-white/15 text-white'
+            : 'text-white hover:text-white hover:bg-white/10'
         )}
         title={t('newSession.title')}
       >
@@ -159,12 +159,11 @@ export const NewSessionButton = memo(function NewSessionButton() {
           onKeyDown={handleKeyDown}
           className={clsx(
             'absolute left-0 bottom-full mb-1 z-50',
-            'w-72 flex flex-col rounded-lg shadow-lg',
-            'bg-background-elevated border border-border'
+            'w-72 flex flex-col acrylic-panel animate-acrylic-enter'
           )}
         >
           <div className="px-2 pb-2 border-b border-border-subtle">
-            <div className="px-1 py-1 text-[11px] font-medium text-text-tertiary">{t('newSession.aiEngine')}</div>
+            <div className="px-1 py-1 text-[11px] font-medium text-zinc-500">{t('newSession.aiEngine')}</div>
             <div className="grid grid-cols-2 gap-1">
               {engineOptions.map(({ id, label, Icon }) => (
                 <button
@@ -174,7 +173,7 @@ export const NewSessionButton = memo(function NewSessionButton() {
                     'flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-md text-xs transition-colors',
                     selectedEngineId === id
                       ? 'bg-primary/10 text-primary border border-primary/30'
-                      : 'text-text-secondary hover:text-text-primary hover:bg-background-hover border border-border-subtle'
+                      : 'text-zinc-600 hover:text-zinc-800 hover:bg-black/5 border border-white/30'
                   )}
                   title={getEngineFullName(id)}
                 >

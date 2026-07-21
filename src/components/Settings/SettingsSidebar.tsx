@@ -78,18 +78,18 @@ export function SettingsSidebar({ activeTab, onTabChange, searchQuery, onSearchC
   );
 
   return (
-    <div className="sm:w-56 sm:flex-shrink-0 sm:border-r sm:border-b-0 border-b border-border-subtle bg-background-elevated flex sm:flex-col">
+    <div className="sm:w-56 sm:flex-shrink-0 sm:border-r sm:border-b-0 border-b border-white/40 bg-white/45 backdrop-blur-md flex sm:flex-col">
       {/* 搜索框 — 小屏隐藏，大屏显示 */}
-      <div className="hidden sm:block p-3 border-b border-border-subtle">
+      <div className="hidden sm:block p-3 border-b border-white/40">
         <div className="relative">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder={t('search')}
-            className="w-full bg-surface border border-border-subtle rounded-lg px-3 py-1.5 pr-8 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-primary"
+            className="w-full bg-white/50 border border-white/50 rounded-lg px-3 py-1.5 pr-8 text-sm text-zinc-800 placeholder-zinc-400 focus:outline-none focus:border-white/70"
           />
-          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-text-muted">
+          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-400">
             <IconSearch size={14} />
           </span>
         </div>
@@ -103,8 +103,8 @@ export function SettingsSidebar({ activeTab, onTabChange, searchQuery, onSearchC
             onClick={() => onTabChange(item.id)}
             className={`flex-shrink-0 flex items-center gap-2 px-4 py-2.5 text-left text-sm transition-colors sm:w-full ${
               activeTab === item.id
-                ? 'bg-primary/10 text-primary border-b-2 sm:border-b-0 sm:border-r-2 border-primary'
-                : 'text-text-secondary hover:bg-surface hover:text-text-primary'
+                ? 'bg-white/70 shadow-sm text-zinc-800 font-medium border-b-2 sm:border-b-0 sm:border-r-2 border-white/60'
+                : 'text-zinc-600 hover:bg-white/50 hover:text-zinc-800'
             }`}
           >
             <span className="flex-shrink-0">{item.icon}</span>

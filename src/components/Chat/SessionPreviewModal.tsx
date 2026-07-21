@@ -130,11 +130,11 @@ export function SessionPreviewModal({ item, onRestore, onFork, onClose }: Sessio
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4"
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-white/10 backdrop-blur-md p-4"
       onClick={onClose}
     >
       <div
-        className="flex flex-col bg-background-elevated rounded-xl shadow-2xl border border-border w-[900px] max-w-[95vw] h-[84vh] max-h-[860px] overflow-hidden"
+        className="flex flex-col bg-white/45 backdrop-blur-[24px] backdrop-saturate-150 border border-white/45 rounded-xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_30px_rgba(0,0,0,0.1)] w-[900px] max-w-[95vw] h-[84vh] max-h-[860px] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 标题栏 */}

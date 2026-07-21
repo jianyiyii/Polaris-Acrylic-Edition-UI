@@ -78,7 +78,7 @@ export function ProblemsPanel() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-background-elevated">
+    <div className="flex flex-col h-full acrylic-embedded">
       {/* 头部：汇总 */}
       <div className="flex items-center gap-3 px-3 py-2 border-b border-border text-xs">
         <span className="text-text-tertiary uppercase tracking-wide">Problems</span>

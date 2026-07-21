@@ -23,7 +23,7 @@ export const ActivityBarIcon = forwardRef<HTMLButtonElement, ActivityBarIconProp
       'relative w-10 h-10 mx-1 mb-1 rounded-md flex items-center justify-center',
       'transition-all duration-150',
       // Hover 效果
-      'hover:bg-background-hover',
+      'hover:bg-white/10',
       // Active 状态
       active ? 'bg-background-surface' : '',
       // Active 状态的左侧指示条
@@ -35,9 +35,9 @@ export const ActivityBarIcon = forwardRef<HTMLButtonElement, ActivityBarIconProp
       .join(' ')
 
     const iconClasses = [
-      'transition-colors duration-150',
-      active ? 'text-primary' : 'text-text-secondary',
-      'hover:text-text-primary',
+      'transition-colors duration-150 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]',
+      active ? 'text-white' : 'text-white/90',
+      'hover:text-white',
     ].join(' ')
 
     return (

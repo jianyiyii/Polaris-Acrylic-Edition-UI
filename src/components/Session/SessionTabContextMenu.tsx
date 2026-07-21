@@ -107,7 +107,7 @@ export function SessionTabContextMenu({
                 }}
                 className={cn(
                   'w-full px-3 py-1.5 text-left text-sm rounded transition-colors flex items-center justify-between gap-2',
-                  'text-text-primary hover:bg-background-hover',
+                  'text-text-primary hover:bg-white/10',
                 )}
               >
                 <span>{getEngineDisplayName(engineId)}</span>

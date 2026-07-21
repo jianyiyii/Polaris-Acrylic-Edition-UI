@@ -47,13 +47,13 @@ export const QuickSwitchTrigger = memo(function QuickSwitchTrigger({
           'absolute inset-0',
           // 玻璃风格，与其他导航统一
           'rounded-l-xl',
-          'bg-background-elevated/85 backdrop-blur-xl',
-          'border border-border/50 border-r-0',
-          'shadow-lg shadow-black/5',
+          'bg-white/30 backdrop-blur-[20px] backdrop-saturate-150',
+          'border border-white/35 border-r-0',
+          'shadow-md',
           // 过渡
           'transition-all duration-200',
           // 悬停效果
-          isHovering && 'bg-background-elevated/95 shadow-xl'
+          isHovering && 'bg-white/45 shadow-xl'
         )}
       />
 

@@ -8,6 +8,7 @@
  */
 
 import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { ChevronDown, Bot, Cpu, Zap, Shield, Plug } from 'lucide-react'
 import { clsx } from 'clsx'
@@ -81,10 +82,15 @@ export function SessionConfigSelector({
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
+  // Portal dropdown ref（用于点击外部关闭判断）
+  const portalRef = useRef<HTMLDivElement>(null)
+
   // 点击外部关闭下拉
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      const target = e.target as Node
+      if (containerRef.current && !containerRef.current.contains(target)
+        && portalRef.current && !portalRef.current.contains(target)) {
         setOpenDropdown(null)
       }
     }
@@ -99,11 +105,14 @@ export function SessionConfigSelector({
     if (dynamicAgents.length > 0) {
       return [
         emptyOption,
-        ...dynamicAgents.map(a => ({
-          id: a.id,
-          name: a.name,
-          description: `${a.source === 'plugin' ? t('sessionConfig.pluginSource') : t('sessionConfig.builtinSource')}${a.defaultModel ? ` · ${a.defaultModel}` : ''}`,
-        }))
+        ...dynamicAgents.map(a => {
+          const preset = PRESET_AGENTS.find(p => p.id === a.id)
+          return {
+            id: a.id,
+            name: preset?.name || a.name,
+            description: `${a.source === 'plugin' ? t('sessionConfig.pluginSource') : t('sessionConfig.builtinSource')}${a.defaultModel ? ` · ${a.defaultModel}` : ''}`,
+          }
+        })
       ]
     }
     return PRESET_AGENTS
@@ -243,8 +252,18 @@ export function SessionConfigSelector({
   }, [])
 
   // 渲染下拉选项
+  // 用于 Portal 定位的按钮 ref
+  const buttonRefs = useRef<Map<SelectorType, HTMLElement>>(new Map())
+  const setButtonRef = useCallback((type: SelectorType, el: HTMLElement | null) => {
+    if (el) buttonRefs.current.set(type, el)
+    else buttonRefs.current.delete(type)
+  }, [])
+
   const renderDropdown = (type: SelectorType) => {
     if (openDropdown !== type) return null
+    const buttonEl = buttonRefs.current.get(type)
+    if (!buttonEl) return null
+    const rect = buttonEl.getBoundingClientRect()
 
     const items: Array<{ value: string; label: string; description?: string }> = []
 
@@ -319,44 +338,54 @@ export function SessionConfigSelector({
 
     const currentValue = getCurrentValue()
 
-    return (
-      <div className={clsx(
-        'absolute bottom-full left-0 mb-1',
-        'bg-background-elevated border border-border rounded-lg shadow-lg',
-        'min-w-[180px] max-h-[240px] overflow-y-auto',
-        'z-50 animate-in fade-in slide-in-from-bottom-1 duration-150'
-      )}>
+    return createPortal(
+      <div
+        ref={portalRef}
+        className="min-w-[180px] max-h-[240px] overflow-y-auto z-[9999] animate-acrylic-enter"
+        style={{
+          position: 'fixed',
+          bottom: `${window.innerHeight - rect.top + 4}px`,
+          left: `${rect.left}px`,
+          background: 'rgba(255, 255, 255, 0.55)',
+          WebkitBackdropFilter: 'blur(25px) saturate(150%)',
+          backdropFilter: 'blur(25px) saturate(150%)',
+          border: '1px solid rgba(255, 255, 255, 0.65)',
+          borderRadius: '0.75rem',
+          boxShadow: 'inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 8px 24px rgba(0, 0, 0, 0.08)',
+        }}
+      >
         {items.map((item) => (
           <button
             key={item.value}
             onClick={() => handleSelect(type, item.value)}
             className={clsx(
               'w-full px-3 py-2 text-left text-xs',
-              'hover:bg-background-hover transition-colors',
+              'hover:bg-black/5 transition-colors',
               'flex flex-col gap-0.5',
               currentValue === item.value && 'bg-primary/10 text-primary'
             )}
           >
-            <span className="font-medium">{item.label}</span>
+            <span className="font-medium text-zinc-800">{item.label}</span>
             {item.description && (
-              <span className="text-text-tertiary text-[10px]">{item.description}</span>
+              <span className="text-zinc-500 text-[10px]">{item.description}</span>
             )}
           </button>
         ))}
         {/* 分隔线 */}
-        <div className="border-t border-border my-1" />
+        <div className="border-t border-white/30 my-1" />
         {/* 自定义输入选项 */}
         <button
           onClick={() => openCustomInput(type)}
           className={clsx(
             'w-full px-3 py-2 text-left text-xs',
-            'hover:bg-background-hover transition-colors',
-            'text-text-tertiary italic'
+            'hover:bg-black/5 transition-colors',
+            'text-zinc-500 italic'
           )}
         >
           ✏️ {t('sessionConfig.custom')}
         </button>
-      </div>
+      </div>,
+      document.body
     )
   }
 
@@ -412,6 +441,7 @@ export function SessionConfigSelector({
     return (
       <div className={clsx('relative', mode === 'panel' && 'w-full')}>
         <button
+          ref={(el) => setButtonRef(type, el)}
           onClick={() => !disabled && setOpenDropdown(openDropdown === type ? null : type)}
           disabled={disabled}
           className={clsx(
@@ -449,8 +479,8 @@ export function SessionConfigSelector({
       ))}
       {/* 自定义输入浮层 */}
       {customInput && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-          <div className="bg-background-elevated border border-border rounded-lg p-4 min-w-[280px] shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/10 backdrop-blur-md">
+          <div className="bg-white/55 backdrop-blur-[30px] backdrop-saturate-160 border border-[rgba(255,255,255,0.65)] rounded-2xl p-4 min-w-[280px] shadow-[inset_0_1px_2px_rgba(255,255,255,0.9),0_8px_32px_rgba(0,0,0,0.12)] animate-acrylic-enter-slow">
             <div className="text-xs text-text-secondary mb-2">
               {t('sessionConfig.customInputLabel', { type: selectorMeta[customInput.type].label })}
             </div>
@@ -508,7 +538,10 @@ export function CompactSessionSelector({
   const agentList = useMemo(() => {
     const emptyOption = { id: '', name: t('sessionConfig.noAgent') }
     if (dynamicAgents.length > 0) {
-      return [emptyOption, ...dynamicAgents.map(a => ({ id: a.id, name: a.name }))]
+      return [emptyOption, ...dynamicAgents.map(a => {
+        const preset = PRESET_AGENTS.find(p => p.id === a.id)
+        return { id: a.id, name: preset?.name || a.name }
+      })]
     }
     return PRESET_AGENTS
   }, [dynamicAgents, t])
@@ -590,23 +623,23 @@ export function CompactSessionSelector({
           <ChevronDown size={10} className="opacity-50" />
         </button>
         {openDropdown === 'agent' && (
-          <div className="absolute bottom-full left-0 mb-1 bg-background-elevated border border-border rounded-lg shadow-lg min-w-[140px] z-50">
+          <div className="absolute bottom-full left-0 mb-1 acrylic-panel min-w-[140px] z-50 animate-acrylic-enter">
             {agentList.map(agent => (
               <button
                 key={agent.id}
                 onClick={() => handleSelect('agent', agent.id)}
                 className={clsx(
-                  'w-full px-2 py-1.5 text-left text-xs hover:bg-background-hover',
+                  'w-full px-2 py-1.5 text-left text-xs hover:bg-black/5 text-zinc-800',
                   config.agent === agent.id && 'bg-primary/10 text-primary'
                 )}
               >
                 {agent.name}
               </button>
             ))}
-            <div className="border-t border-border my-1" />
+            <div className="border-t border-white/30 my-1" />
             <button
               onClick={() => openCustomInput('agent')}
-              className="w-full px-2 py-1.5 text-left text-xs hover:bg-background-hover text-text-tertiary italic"
+              className="w-full px-2 py-1.5 text-left text-xs hover:bg-black/5 text-zinc-500 italic"
             >
               ✏️ {t('sessionConfig.custom')}
             </button>
@@ -632,23 +665,23 @@ export function CompactSessionSelector({
           <ChevronDown size={10} className="opacity-50" />
         </button>
         {openDropdown === 'model' && (
-          <div className="absolute bottom-full left-0 mb-1 bg-background-elevated border border-border rounded-lg shadow-lg min-w-[140px] z-50">
+          <div className="absolute bottom-full left-0 mb-1 acrylic-panel min-w-[140px] z-50 animate-acrylic-enter">
             {PRESET_MODELS.map(model => (
               <button
                 key={model.id}
                 onClick={() => handleSelect('model', model.id)}
                 className={clsx(
-                  'w-full px-2 py-1.5 text-left text-xs hover:bg-background-hover',
+                  'w-full px-2 py-1.5 text-left text-xs hover:bg-black/5 text-zinc-800',
                   config.model === model.id && 'bg-primary/10 text-primary'
                 )}
               >
                 {model.name}
               </button>
             ))}
-            <div className="border-t border-border my-1" />
+            <div className="border-t border-white/30 my-1" />
             <button
               onClick={() => openCustomInput('model')}
-              className="w-full px-2 py-1.5 text-left text-xs hover:bg-background-hover text-text-tertiary italic"
+              className="w-full px-2 py-1.5 text-left text-xs hover:bg-black/5 text-zinc-500 italic"
             >
               ✏️ {t('sessionConfig.custom')}
             </button>
@@ -658,8 +691,8 @@ export function CompactSessionSelector({
 
       {/* 自定义输入浮层 */}
       {customInput && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-          <div className="bg-background-elevated border border-border rounded-lg p-4 min-w-[280px] shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/10 backdrop-blur-md">
+          <div className="bg-white/55 backdrop-blur-[30px] backdrop-saturate-160 border border-[rgba(255,255,255,0.65)] rounded-2xl p-4 min-w-[280px] shadow-[inset_0_1px_2px_rgba(255,255,255,0.9),0_8px_32px_rgba(0,0,0,0.12)] animate-acrylic-enter-slow">
             <div className="text-xs text-text-secondary mb-2">
               {t('sessionConfig.customInputLabel', { type: selectorLabels[customInput.type] })}
             </div>

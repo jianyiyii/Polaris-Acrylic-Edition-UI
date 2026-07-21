@@ -1,4 +1,5 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback, useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useFileExplorerStore, useWorkspaceStore, useCommandStore, useToastStore } from '@/stores';
 import { initFileWatcherListener, startFileWatcher, stopFileWatcher } from '@/stores/fileExplorerStore';
@@ -299,20 +300,30 @@ export function FileExplorer() {
 
   const currentWorkspace = getCurrentWorkspace();
 
+  // Portal 定位：下拉脱离 backdrop-blur 合成层
+  const wsBtnRef = useRef<HTMLButtonElement>(null);
+  const newBtnRef = useRef<HTMLButtonElement>(null);
+  const [wsRect, setWsRect] = useState<DOMRect | null>(null);
+  const [newRect, setNewRect] = useState<DOMRect | null>(null);
+
   return (
     <div
-      className="h-full flex flex-col"
+      className="h-full flex flex-col acrylic-embedded"
       onDragOver={handleDragOver}
       onDrop={handleDropFiles}
     >
       {/* 顶部区域 */}
-      <div className="border-b border-border bg-background-surface">
+      <div className="border-b border-black/15 bg-transparent">
         {/* 第一行：工作区名称 */}
         <div className="px-3 py-2">
           {/* 工作区查看选择器 */}
           <div className="relative">
             <button
-              onClick={() => setShowViewingMenu(!showViewingMenu)}
+              ref={wsBtnRef}
+              onClick={() => {
+                setShowViewingMenu(!showViewingMenu);
+                if (wsBtnRef.current) setWsRect(wsBtnRef.current.getBoundingClientRect());
+              }}
               className="w-full flex items-center justify-between gap-2 text-sm font-medium text-text-primary hover:text-primary transition-colors"
               title={`${tc('labels.viewing')}: ${viewingWorkspace?.name || currentWorkspace?.name || tc('labels.noWorkspaceSelected')}`}
             >
@@ -352,7 +363,11 @@ export function FileExplorer() {
                     setWorkspaceSearchQuery('');
                   }}
                 />
-                <div className="absolute left-0 right-0 top-full mt-1 bg-background-elevated border border-border rounded-lg shadow-lg z-20 overflow-hidden">
+                {createPortal(
+                <div
+                  className="bg-white/45 backdrop-blur-[25px] backdrop-saturate-150 border border-[rgba(255,255,255,0.55)] rounded-xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_24px_rgba(0,0,0,0.08)] z-[9999] overflow-hidden"
+                  style={{ position: 'absolute', top: wsRect ? wsRect.bottom + 4 : 0, left: wsRect ? wsRect.left : 0, width: wsRect?.width }}
+                >
                     {/* 搜索框 - 工作区超过3个时显示 */}
                     {accessibleWorkspaces.length > 3 && (
                       <div className="p-2 border-b border-border-subtle">
@@ -419,7 +434,9 @@ export function FileExplorer() {
                         </>
                       )}
                     </div>
-                  </div>
+                  </div>,
+                  document.body
+                )}
               </>
             )}
           </div>
@@ -427,7 +444,7 @@ export function FileExplorer() {
 
         {/* 第二行：工具栏 */}
         <div
-          className="flex items-center justify-between px-3 py-2 border-t border-border-subtle"
+          className="flex items-center justify-between px-3 py-2 border-t border-black/15"
           onContextMenu={handleToolbarContextMenu}
         >
           {/* 左侧：工具按钮区域 */}
@@ -435,7 +452,11 @@ export function FileExplorer() {
             {/* 新建按钮 */}
             <div className="relative">
               <button
-                onClick={() => setShowNewMenu(!showNewMenu)}
+                ref={newBtnRef}
+                onClick={() => {
+                  setShowNewMenu(!showNewMenu);
+                  if (newBtnRef.current) setNewRect(newBtnRef.current.getBoundingClientRect());
+                }}
                 className="p-1.5 rounded-lg transition-all duration-200 text-text-secondary hover:text-text-primary hover:bg-background-hover"
                 title={t('newFile')}
               >
@@ -448,7 +469,11 @@ export function FileExplorer() {
                     className="fixed inset-0 z-10"
                     onClick={() => setShowNewMenu(false)}
                   />
-                  <div className="absolute left-0 top-full mt-1 bg-background-elevated border border-border rounded-lg shadow-lg z-20 overflow-hidden min-w-[120px]">
+                  {createPortal(
+                  <div
+                    className="bg-white/45 backdrop-blur-[25px] backdrop-saturate-150 border border-[rgba(255,255,255,0.55)] rounded-xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_24px_rgba(0,0,0,0.08)] z-[9999] overflow-hidden min-w-[120px]"
+                    style={{ position: 'absolute', top: newRect ? newRect.bottom + 4 : 0, left: newRect ? newRect.left : 0 }}
+                  >
                     <button
                       onClick={() => {
                         setInputDialog({
@@ -481,7 +506,9 @@ export function FileExplorer() {
                       <IconFolder size={14} />
                       <span>{t('newFolder')}</span>
                     </button>
-                  </div>
+                  </div>,
+                  document.body
+                )}
                 </>
               )}
             </div>

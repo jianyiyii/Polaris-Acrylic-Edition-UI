@@ -125,7 +125,7 @@ function Dropdown({
         onClick={() => setOpen((v) => !v)}
         className={clsx(
           'w-full flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-sm',
-          'bg-background-surface border border-border',
+          'bg-white/40 border border-white/50 backdrop-blur-md',
           disabled ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary/50',
         )}
       >
@@ -135,7 +135,7 @@ function Dropdown({
         <ChevronDown size={14} className="opacity-50 shrink-0" />
       </button>
       {open && !disabled && (
-        <div className="absolute top-full left-0 right-0 mt-1 z-50 max-h-[220px] overflow-y-auto bg-background-elevated border border-border rounded-lg shadow-lg">
+        <div className="absolute top-full left-0 right-0 mt-1 z-50 max-h-[220px] overflow-y-auto acrylic-panel animate-acrylic-enter">
           {options.length === 0 && (
             <div className="px-3 py-2 text-xs text-text-tertiary">—</div>
           )}
@@ -247,8 +247,8 @@ export function CompactHandoffModal({
   const handleCancel = () => onClose()
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className="bg-background-elevated rounded-xl shadow-2xl border border-border w-[440px] max-w-[92vw] max-h-[88vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/10 backdrop-blur-md p-4">
+      <div className="acrylic-modal w-[440px] max-w-[92vw] max-h-[88vh] flex flex-col animate-acrylic-enter-slow">
         {/* 标题栏 */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-border shrink-0">
           <div className="flex items-center gap-2">
@@ -315,7 +315,7 @@ export function CompactHandoffModal({
                 value={instruction}
                 onChange={(e) => setInstruction(e.target.value)}
                 rows={10}
-                className="w-full px-3 py-2 text-xs bg-background-surface border border-border rounded-lg outline-none focus:border-primary resize-y font-mono leading-relaxed"
+                className="w-full px-3 py-2 text-xs bg-white/30 border border-white/40 rounded-lg outline-none focus:border-primary resize-y font-mono leading-relaxed text-zinc-800"
               />
             )}
           </div>

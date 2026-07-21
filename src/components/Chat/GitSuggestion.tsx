@@ -72,7 +72,7 @@ export function GitSuggestion({
   return (
     <div
       ref={containerRef}
-      className="fixed z-50 bg-background-surface border border-border rounded-lg shadow-lg max-h-60 overflow-auto suggestion-fade-in"
+      className="fixed z-50 acrylic-panel max-h-60 overflow-auto animate-acrylic-enter"
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,

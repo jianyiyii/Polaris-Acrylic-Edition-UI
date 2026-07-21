@@ -35,8 +35,8 @@ export function SwitchConfirmDialog({
   const { t } = useTranslation('git')
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-background-elevated rounded-xl p-6 w-full max-w-md border border-border shadow-lg relative">
+    <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50">
+      <div className="acrylic-modal p-6 w-[min(90vw,420px)] max-w-full relative overflow-hidden flex flex-col max-h-[60vh]">
         <div className="flex items-start gap-3 mb-4">
           <AlertTriangle size={20} className="text-warning shrink-0 mt-0.5" />
           <div>
@@ -90,7 +90,7 @@ export function SwitchConfirmDialog({
         </div>
 
         {isSwitching && (
-          <div className="absolute inset-0 bg-background-elevated/80 flex items-center justify-center rounded-xl">
+          <div className="absolute inset-0 bg-white/60 backdrop-blur-md flex items-center justify-center rounded-xl">
             <Loader2 size={24} className="animate-spin text-primary" />
           </div>
         )}
@@ -131,8 +131,8 @@ export function CreateBranchDialog({
   const sourceBranch = basedOn || currentBranch || 'HEAD'
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-background-elevated rounded-xl p-6 w-full max-w-md border border-border shadow-lg">
+    <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50">
+      <div className="acrylic-modal p-6 w-[min(90vw,420px)] max-w-full">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-text-primary">
             {t('branch.create')}
@@ -220,8 +220,8 @@ export function DeleteBranchDialog({
   const { t } = useTranslation('git')
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-background-elevated rounded-xl p-6 w-full max-w-md border border-border shadow-lg">
+    <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50">
+      <div className="acrylic-modal p-6 w-[min(90vw,420px)] max-w-full">
         <div className="flex items-start gap-3 mb-4">
           <AlertTriangle size={20} className="text-warning shrink-0 mt-0.5" />
           <div>
@@ -289,8 +289,8 @@ export function RenameBranchDialog({
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-background-elevated rounded-xl p-6 w-full max-w-md border border-border shadow-lg">
+    <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50">
+      <div className="acrylic-modal p-6 w-[min(90vw,420px)] max-w-full">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-text-primary">
             {t('branch.rename')}
@@ -382,8 +382,8 @@ export function MergeBranchDialog({
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-background-elevated rounded-xl p-6 w-full max-w-md border border-border shadow-lg">
+    <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50">
+      <div className="acrylic-modal p-6 w-[min(90vw,420px)] max-w-full">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-text-primary">
             {t('branch.merge')}
@@ -518,8 +518,8 @@ export function RebaseBranchDialog({
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-background-elevated rounded-xl p-6 w-full max-w-md border border-border shadow-lg">
+    <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50">
+      <div className="acrylic-modal p-6 w-[min(90vw,420px)] max-w-full">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-text-primary">
             {t('branch.rebase')}

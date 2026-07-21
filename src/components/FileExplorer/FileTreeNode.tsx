@@ -403,7 +403,7 @@ export const FileTreeNode = memo<FileTreeNodeProps>(({
       <div
         className={clsx(
           'flex items-center px-2 py-1.5 cursor-pointer rounded transition-colors',
-          'hover:bg-background-hover',
+          'hover:bg-white/15',
           isSelected && 'bg-primary/20 border-l-2 border-primary',
           isCutSource && 'opacity-50',
           isHighlighted && 'animate-pulse bg-primary/30 ring-1 ring-primary/50 rounded'

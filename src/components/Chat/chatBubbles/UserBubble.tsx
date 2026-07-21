@@ -83,14 +83,14 @@ export const UserBubble = memo(function UserBubble({
             <div className="absolute -top-8 right-0 flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
               <button
                 onClick={handleCopy}
-                className="p-1.5 rounded-md text-text-tertiary hover:text-text-primary hover:bg-background-hover transition-colors"
+                className="p-1.5 rounded-md text-zinc-500 hover:text-zinc-800 hover:bg-black/10 transition-colors"
                 title={t('contextMenu.copyMessage')}
               >
                 {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
               </button>
               <button
                 onClick={handleEdit}
-                className="p-1.5 rounded-md text-text-tertiary hover:text-text-primary hover:bg-background-hover transition-colors"
+                className="p-1.5 rounded-md text-zinc-500 hover:text-zinc-800 hover:bg-black/10 transition-colors"
                 title={t('contextMenu.edit')}
               >
                 <Pencil size={14} />
@@ -98,8 +98,12 @@ export const UserBubble = memo(function UserBubble({
             </div>
           )}
           <div className="chat-user-bubble
-                      bg-gradient-to-br from-primary to-primary-600
-                      text-white shadow-glow">
+                      bg-[rgba(255,255,255,0.55)]
+                      backdrop-blur-[25px] backdrop-saturate-150
+                      border border-[rgba(255,255,255,0.65)]
+                      text-zinc-800
+                      shadow-[inset_0_1px_2px_rgba(255,255,255,0.9),0_8px_24px_rgba(0,0,0,0.08)]
+                      rounded-2xl rounded-tr-sm">
             {/* 附件列表 */}
             {message.attachments && message.attachments.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mb-2 pb-2 border-b border-white/20">

@@ -190,10 +190,9 @@ export function ChatNavigator({
           'absolute right-0 top-1/2 -translate-y-1/2',
           // 尺寸：紧凑模式更大方便触摸
           isCompact ? 'w-9 h-9 rounded-l-xl' : 'w-7 h-12 rounded-l-xl',
-          // 实心背景
-          'bg-[#1A1A1F]',
-          'border border-border/50 border-r-0',
-          'shadow-lg shadow-black/5',
+          'bg-white/50 backdrop-blur-xl backdrop-saturate-150',
+          'border border-white/50 border-r-0',
+          'shadow-lg',
           // 内容布局
           'flex items-center justify-center',
           // 交互
@@ -201,8 +200,8 @@ export function ChatNavigator({
           'group',
           // 悬停状态
           isPanelVisible
-            ? 'bg-[#22222A] shadow-xl'
-            : 'hover:bg-[#22222A] hover:shadow-xl'
+            ? 'bg-white/60 shadow-xl'
+            : 'hover:bg-white/60 hover:shadow-xl'
         )}
         onMouseEnter={handleFloatingBallMouseEnter}
         onMouseLeave={handleFloatingBallMouseLeave}
@@ -217,16 +216,16 @@ export function ChatNavigator({
         )}>
           {/* 数字列表样式 */}
           <div className="flex items-center gap-1 w-full">
-            <div className="w-1 h-1 bg-text-secondary rounded-full" />
-            <div className="flex-1 h-0.5 bg-text-muted rounded" />
+            <div className="w-1 h-1 bg-zinc-400 rounded-full" />
+            <div className="flex-1 h-0.5 bg-zinc-300 rounded" />
           </div>
           <div className="flex items-center gap-1 w-full">
-            <div className="w-1 h-1 bg-text-tertiary rounded-full" />
-            <div className="w-2.5 h-0.5 bg-text-muted rounded" />
+            <div className="w-1 h-1 bg-zinc-300 rounded-full" />
+            <div className="w-2.5 h-0.5 bg-zinc-300 rounded" />
           </div>
           <div className="flex items-center gap-1 w-full">
-            <div className="w-1 h-1 bg-text-tertiary rounded-full" />
-            <div className="w-2 h-0.5 bg-text-muted rounded" />
+            <div className="w-1 h-1 bg-zinc-300 rounded-full" />
+            <div className="w-2 h-0.5 bg-zinc-300 rounded" />
           </div>
         </div>
       </div>
@@ -237,10 +236,9 @@ export function ChatNavigator({
           ref={panelRef}
           className={clsx(
             isCompact
-              ? 'w-auto bg-[#1A1A1F]'
-              : 'w-56 bg-[#1A1A1F]',
-            'border border-border rounded-lg shadow-lg shadow-primary/10',
-            'overflow-hidden animate-in fade-in zoom-in-95 duration-150',
+              ? 'w-auto acrylic-panel'
+              : 'w-56 acrylic-panel',
+            'overflow-hidden animate-acrylic-enter',
             'pointer-events-auto flex flex-col',
             'absolute z-50'
           )}
@@ -249,25 +247,25 @@ export function ChatNavigator({
           onMouseLeave={handlePanelMouseLeave}
         >
           {/* 标题 */}
-          <div className="flex items-center justify-between px-3 py-2 border-b border-border-subtle bg-[#25252B] shrink-0">
-            <span className="text-xs font-medium text-text-secondary flex items-center gap-1.5">
+          <div className="flex items-center justify-between px-3 py-2 border-b border-white/30 bg-white/20 shrink-0">
+            <span className="text-xs font-medium text-zinc-600 flex items-center gap-1.5">
               <BookOpen className="w-3.5 h-3.5" />
               {t('navigator.title')}
             </span>
-            <span className="text-xs text-text-tertiary">
+            <span className="text-xs text-zinc-400">
               {rounds.length} {t('navigator.round')}
             </span>
           </div>
 
           {/* 对话轮次列表 */}
-          <div className="overflow-y-auto chat-navigator-list flex-1 min-h-0 bg-[#1A1A1F]">
+          <div className="overflow-y-auto chat-navigator-list flex-1 min-h-0 bg-transparent">
             {rounds.map((round, idx) => (
               <div
                 key={round.roundIndex}
                 ref={idx === currentRoundIndex ? currentItemRef : null}
                 className={clsx(
-                  'px-3 py-2 border-b border-border-subtle/50 cursor-pointer transition-colors',
-                  'hover:bg-[#2D2D35]',
+                  'px-3 py-2 border-b border-white/20 cursor-pointer transition-colors',
+                  'hover:bg-black/5',
                   idx === currentRoundIndex && 'bg-primary/10 border-l-2 border-l-primary'
                 )}
                 onClick={() => handleRoundClick(idx)}
@@ -276,22 +274,22 @@ export function ChatNavigator({
                 <div className="flex items-center gap-2 mb-1">
                   <span className={clsx(
                     'text-xs font-medium',
-                    idx === currentRoundIndex ? 'text-primary' : 'text-text-tertiary'
+                    idx === currentRoundIndex ? 'text-primary' : 'text-zinc-500'
                   )}>
                     {t('navigator.roundLabel', { round: round.roundIndex + 1 })}
                   </span>
                   {round.hasTools && (
                     <Wrench className="w-3 h-3 text-warning" />
                   )}
-                  <span className="text-xs text-text-tertiary ml-auto">
+                  <span className="text-xs text-zinc-400 ml-auto">
                     {round.timestamp}
                   </span>
                 </div>
 
                 {/* 用户消息 */}
                 <div className="flex items-start gap-1.5 mb-1">
-                  <User className="w-3 h-3 text-text-secondary shrink-0 mt-0.5" />
-                  <p className="text-xs text-text-secondary line-clamp-1">
+                  <User className="w-3 h-3 text-zinc-500 shrink-0 mt-0.5" />
+                  <p className="text-xs text-zinc-600 line-clamp-1">
                     {round.userSummary}
                   </p>
                 </div>
@@ -302,15 +300,15 @@ export function ChatNavigator({
                     <Bot className="w-3 h-3 text-primary shrink-0 mt-0.5" />
                     <p className={clsx(
                       'text-xs line-clamp-1',
-                      idx === currentRoundIndex ? 'text-text-primary' : 'text-text-tertiary'
+                      idx === currentRoundIndex ? 'text-zinc-800' : 'text-zinc-500'
                     )}>
                       {round.assistantSummary || t('navigator.replying')}
                     </p>
                   </div>
                 ) : (
                   <div className="flex items-start gap-1.5">
-                    <Bot className="w-3 h-3 text-text-tertiary shrink-0 mt-0.5" />
-                    <p className="text-xs text-text-tertiary italic">
+                    <Bot className="w-3 h-3 text-zinc-400 shrink-0 mt-0.5" />
+                    <p className="text-xs text-zinc-400 italic">
                       {t('navigator.waitingReply')}
                     </p>
                   </div>
@@ -320,9 +318,9 @@ export function ChatNavigator({
           </div>
 
           {/* 底部按钮 */}
-          <div className="p-2 border-t border-border-subtle bg-[#25252B] shrink-0">
+          <div className="p-2 border-t border-white/30 bg-white/20 shrink-0">
             <button
-              className="w-full flex items-center justify-center gap-2 px-3 py-2 text-sm text-text-secondary hover:text-primary hover:bg-primary/10 rounded-md transition-colors"
+              className="w-full flex items-center justify-center gap-2 px-3 py-2 text-sm text-zinc-600 hover:text-zinc-800 hover:bg-black/5 rounded-md transition-colors"
               onClick={handleScrollToBottom}
             >
               <ArrowDown className="w-4 h-4" />

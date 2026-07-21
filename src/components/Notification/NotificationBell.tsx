@@ -21,10 +21,10 @@ export function NotificationBell() {
   return (
     <button
       onClick={toggleNotificationCenter}
-      className={`relative p-1.5 rounded-md transition-colors ${
+      className={`relative p-1.5 rounded-md drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] hover:scale-105 transition-all ${
         showNotificationCenter
-          ? 'text-primary bg-primary/10 hover:bg-primary/20'
-          : 'text-text-tertiary hover:text-text-primary hover:bg-background-hover'
+          ? 'text-white bg-white/15 hover:bg-white/20'
+          : 'text-white hover:text-white hover:bg-white/10'
       }`}
       title={t('notificationCenter.bell')}
       data-tauri-drag-region={false}

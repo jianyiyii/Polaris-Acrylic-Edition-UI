@@ -266,7 +266,7 @@ export function ChatStatusBar({ children, embedded = false }: ChatStatusBarProps
         selectedEngineHealth.available ? 'bg-green-500' : 'bg-text-muted',
       )} />
       {showVersionText && selectedEngineHealth.version && (
-        <span className="text-text-muted">{selectedEngineHealth.version}</span>
+        <span className="text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">{selectedEngineHealth.version}</span>
       )}
     </div>
   );
@@ -283,12 +283,12 @@ export function ChatStatusBar({ children, embedded = false }: ChatStatusBarProps
    */
   const renderVoiceSegment = (variant: 'inline' | 'panel') => {
     const withLabel = variant === 'panel';
-    const btnBase = 'flex items-center gap-1 px-1.5 py-0.5 rounded-full transition-colors shrink-0 disabled:opacity-40';
+    const btnBase = 'flex items-center gap-1 px-1.5 py-0.5 rounded-full transition-all shrink-0 disabled:opacity-40 bg-white/20 backdrop-blur-[12px] border border-white/35 hover:bg-white/35 hover:border-white/50 active:shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)]';
 
     return (
       <div
         className={clsx(
-          'flex items-center gap-0.5 p-0.5 rounded-full border border-border-subtle bg-background-surface/60 shrink-0',
+          'flex items-center gap-0.5 p-0.5 rounded-full border border-white/30 bg-white/25 backdrop-blur-md shrink-0',
           withLabel && 'self-start',
         )}
       >
@@ -303,7 +303,7 @@ export function ChatStatusBar({ children, embedded = false }: ChatStatusBarProps
                 ? 'bg-green-500/10 text-green-500'
                 : isDictating
                   ? 'bg-primary/10 text-primary'
-                  : 'text-text-tertiary hover:text-text-primary hover:bg-background-hover',
+                  : 'text-zinc-600 hover:text-zinc-800',
             )}
             title={
               companionOpen
@@ -339,11 +339,11 @@ export function ChatStatusBar({ children, embedded = false }: ChatStatusBarProps
           className={clsx(
             btnBase,
             ttsStatus === 'playing' && 'bg-primary/10 text-primary',
-            ttsStatus === 'paused' && 'text-text-secondary hover:text-text-primary hover:bg-background-hover',
+            ttsStatus === 'paused' && 'text-zinc-600 hover:text-zinc-800',
             ttsStatus === 'synthesizing' && 'text-warning cursor-wait',
             (ttsStatus === 'idle' || ttsStatus === 'error') && (ttsEnabled
-              ? 'text-primary/70 hover:text-primary hover:bg-primary/10'
-              : 'text-text-tertiary hover:text-text-primary hover:bg-background-hover'
+              ? 'text-primary/70 hover:text-primary'
+              : 'text-zinc-600 hover:text-zinc-800'
             ),
           )}
           title={
@@ -385,11 +385,11 @@ export function ChatStatusBar({ children, embedded = false }: ChatStatusBarProps
     <div
       ref={containerRef}
       className={clsx(
-        'relative grid text-xs text-text-tertiary',
+        'relative grid text-xs text-white',
         'transition-[grid-template-rows] duration-200 ease-in-out',
         embedded
           ? 'w-full'
-          : 'px-4 bg-background-surface/50 border-t border-border-subtle',
+          : 'px-4 bg-white/20 backdrop-blur-md border-t border-white/20',
       )}
       style={{
         gridTemplateRows: expanded ? 'auto auto' : 'auto 0fr',
@@ -417,10 +417,10 @@ export function ChatStatusBar({ children, embedded = false }: ChatStatusBarProps
             <button
               onClick={() => setExpanded(prev => !prev)}
               className={clsx(
-                'flex items-center px-1.5 py-0.5 rounded transition-colors shrink-0',
+                'flex items-center px-1.5 py-0.5 rounded shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] hover:scale-105 transition-all',
                 expanded
-                  ? 'bg-primary/10 text-primary'
-                  : 'text-text-tertiary hover:text-text-primary hover:bg-background-hover',
+                  ? 'bg-white/15 text-white'
+                  : 'text-white hover:text-white hover:bg-white/10',
               )}
               title={expanded ? t('statusBar.collapse', '收起') : t('statusBar.more', '更多设置')}
             >
@@ -433,7 +433,7 @@ export function ChatStatusBar({ children, embedded = false }: ChatStatusBarProps
         <div className="flex items-center gap-2 shrink-0 min-w-0">
           {/* 听写实时预览（ghost text） */}
           {isDictating && interimText && (
-            <span className="italic text-text-muted truncate max-w-[160px]" title={interimText}>
+            <span className="italic text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] truncate max-w-[160px]" title={interimText}>
               {interimText}
             </span>
           )}
@@ -448,7 +448,7 @@ export function ChatStatusBar({ children, embedded = false }: ChatStatusBarProps
                 'flex items-center px-1.5 py-0.5 rounded-full transition-colors shrink-0',
                 syncing
                   ? 'text-primary cursor-wait'
-                  : 'text-text-tertiary hover:text-text-primary hover:bg-background-hover',
+                  : 'text-white hover:text-white hover:bg-white/10',
               )}
               title={t('statusBar.syncRecover', '同步恢复：重连并补回断线丢失的内容')}
             >
@@ -484,7 +484,7 @@ export function ChatStatusBar({ children, embedded = false }: ChatStatusBarProps
 
           {/* 字数（嵌入模式由 ChatInput 自行展示） */}
           {!embedded && inputLength > 0 && (
-            <span className="text-text-tertiary">{inputLength}</span>
+            <span className="text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">{inputLength}</span>
           )}
         </div>
       </div>
@@ -492,15 +492,15 @@ export function ChatStatusBar({ children, embedded = false }: ChatStatusBarProps
       {/* 折叠面板：低频选择器（agent/permission） + 窄屏折叠的语音区 */}
       {hasOverflow && (
         <div className={clsx(
-          'transition-opacity duration-200',
+          'transition-all duration-200',
           embedded && 'absolute bottom-full left-0 right-0 mb-1 z-20',
           expanded ? 'opacity-100 overflow-visible' : 'opacity-0 overflow-hidden pointer-events-none',
         )}>
           <div className={clsx(
             'flex flex-col gap-2 py-2',
             embedded
-              ? 'px-3 rounded-lg bg-background-elevated border border-border shadow-medium'
-              : 'border-t border-border-subtle/50',
+              ? 'px-3 acrylic-panel animate-acrylic-enter'
+              : 'border-t border-white/20',
           )}>
             {!voiceInline && renderVoiceSegment('panel')}
             <SessionConfigSelector

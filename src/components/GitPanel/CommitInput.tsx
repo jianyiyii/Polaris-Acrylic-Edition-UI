@@ -274,7 +274,7 @@ export function CommitInput({ hasChanges: _hasChanges, selectedFiles }: CommitIn
         {enginePickerOpen && (
           <div
             ref={pickerRef}
-            className="absolute right-0 top-full mt-1 z-50 min-w-[180px] py-1 rounded-lg shadow-lg bg-background-elevated border border-border"
+            className="absolute right-0 top-full mt-1 z-50 min-w-[180px] py-1 acrylic-modal"
           >
             <div className="px-2 pb-1.5 text-[11px] font-medium text-text-tertiary">
               {t('commit.selectEngine')}

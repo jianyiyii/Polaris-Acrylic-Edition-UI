@@ -90,7 +90,7 @@ export const AssistantBubble = memo(function AssistantBubble({
         </div>
 
         {/* 内容 */}
-        <div className="chat-assistant-content flex-1 min-w-0">
+        <div className="chat-assistant-content w-fit min-w-0 max-w-full rounded-2xl bg-[rgba(255,255,255,0.35)] backdrop-blur-[30px] backdrop-saturate-160 border border-[rgba(255,255,255,0.45)] text-zinc-800 px-3 py-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_24px_rgba(0,0,0,0.06)]">
           {/* 头部信息 + hover 操作 */}
           <div className="flex items-baseline gap-2">
             <span className="text-sm font-medium text-text-primary">{getEngineDisplayName(message.engineId)}</span>
@@ -103,7 +103,7 @@ export const AssistantBubble = memo(function AssistantBubble({
                 {messageText && (
                   <button
                     onClick={handleCopy}
-                    className="p-1 rounded-md text-text-tertiary hover:text-text-primary hover:bg-background-hover transition-colors"
+                    className="p-1 rounded-md text-zinc-400 hover:text-zinc-700 hover:bg-black/5 transition-colors"
                     title={copied ? t('contextMenu.copied') : t('contextMenu.copyMessage')}
                   >
                     {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
@@ -112,7 +112,7 @@ export const AssistantBubble = memo(function AssistantBubble({
                 {onRegenerate && (
                   <button
                     onClick={handleRegenerate}
-                    className="p-1 rounded-md text-text-tertiary hover:text-text-primary hover:bg-background-hover transition-colors"
+                    className="p-1 rounded-md text-zinc-400 hover:text-zinc-700 hover:bg-black/5 transition-colors"
                     title={t('contextMenu.regenerate')}
                   >
                     <RefreshCw size={14} />
@@ -141,9 +141,9 @@ export const AssistantBubble = memo(function AssistantBubble({
           {message.isStreaming && (
             <span className="inline-flex ml-1">
               <span className="flex gap-0.5 items-end h-4">
-                <span className="w-1 h-1 bg-text-muted rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                <span className="w-1 h-1 bg-text-muted rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                <span className="w-1 h-1 bg-text-muted rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                <span className="w-1 h-1 bg-zinc-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                <span className="w-1 h-1 bg-zinc-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                <span className="w-1 h-1 bg-zinc-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
               </span>
             </span>
           )}

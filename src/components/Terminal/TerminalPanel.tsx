@@ -324,7 +324,7 @@ export function TerminalPanel() {
   }, [terminalFullscreen, toggleTerminalFullscreen]);
 
   return (
-    <div className="flex flex-col h-full bg-background-base">
+    <div className="flex flex-col h-full acrylic-embedded">
       <TerminalQuickRunBar
         collapsed={terminalScriptPanelCollapsed}
         onToggleCollapsed={toggleTerminalScriptPanelCollapsed}
@@ -333,7 +333,7 @@ export function TerminalPanel() {
       {!terminalScriptPanelCollapsed && <TerminalScriptPanel workspacePath={cwd || null} />}
 
       {/* 标签栏 */}
-      <div className="flex items-center h-9 bg-background-elevated border-b border-border shrink-0">
+      <div className="flex items-center h-9 bg-white/30 backdrop-blur-md border-b border-white/20 shrink-0">
         {/* 终端标签 */}
         <div className="flex-1 flex items-center overflow-x-auto">
           {sessions.map((session) => (
@@ -349,8 +349,8 @@ export function TerminalPanel() {
                 flex items-center gap-1.5 px-3 h-full min-w-[100px] max-w-[200px]
                 cursor-pointer border-r border-border
                 ${activeSessionId === session.id
-                  ? 'bg-background-base text-text-primary'
-                  : 'bg-background-surface text-text-secondary hover:bg-background-hover'
+                  ? 'bg-white/30 text-text-primary'
+                  : 'bg-transparent text-text-secondary hover:bg-white/15'
                 }
               `}
             >

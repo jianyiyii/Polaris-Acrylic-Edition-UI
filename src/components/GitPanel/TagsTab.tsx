@@ -276,8 +276,8 @@ export function TagsTab() {
 
       {/* 创建标签弹窗 */}
       {showCreateModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-background-surface border border-border-subtle rounded-lg shadow-lg w-[400px] max-w-[90vw]">
+        <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50">
+          <div className="acrylic-modal w-[min(90vw,400px)] max-w-full">
             <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
               <span className="text-sm font-medium text-text-primary">{t('tags.createTag')}</span>
               <button
@@ -366,8 +366,8 @@ export function TagsTab() {
 
       {/* 删除确认弹窗 */}
       {showDeleteModal && tagToDelete && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-background-surface border border-border-subtle rounded-lg shadow-lg w-[360px] max-w-[90vw]">
+        <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50">
+          <div className="acrylic-modal w-[min(90vw,360px)] max-w-full">
             <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
               <span className="text-sm font-medium text-text-primary">{t('tags.deleteTag')}</span>
               <button

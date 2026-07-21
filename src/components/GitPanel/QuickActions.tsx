@@ -201,8 +201,8 @@ export function QuickActions({ hasChanges: _hasChanges }: QuickActionsProps) {
 
       {/* 拉取冲突提示 */}
       {pullState.type === 'confirming' && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-background-elevated rounded-xl p-6 w-full max-w-md border border-border shadow-lg">
+        <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50">
+          <div className="acrylic-modal p-6 w-[min(90vw,420px)] max-w-full">
             <div className="flex items-start gap-3 mb-4">
               <AlertTriangle size={20} className="text-warning shrink-0 mt-0.5" />
               <div>
@@ -229,8 +229,8 @@ export function QuickActions({ hasChanges: _hasChanges }: QuickActionsProps) {
 
       {/* AI 审查结果 / 错误 */}
       {(reviewState.type === 'done' || reviewState.type === 'error') && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-background-elevated rounded-xl w-full max-w-2xl max-h-[80vh] border border-border shadow-lg flex flex-col">
+        <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50 p-4">
+          <div className="acrylic-modal w-[min(95vw,672px)] max-w-full max-h-[80vh] flex flex-col overflow-hidden">
             <div className="flex items-center justify-between px-5 py-3 border-b border-border-subtle shrink-0">
               <div className="flex items-center gap-2 min-w-0">
                 <ScanSearch size={16} className="text-primary shrink-0" />

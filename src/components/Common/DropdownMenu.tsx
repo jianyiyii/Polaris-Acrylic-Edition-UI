@@ -61,7 +61,7 @@ export function DropdownMenu({
       case 'warning':
         return 'text-warning hover:bg-warning/10'
       default:
-        return 'text-text-primary hover:bg-background-hover'
+        return 'text-zinc-800 hover:bg-black/5'
     }
   }
 
@@ -78,7 +78,7 @@ export function DropdownMenu({
       {/* 菜单内容 */}
       {isOpen && (
         <div
-          className={`absolute z-50 min-w-[160px] py-1 mt-1 bg-background-elevated border border-border rounded-lg shadow-lg ${
+          className={`absolute z-50 min-w-[160px] py-1 mt-1 acrylic-panel animate-acrylic-enter ${
             align === 'right' ? 'right-0' : 'left-0'
           }`}
         >
@@ -89,7 +89,7 @@ export function DropdownMenu({
               disabled={item.disabled}
               className={`w-full px-3 py-2 text-sm text-left flex items-center gap-2 transition-colors ${
                 item.disabled
-                  ? 'text-text-tertiary cursor-not-allowed'
+                  ? 'text-zinc-400 cursor-not-allowed'
                   : getVariantClass(item.variant)
               }`}
             >

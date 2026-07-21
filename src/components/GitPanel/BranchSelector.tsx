@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { GitBranch as GitBranchIcon, Check, ChevronDown, Plus, Loader2, AlertTriangle, Archive } from 'lucide-react'
 import { useGitStore } from '@/stores/gitStore/index'
@@ -18,8 +19,11 @@ export function BranchSelector() {
   const [showNewBranch, setShowNewBranch] = useState(false)
   const [switchState, setSwitchState] = useState<SwitchState>({ type: 'idle' })
   const [error, setError] = useState<string | null>(null)
+  const [dropdownRect, setDropdownRect] = useState<DOMRect | null>(null)
 
   const containerRef = useRef<HTMLDivElement>(null)
+  const portalRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const status = useGitStore((s) => s.status)
@@ -58,7 +62,9 @@ export function BranchSelector() {
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      const target = e.target as Node
+      if (containerRef.current && !containerRef.current.contains(target)
+        && portalRef.current && !portalRef.current.contains(target)) {
         setIsOpen(false)
         setShowNewBranch(false)
       }
@@ -165,7 +171,11 @@ export function BranchSelector() {
     <>
       <div ref={containerRef} className="relative">
         <button
-          onClick={() => setIsOpen(!isOpen)}
+          ref={buttonRef}
+          onClick={() => {
+            setIsOpen(!isOpen)
+            if (buttonRef.current) setDropdownRect(buttonRef.current.getBoundingClientRect())
+          }}
           className="flex items-center gap-1.5 px-2 py-1 text-sm text-text-primary hover:bg-background-hover rounded transition-colors"
         >
           <GitBranchIcon size={14} className="text-text-tertiary" />
@@ -175,8 +185,8 @@ export function BranchSelector() {
           <ChevronDown size={12} className="text-text-tertiary" />
         </button>
 
-        {isOpen && (
-          <div className="absolute top-full left-0 mt-1 w-80 bg-background-surface border border-border rounded-lg shadow-lg z-50 flex flex-col" style={{ maxHeight: 'calc(100vh - 200px)' }}>
+        {isOpen && createPortal(
+          <div ref={portalRef} className="w-[min(80vw,320px)] acrylic-modal z-[9999] flex flex-col" style={{ position: 'fixed', top: dropdownRect ? dropdownRect.bottom + 4 : 0, left: dropdownRect ? dropdownRect.left : 0, maxHeight: 'min(60vh, calc(100vh - 100px))' }}>
             <div className="px-3 py-2 border-b border-border flex items-center justify-between shrink-0">
               <span className="text-xs font-medium text-text-secondary">
                 {t('branch.switch')}
@@ -199,7 +209,7 @@ export function BranchSelector() {
                   onChange={(e) => setNewBranchName(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={t('branch.newBranchPlaceholder')}
-                  className="flex-1 px-2 py-1 text-sm bg-background border border-border rounded focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="flex-1 min-w-0 px-2 py-1 text-sm bg-background border border-border rounded focus:outline-none focus:ring-1 focus:ring-primary"
                 />
                 <button
                   onClick={handleCreateBranch}
@@ -265,13 +275,14 @@ export function BranchSelector() {
                 </>
               )}
             </div>
-          </div>
+          </div>,
+          document.body
         )}
       </div>
 
       {switchState.type === 'confirming' && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-background-elevated rounded-xl p-6 w-full max-w-md border border-border shadow-lg">
+        <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50">
+          <div className="acrylic-modal p-6 w-[min(90vw,420px)] max-w-full">
             <div className="flex items-start gap-3 mb-4">
               <AlertTriangle size={20} className="text-warning shrink-0 mt-0.5" />
               <div>

@@ -232,8 +232,8 @@ export function GitignoreTab() {
 
       {/* 模板选择弹窗 */}
       {showTemplates && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-background-surface border border-border-subtle rounded-lg shadow-lg w-[480px] max-w-[90vw] max-h-[80vh] flex flex-col">
+        <div className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50">
+          <div className="bg-white/40 backdrop-blur-[32px] backdrop-saturate-160 border border-white/45 shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_32px_rgba(0,0,0,0.08)] rounded-2xl w-[min(90vw,480px)] max-w-full max-h-[80vh] flex flex-col overflow-hidden">
             <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between shrink-0">
               <span className="text-sm font-medium text-text-primary">{t('gitignore.addTemplate')}</span>
               <button

@@ -82,12 +82,12 @@ export const MultiWindowMenu = memo(function MultiWindowMenu() {
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(
-          'p-1.5 rounded transition-colors',
+          'p-1.5 rounded drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] hover:scale-105 transition-all',
           isOpen
-            ? 'bg-primary/10 text-primary'
+            ? 'bg-white/15 text-white'
             : multiSessionMode
-              ? 'bg-primary text-white'
-              : 'text-text-muted hover:text-text-primary hover:bg-background-hover'
+              ? 'bg-white/20 text-white'
+              : 'text-white hover:text-white hover:bg-white/10'
         )}
         title={t('multiWindow.settings')}
         aria-label={t('multiWindow.settings')}
@@ -103,8 +103,7 @@ export const MultiWindowMenu = memo(function MultiWindowMenu() {
           ref={panelRef}
           className={clsx(
             'absolute bottom-full left-0 mb-1 z-50 p-3',
-            'min-w-[200px] rounded-lg shadow-lg',
-            'bg-background-elevated border border-border'
+            'min-w-[200px] acrylic-panel animate-acrylic-enter'
           )}
           role="menu"
         >
@@ -116,7 +115,7 @@ export const MultiWindowMenu = memo(function MultiWindowMenu() {
               'text-sm transition-colors',
               multiSessionMode
                 ? 'text-primary bg-primary/10'
-                : 'text-text-secondary hover:text-text-primary hover:bg-background-hover'
+                : 'text-zinc-600 hover:text-zinc-800 hover:bg-black/5'
             )}
             role="menuitemcheckbox"
             aria-checked={multiSessionMode}
@@ -142,7 +141,7 @@ export const MultiWindowMenu = memo(function MultiWindowMenu() {
                       'transition-colors',
                       multiSessionRows === 1
                         ? 'bg-primary text-white'
-                        : 'text-text-secondary hover:text-text-primary hover:bg-background-hover'
+                        : 'text-zinc-600 hover:text-zinc-800 hover:bg-black/5'
                     )}
                     role="menuitemradio"
                     aria-checked={multiSessionRows === 1}
@@ -157,7 +156,7 @@ export const MultiWindowMenu = memo(function MultiWindowMenu() {
                       'transition-colors',
                       multiSessionRows === 2
                         ? 'bg-primary text-white'
-                        : 'text-text-secondary hover:text-text-primary hover:bg-background-hover'
+                        : 'text-zinc-600 hover:text-zinc-800 hover:bg-black/5'
                     )}
                     role="menuitemradio"
                     aria-checked={multiSessionRows === 2}

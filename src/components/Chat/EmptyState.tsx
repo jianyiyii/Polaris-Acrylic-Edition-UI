@@ -28,23 +28,23 @@ export const EmptyState = memo(function EmptyState() {
 
       {/* 功能列表 */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-lg w-full">
-        <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-background-surface border border-border shadow-soft hover:shadow-medium hover:border-border-strong transition-all">
+        <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-white/35 backdrop-blur-xl border border-white/40 shadow-soft hover:bg-white/45 hover:border-white/60 transition-all">
           <div className="w-8 h-8 rounded-lg bg-success-faint flex items-center justify-center">
             <FolderOpen className="w-4 h-4 text-success" />
           </div>
-          <span className="text-xs text-text-tertiary">{t('welcome.featureFileManage')}</span>
+          <span className="text-xs text-zinc-500">{t('welcome.featureFileManage')}</span>
         </div>
-        <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-background-surface border border-border shadow-soft hover:shadow-medium hover:border-border-strong transition-all">
+        <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-white/35 backdrop-blur-xl border border-white/40 shadow-soft hover:bg-white/45 hover:border-white/60 transition-all">
           <div className="w-8 h-8 rounded-lg bg-warning-faint flex items-center justify-center">
             <Code className="w-4 h-4 text-warning" />
           </div>
-          <span className="text-xs text-text-tertiary">{t('welcome.featureCodeEdit')}</span>
+          <span className="text-xs text-zinc-500">{t('welcome.featureCodeEdit')}</span>
         </div>
-        <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-background-surface border border-border shadow-soft hover:shadow-medium hover:border-border-strong transition-all">
+        <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-white/35 backdrop-blur-xl border border-white/40 shadow-soft hover:bg-white/45 hover:border-white/60 transition-all">
           <div className="w-8 h-8 rounded-lg bg-primary-faint flex items-center justify-center">
             <FileSearch className="w-4 h-4 text-primary" />
           </div>
-          <span className="text-xs text-text-tertiary">{t('welcome.featureSmartAnalysis')}</span>
+          <span className="text-xs text-zinc-500">{t('welcome.featureSmartAnalysis')}</span>
         </div>
       </div>
 

@@ -191,10 +191,10 @@ export function SettingsPage({ onClose, initialTab }: SettingsPageProps) {
   }
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-background-elevated animate-in fade-in duration-150">
+    <div className="flex-1 flex flex-col overflow-hidden bg-white/45 backdrop-blur-xl backdrop-saturate-150 border border-white/50 rounded-3xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_20px_60px_rgba(0,0,0,0.15)] animate-settings-open">
       {/* 顶部标题栏 */}
-      <div className="flex items-center justify-between px-3 sm:px-6 py-3 sm:py-4 border-b border-border-subtle">
-        <h2 className="text-lg font-semibold text-text-primary">{t('title')}</h2>
+      <div className="flex items-center justify-between px-3 sm:px-6 py-3 sm:py-4 border-b border-white/40">
+        <h2 className="text-lg font-semibold text-zinc-800">{t('title')}</h2>
         <div className="flex items-center gap-3">
           <Button
             variant="ghost"

@@ -206,8 +206,8 @@ export function SimpleTodoPanel() {
   }
 
   return (
-    <div className="flex flex-col h-full bg-background-elevated">
-      <div className="px-4 py-3 border-b border-border">
+    <div className="flex flex-col h-full bg-transparent">
+      <div className="px-4 py-3 border-b border-white/20">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-sm font-semibold text-text-primary">
             {t('title')}

@@ -123,7 +123,7 @@ export function WorkspaceQuickSwitch() {
       {/* 下拉菜单 */}
       {showDropdown && (
         <div
-          className="absolute left-0 top-full mt-1 bg-background-elevated border border-border rounded-xl shadow-xl z-50 overflow-hidden min-w-[200px] max-w-[280px]"
+          className="absolute left-0 top-full mt-1 acrylic-panel z-50 overflow-hidden min-w-[200px] max-w-[280px] animate-acrylic-enter"
           data-tauri-drag-region={false}
         >
           {/* 搜索框 */}

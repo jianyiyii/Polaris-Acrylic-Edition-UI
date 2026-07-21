@@ -171,10 +171,10 @@ export const DispatchCenterButton = memo(function DispatchCenterButton() {
       <button
         onClick={() => setOpen(!open)}
         className={clsx(
-          'relative flex items-center px-1.5 py-0.5 rounded transition-colors',
+          'relative flex items-center px-1.5 py-0.5 rounded drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] hover:scale-105 transition-all',
           open || runningCount > 0
-            ? 'text-primary hover:bg-background-hover'
-            : 'text-text-tertiary hover:text-text-primary hover:bg-background-hover'
+            ? 'text-white hover:bg-white/10'
+            : 'text-white hover:text-white hover:bg-white/10'
         )}
         title={t('dispatch.centerTooltip', '后台任务中心')}
       >
@@ -188,23 +188,23 @@ export const DispatchCenterButton = memo(function DispatchCenterButton() {
 
       {open && panelPos && (
         <div
-          className="fixed w-[340px] max-h-[420px] flex flex-col rounded-lg border border-border bg-background-elevated shadow-lg z-50"
+          className="fixed w-[340px] max-h-[420px] flex flex-col acrylic-panel animate-acrylic-enter z-50"
           style={{ left: panelPos.left, bottom: panelPos.bottom }}
         >
-          <div className="flex items-center gap-2 px-3 py-2 border-b border-border">
+          <div className="flex items-center gap-2 px-3 py-2 border-b border-white/20">
             <Rocket className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-medium text-text-primary">
+            <span className="text-xs font-semibold text-zinc-800 dark:text-white">
               {t('dispatch.centerTitle', '后台任务中心')}
             </span>
-            {loading && <Loader2 className="w-3 h-3 animate-spin text-text-muted" />}
-            <span className="ml-auto text-[10px] text-text-muted">
+            {loading && <Loader2 className="w-3 h-3 animate-spin text-zinc-400" />}
+            <span className="ml-auto text-[10px] text-zinc-500 dark:text-zinc-300">
               {t('dispatch.centerCount', { defaultValue: '{{count}} 条记录', count: records.length })}
             </span>
           </div>
 
           <div className="flex-1 overflow-y-auto p-1.5 space-y-1">
             {records.length === 0 && !loading && (
-              <div className="py-8 text-center text-xs text-text-muted">
+              <div className="py-8 text-center text-xs text-zinc-500 dark:text-zinc-300">
                 {t('dispatch.centerEmpty', '暂无派发任务，试试 /dispatch 任务内容')}
               </div>
             )}

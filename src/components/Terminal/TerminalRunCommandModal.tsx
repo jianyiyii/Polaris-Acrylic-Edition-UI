@@ -71,9 +71,9 @@ export function TerminalRunCommandModal({ workspacePath, onClose }: TerminalRunC
   };
 
   return (
-    <div className="fixed inset-0 z-[80] bg-black/40 flex items-start justify-center pt-[12vh]" onMouseDown={onClose}>
+    <div className="fixed inset-0 z-[80] bg-white/10 backdrop-blur-md flex items-start justify-center pt-[12vh]" onMouseDown={onClose}>
       <div
-        className="w-[min(720px,92vw)] bg-background-elevated border border-border rounded-lg shadow-xl overflow-hidden"
+        className="w-[min(720px,92vw)] bg-white/45 backdrop-blur-[24px] backdrop-saturate-150 border border-white/55 rounded-2xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_30px_rgba(0,0,0,0.1)] overflow-hidden"
         onMouseDown={(e) => e.stopPropagation()}
       >
         <div className="h-11 px-3 border-b border-border flex items-center gap-2">

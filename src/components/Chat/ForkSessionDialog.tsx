@@ -40,8 +40,8 @@ export function ForkSessionDialog({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="bg-background-elevated rounded-xl shadow-2xl border border-border w-[420px] max-w-[90vw]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/10 backdrop-blur-md">
+      <div className="bg-white/45 backdrop-blur-[24px] backdrop-saturate-150 border border-white/45 rounded-xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_30px_rgba(0,0,0,0.1)] w-[420px] max-w-[90vw]">
         {/* 标题栏 */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-border">
           <div className="flex items-center gap-2">

@@ -154,21 +154,21 @@ export function ToolSwitcher({
   return (
     <div
       ref={menuRef}
-      className={`fixed z-50 ${getPlacementClass(placement)} rounded-xl border border-border bg-background-elevated shadow-medium animate-in fade-in duration-150`}
+      className={`fixed z-50 ${getPlacementClass(placement)} acrylic-panel animate-acrylic-enter`}
       style={{ maxHeight: 'min(70dvh, calc(100dvh - 64px))' }}
       role="dialog"
       aria-label={t('labels.toolSwitcher', { defaultValue: '工具切换器' })}
     >
-      <div className="flex items-center gap-2 border-b border-border-subtle px-3 py-2">
+      <div className="flex items-center gap-2 border-b border-white/30 px-3 py-2">
         <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
           <Grid2X2 className="h-4 w-4" />
         </div>
         <div className="min-w-0 flex-1">
-          <div className="text-sm font-medium text-text-primary">
+          <div className="text-sm font-medium text-zinc-800">
             {t('labels.toolSwitcher', { defaultValue: '工具切换器' })}
           </div>
           {activePanelLabel ? (
-            <div className="mt-0.5 flex min-w-0 items-center gap-1.5 text-xs text-text-tertiary">
+            <div className="mt-0.5 flex min-w-0 items-center gap-1.5 text-xs text-zinc-500">
               <span className="truncate">
                 {t('labels.activeSidebar', { defaultValue: '当前侧栏' })}: {activePanelLabel}
               </span>
@@ -179,7 +179,7 @@ export function ToolSwitcher({
                     onCloseActivePanel()
                     onClose()
                   }}
-                  className="inline-flex shrink-0 items-center gap-1 rounded px-1.5 py-0.5 text-text-secondary transition-colors hover:bg-background-hover hover:text-text-primary"
+                  className="inline-flex shrink-0 items-center gap-1 rounded px-1.5 py-0.5 text-zinc-600 transition-colors hover:bg-black/5 hover:text-zinc-800"
                   title={t('labels.closeSidebar', { defaultValue: '关闭侧栏' })}
                 >
                   <PanelLeftClose className="h-3 w-3" />
@@ -188,7 +188,7 @@ export function ToolSwitcher({
               )}
             </div>
           ) : (
-            <div className="truncate text-xs text-text-tertiary">
+            <div className="truncate text-xs text-zinc-500">
               {t('labels.toolSwitcherHint', { defaultValue: '按工作流分组，支持搜索和滚动' })}
             </div>
           )}
@@ -196,7 +196,7 @@ export function ToolSwitcher({
         <button
           type="button"
           onClick={onClose}
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-background-hover hover:text-text-primary"
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-zinc-500 transition-colors hover:bg-black/5 hover:text-zinc-800"
           aria-label={t('buttons.close')}
           title={t('buttons.close')}
         >
@@ -204,15 +204,15 @@ export function ToolSwitcher({
         </button>
       </div>
 
-      <div className="border-b border-border-subtle px-3 py-2">
-        <div className="flex h-8 items-center gap-2 rounded-lg border border-border-subtle bg-background-surface px-2 text-text-tertiary focus-within:border-border-focus focus-within:text-text-secondary">
+      <div className="border-b border-white/30 px-3 py-2">
+        <div className="flex h-8 items-center gap-2 rounded-lg border border-white/40 bg-white/30 px-2 text-zinc-500 focus-within:border-white/60 focus-within:text-zinc-600">
           <Search className="h-4 w-4 shrink-0" />
           <input
             ref={inputRef}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={t('labels.searchTools', { defaultValue: '搜索工具' })}
-            className="min-w-0 flex-1 bg-transparent text-sm text-text-primary outline-none placeholder:text-text-tertiary"
+            className="min-w-0 flex-1 bg-transparent text-sm text-zinc-800 outline-none placeholder:text-zinc-400"
           />
         </div>
       </div>
@@ -222,13 +222,13 @@ export function ToolSwitcher({
         style={{ maxHeight: 'calc(min(70dvh, calc(100dvh - 64px)) - 104px)' }}
       >
         {groupedItems.length === 0 ? (
-          <div className="px-3 py-8 text-center text-sm text-text-tertiary">
+          <div className="px-3 py-8 text-center text-sm text-zinc-500">
             {t('status.noResults', { defaultValue: '没有匹配结果' })}
           </div>
         ) : (
           groupedItems.map((section) => (
             <section key={section.group} className="mb-2 last:mb-0">
-              <div className="px-2 pb-1 pt-1 text-[11px] font-medium text-text-muted">
+              <div className="px-2 pb-1 pt-1 text-[11px] font-medium text-zinc-400">
                 {t(`toolSwitcher.groups.${section.group}`, {
                   defaultValue: TOOL_GROUP_LABELS[section.group],
                 })}
@@ -247,13 +247,13 @@ export function ToolSwitcher({
                       }}
                       className={`flex w-full items-center gap-3 rounded-lg px-2.5 py-2 text-left transition-colors ${
                         item.active
-                          ? 'bg-primary/[0.12] text-primary'
-                          : 'text-text-secondary hover:bg-background-hover hover:text-text-primary'
+                          ? 'bg-primary/10 text-primary'
+                          : 'text-zinc-600 hover:bg-black/5 hover:text-zinc-800'
                       }`}
                     >
                       <span
                         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${
-                          item.active ? 'bg-primary/15' : 'bg-background-surface'
+                          item.active ? 'bg-primary/15' : 'bg-white/40'
                         }`}
                       >
                         <Icon size={17} />
@@ -261,7 +261,7 @@ export function ToolSwitcher({
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-sm font-medium">{item.label}</span>
                         {item.description && (
-                          <span className="block truncate text-xs text-text-tertiary">
+                          <span className="block truncate text-xs text-zinc-500">
                             {item.description}
                           </span>
                         )}

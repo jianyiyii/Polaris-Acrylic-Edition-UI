@@ -243,6 +243,22 @@
     "light": "Light",
     "experimental": "Experimental"
   },
+  "background": {
+    "title": "Background Style",
+    "current": "Current Background",
+    "hint": "Switch background visual effect",
+    "solid": "Solid",
+    "gradient": "Gradient",
+    "aurora": "Aurora",
+    "image": "Image",
+    "uploadImage": "Background Image",
+    "uploadHint": "Choose a local image as background",
+    "chooseFile": "Choose Image",
+    "opacity": "Background Opacity",
+    "opacityHint": "Adjust background overlay opacity",
+    "blur": "Background Blur",
+    "blurHint": "Adjust background image blur"
+  },
   "chatDisplay": {
     "title": "Chat Display",
     "hint": "Adjust reading density, text size, and code display for AI conversations.",

@@ -150,14 +150,14 @@ export function CreateSessionModal({ onClose, onCreated }: CreateSessionModalPro
   // 使用 Portal 渲染到 body
   return createPortal(
     <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-[100]"
+      className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-[100]"
       onMouseDown={(e) => e.stopPropagation()}
       onClick={(e) => e.stopPropagation()}
     >
       <div
         ref={modalRef}
         data-modal="create-session"
-        className="bg-background-elevated rounded-xl p-4 sm:p-6 w-full max-w-lg border border-border shadow-glow"
+        className="acrylic-modal p-4 sm:p-6 w-full max-w-lg"
       >
         {/* 标题 */}
         <h2 className="text-lg font-semibold text-text-primary mb-4">
