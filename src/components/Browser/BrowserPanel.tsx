@@ -683,7 +683,7 @@ export function BrowserPanel({
   )
 
   return (
-    <div ref={rootRef} className="flex h-full min-h-0 flex-col acrylic-embedded">
+    <div ref={rootRef} className="flex h-full min-h-0 flex-col acrylic-embedded" style={{ colorScheme: 'light' }}>
       <div className="flex h-11 shrink-0 items-center gap-2 border-b border-white/20 bg-transparent px-3">
         <div className="flex items-center gap-1">
           <button
@@ -1123,7 +1123,7 @@ export function BrowserLauncherPanel() {
 
   return (
     <div className="flex h-full min-h-0 flex-col acrylic-embedded">
-      <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+      <div className="flex items-center gap-2 border-b border-white/20 px-4 py-3">
         <Globe2 size={16} className="text-primary" />
         <span className="text-sm font-medium text-text-primary">
           {t('labels.browserPanel', { defaultValue: '内置浏览器' })}

@@ -25,7 +25,7 @@ export function ContextCompactRenderer({ block }: { block: ContextCompactBlock }
   return (
     <div className="flex items-center gap-3 my-3 select-none" data-testid="context-compact-divider">
       <div className="flex-1 h-px bg-border" />
-      <div className="flex items-center gap-1.5 text-xs text-text-tertiary whitespace-nowrap">
+      <div className="flex items-center gap-1.5 text-xs text-gray-400 whitespace-nowrap">
         <span>🗜️</span>
         <span>{label}</span>
         {pre && post && (

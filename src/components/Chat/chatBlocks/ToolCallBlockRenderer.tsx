@@ -272,7 +272,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
         </div>
 
         {/* 工具名称 */}
-        <span className="text-xs font-medium text-text-secondary shrink-0">
+        <span className="text-xs font-medium text-zinc-700 shrink-0">
           {toolConfig.label}
         </span>
 
@@ -301,7 +301,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
               collapsedSummary.summaryType === 'status' && (block.status === 'completed' ? 'text-success bg-success/10' : 'text-error bg-error/10'),
               collapsedSummary.summaryType === 'size' && 'text-sky-500 bg-sky-500/10',
               collapsedSummary.summaryType === 'count' && 'text-primary bg-primary/10',
-              collapsedSummary.summaryType === 'plain' && 'text-text-tertiary bg-background-secondary'
+              collapsedSummary.summaryType === 'plain' && 'text-zinc-400 bg-background-secondary'
             )}>
               {collapsedSummary.summary}
             </span>
@@ -326,7 +326,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
           {/* 工具名称和时间 */}
           <div className="flex items-center justify-between mb-3">
             <span className="text-xs text-text-muted font-mono">{block.name}</span>
-            <div className="text-xs text-text-tertiary flex gap-3">
+            <div className="text-xs text-zinc-400 flex gap-3">
               <span>{t('tool.startTime', { time: new Date(block.startedAt).toLocaleTimeString('zh-CN') })}</span>
               {block.completedAt && (
                 <span>{t('tool.endTime', { time: new Date(block.completedAt).toLocaleTimeString('zh-CN') })}</span>
@@ -374,7 +374,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
           {/* update_plan：降级展示，仅显示简要信息 */}
           {isUpdatePlan && (
             <div className="mb-3">
-              <div className="text-xs text-text-tertiary flex items-center gap-1.5 italic">
+              <div className="text-xs text-zinc-400 flex items-center gap-1.5 italic">
                 <ListChecks className="w-3 h-3" />
                 {t('tool.planUpdated')}
               </div>
@@ -416,7 +416,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
               {todoData ? (
                 <TodoWriteInputRenderer data={todoData} />
               ) : (
-                <pre className="text-xs text-text-secondary bg-white/15 rounded p-2.5 max-w-full overflow-x-auto font-mono">
+                <pre className="text-xs text-zinc-700 bg-white/15 rounded p-2.5 max-w-full overflow-x-auto font-mono">
                   {formatInput(block.input)}
                 </pre>
               )}
@@ -486,7 +486,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
                 <GrepOutputRenderer data={grepData} />
               ) : (
                 <pre className={clsx(
-                  'text-xs text-text-secondary bg-white/15 rounded p-2.5 overflow-x-auto font-mono',
+                  'text-xs text-zinc-700 bg-white/15 rounded p-2.5 overflow-x-auto font-mono',
                   showFullOutput ? 'max-h-96 overflow-y-auto' : 'max-h-48 overflow-y-auto'
                 )}>
                   {showFullOutput
@@ -504,7 +504,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
             <div className="mb-3">
               <div
                 onClick={() => setShowToolDetails(!showToolDetails)}
-                className="text-xs text-text-tertiary hover:text-text-primary cursor-pointer flex items-center gap-1 select-none"
+                className="text-xs text-zinc-400 hover:text-text-primary cursor-pointer flex items-center gap-1 select-none"
               >
                 <ChevronRight
                   className={clsx(
@@ -519,7 +519,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
                   {hasInput && (
                     <div>
                       <div className="text-xs text-text-muted mb-1">{t('tool.inputParams')}</div>
-                      <pre className="text-xs text-text-secondary bg-white/15 rounded p-2.5 overflow-x-auto font-mono">
+                      <pre className="text-xs text-zinc-700 bg-white/15 rounded p-2.5 overflow-x-auto font-mono">
                         {formatInput(block.input)}
                       </pre>
                     </div>
@@ -527,7 +527,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
                   {hasOutput && (
                     <div>
                       <div className="text-xs text-text-muted mb-1">{t('tool.outputResult')}</div>
-                      <pre className="text-xs text-text-secondary bg-white/15 rounded p-2.5 overflow-x-auto font-mono max-h-48 overflow-y-auto">
+                      <pre className="text-xs text-zinc-700 bg-white/15 rounded p-2.5 overflow-x-auto font-mono max-h-48 overflow-y-auto">
                         {displayOutput}
                       </pre>
                     </div>
@@ -560,7 +560,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
               {t(statusConfig.labelKey)}
             </span>
             {duration && (
-              <span className="text-xs text-text-tertiary">
+              <span className="text-xs text-zinc-400">
                 {t('tool.duration', { duration })}
               </span>
             )}

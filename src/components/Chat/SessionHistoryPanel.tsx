@@ -756,14 +756,14 @@ export function SessionHistoryPanel({ onClose }: SessionHistoryPanelProps) {
       </div>
 
       {/* 会话列表 */}
-      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto min-h-0">
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto min-h-0 session-scrollbar">
         {/* 继续工作区 */}
         {continueItems.length > 0 && viewMode === 'list' && (
           <div className="px-3 sm:px-4 pt-3 pb-1">
             <div className="text-xs font-medium text-text-tertiary mb-2">
               {t('history.continueWorking', '继续工作')}
             </div>
-            <div className="flex gap-2 overflow-x-auto pb-2">
+            <div className="flex gap-2 overflow-x-auto pb-2 acrylic-scrollbar">
               {continueItems.map((item) => {
                 const engineInfo = getEngineInfo(item.engineId)
                 return (

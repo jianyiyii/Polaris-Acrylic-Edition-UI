@@ -20,51 +20,51 @@ import { EditorView } from '@codemirror/view';
    COLOR PALETTE
    ============================================ */
 
-// 背景色系 - 深邃但不是纯黑
+// 背景色系 - 半透明 Acrylic（内容保护层）
 const bg = {
-  primary: '#0d1117',      // 主背景 (GitHub Dark)
-  secondary: '#161b22',    // 次级背景
-  tertiary: '#21262d',     // 三级背景 (面板、浮层)
-  highlight: '#1a3a5c',    // 当前行高亮 - 明显的蓝色背景
+  primary: 'rgba(255, 255, 255, 0.15)',      // 主背景 - 轻透明
+  secondary: 'rgba(255, 255, 255, 0.10)',    // 次级背景
+  tertiary: 'rgba(255, 255, 255, 0.08)',     // 三级背景 (面板、浮层)
+  highlight: 'rgba(59, 130, 246, 0.12)',     // 当前行高亮 - 柔和蓝
 };
 
-// 文本色系 - 柔和的白
+// 文本色系 - VS Code Light 标准
 const fg = {
-  primary: '#e6edf3',      // 主文本
-  secondary: '#8b949e',    // 次级文本 (行号、gutter)
-  muted: '#6e7681',        // 弱化文本 (注释、占位符)
-  disabled: '#484f58',     // 禁用状态
+  primary: '#24292f',      // 正文
+  secondary: '#656d76',    // 行号
+  muted: '#6b7280',        // 注释/辅助
+  disabled: '#8b949e',     // 禁用
 };
 
-// 语法高亮 - 克制、低饱和度
+// 语法高亮 - VS Code Light+ 标准
 const syntax = {
-  keyword: '#ff7b72',       // 关键字 - 柔和红
-  variable: '#e6edf3',      // 变量 - 主文本色
-  string: '#a5d6ff',        // 字符串 - 柔和蓝
-  number: '#79c0ff',        // 数字 - 亮蓝
-  comment: '#8b949e',       // 注释 - 灰色
-  type: '#ffa657',          // 类型 - 橙色
-  function: '#d2a8ff',      // 函数 - 紫色
-  constant: '#79c0ff',      // 常量 - 蓝色
-  tag: '#7ee787',           // 标签 - 绿色
-  attribute: '#79c0ff',     // 属性 - 蓝色
-  property: '#79c0ff',      // 属性名 - 蓝色
-  operator: '#ff7b72',      // 运算符 - 红色
-  punct: '#e6edf3',         // 标点 - 主文本色
-  regex: '#a5d6ff',         // 正则 - 蓝色
-  module: '#d2a8ff',        // 模块名 - 紫色
+  keyword: '#cf222e',       // 关键字 - 红
+  variable: '#24292f',      // 变量 - 正文色
+  string: '#0a3069',        // 字符串 - 深蓝
+  number: '#0550ae',        // 数字 - 蓝
+  comment: '#6b7280',       // 注释 - 中灰
+  type: '#953800',          // 类型 - 深橙
+  function: '#8250df',      // 函数 - 紫
+  constant: '#0550ae',      // 常量 - 蓝
+  tag: '#116329',           // 标签 - 绿
+  attribute: '#0550ae',     // 属性 - 蓝
+  property: '#0550ae',      // 属性名 - 蓝
+  operator: '#cf222e',      // 运算符 - 红
+  punct: '#24292f',         // 标点 - 正文色
+  regex: '#0a3069',         // 正则 - 深蓝
+  module: '#8250df',        // 模块 - 紫
 };
 
-// UI 强调色
+// UI 强调色 - 适配浅色背景
 const accent = {
-  primary: '#58a6ff',       // 主强调色 - 蓝色
-  selection: 'rgba(88, 166, 255, 0.35)',           // 选区（非聚焦）
-  selectionFocused: 'rgba(88, 166, 255, 0.55)',    // 聚焦时选区
-  match: 'rgba(88, 166, 255, 0.40)',               // 匹配高亮 - 更明显
-  matchSelected: 'rgba(88, 166, 255, 0.60)',       // 搜索匹配（当前选中）- 更明显
-  bracketMatch: 'rgba(38, 139, 210, 0.25)',        // 括号匹配背景
-  cursor: '#58a6ff',       // 光标
-  gutterActive: '#e6edf3', // 活跃行号
+  primary: '#2563eb',       // 主强调色 - 蓝色
+  selection: 'rgba(37, 99, 235, 0.20)',           // 选区（非聚焦）
+  selectionFocused: 'rgba(37, 99, 235, 0.35)',    // 聚焦时选区
+  match: 'rgba(37, 99, 235, 0.25)',               // 匹配高亮
+  matchSelected: 'rgba(37, 99, 235, 0.40)',       // 搜索匹配（当前选中）
+  bracketMatch: 'rgba(37, 99, 235, 0.15)',        // 括号匹配背景
+  cursor: '#2563eb',       // 光标
+  gutterActive: '#1f2937', // 活跃行号
 };
 
 // 状态色
@@ -142,7 +142,7 @@ export const modernDarkTheme = EditorView.theme({
     backgroundColor: bg.primary,
     color: fg.secondary,
     border: 'none',        // 移除边框
-    borderRight: '1px solid rgba(48, 54, 61, 0.5)', // 细微分隔线
+    borderRight: '1px solid rgba(255, 255, 255, 0.20)', // 半透明分隔线
   },
 
   '.cm-gutterElement': {
@@ -243,10 +243,10 @@ export const modernDarkTheme = EditorView.theme({
 
   // ===== 面板/弹窗样式 =====
   '.cm-panel': {
-    backgroundColor: bg.secondary,
-    border: '1px solid rgba(48, 54, 61, 0.8)',
-    borderRadius: '6px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+    border: '1px solid rgba(255, 255, 255, 0.25)',
+    borderRadius: '8px',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
   },
 
   '.cm-panel.cm-search': {
@@ -255,10 +255,10 @@ export const modernDarkTheme = EditorView.theme({
 
   // ===== 自动补全 =====
   '.cm-tooltip': {
-    backgroundColor: bg.secondary,
-    border: '1px solid rgba(48, 54, 61, 0.8)',
-    borderRadius: '6px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+    border: '1px solid rgba(255, 255, 255, 0.25)',
+    borderRadius: '8px',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
   },
 
   '.cm-tooltip-autocomplete': {
@@ -283,7 +283,7 @@ export const modernDarkTheme = EditorView.theme({
   },
 
   '.cm-tooltip-autocomplete li[aria-selected]': {
-    backgroundColor: bg.tertiary,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
     color: fg.primary,
   },
 
@@ -310,8 +310,8 @@ export const modernDarkTheme = EditorView.theme({
 
   // ===== 折叠代码 =====
   '.cm-foldPlaceholder': {
-    backgroundColor: bg.tertiary,
-    border: '1px solid rgba(48, 54, 61, 0.5)',
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    border: '1px solid rgba(255, 255, 255, 0.20)',
     borderRadius: '3px',
     color: fg.secondary,
     padding: '0 6px',
@@ -341,21 +341,21 @@ export const modernDarkTheme = EditorView.theme({
   },
 
   '.cm-scroller::-webkit-scrollbar-thumb': {
-    backgroundColor: 'rgba(139, 148, 158, 0.3)',
+    backgroundColor: 'rgba(0, 0, 0, 0.15)',
     borderRadius: '6px',
     border: '3px solid transparent',
     backgroundClip: 'padding-box',
   },
 
   '.cm-scroller::-webkit-scrollbar-thumb:hover': {
-    backgroundColor: 'rgba(139, 148, 158, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.25)',
     backgroundClip: 'padding-box',
   },
 
   '.cm-scroller::-webkit-scrollbar-corner': {
     backgroundColor: 'transparent',
   },
-}, { dark: true });
+}, { dark: false });
 
 /* ============================================
    SYNTAX HIGHLIGHTING
@@ -480,48 +480,73 @@ export const modernHighlightStyle = EditorView.theme({
     color: syntax.constant,
   },
 
+  // ===== 链接 - 深蓝，醒目 =====
+  '.cm-link': {
+    color: '#0969da',
+    textDecoration: 'underline',
+  },
+
+  // ===== 强调 - 深色 =====
+  '.cm-strong': {
+    fontWeight: '700',
+    color: '#111827',
+  },
+
+  '.cm-emphasis': {
+    fontStyle: 'italic',
+    color: '#334155',
+  },
+
+  // ===== 标题 - 深黑，醒目 =====
+  '.cm-header': {
+    fontWeight: '700',
+    color: '#111827',
+  },
+
+  // ===== 引用 =====
+  '.cm-quote': {
+    color: '#4b5563',
+    fontStyle: 'italic',
+  },
+
+  // ===== 列表标记 =====
+  '.cm-list': {
+    color: '#24292f',
+  },
+
+  // ===== 水平线 =====
+  '.cm-hr': {
+    borderColor: '#94a3b8',
+  },
+
+  // ===== 代码块 (Markdown 内联) - 深色文字 =====
+  '.cm-monospace': {
+    fontFamily: 'inherit',
+    color: '#24292f',
+  },
+
+  // ===== Markdown token (#, *, -, `, >) - 提高饱和度 =====
+  '.cm-meta': {
+    color: '#57606a',
+  },
+
   // ===== 链接 =====
   '.cm-link': {
-    color: accent.primary,
+    color: '#0969da',
     textDecoration: 'underline',
   },
 
   // ===== 强调 =====
   '.cm-strong': {
     fontWeight: '700',
+    color: '#111827',
   },
 
   '.cm-emphasis': {
     fontStyle: 'italic',
+    color: '#334155',
   },
-
-  // ===== 标题 =====
-  '.cm-header': {
-    fontWeight: '600',
-    color: fg.primary,
-  },
-
-  // ===== 引用 =====
-  '.cm-quote': {
-    color: fg.secondary,
-    fontStyle: 'italic',
-  },
-
-  // ===== 列表 =====
-  '.cm-list': {
-    color: accent.primary,
-  },
-
-  // ===== 水平线 =====
-  '.cm-hr': {
-    borderColor: fg.disabled,
-  },
-
-  // ===== 代码块 (Markdown 内联) =====
-  '.cm-monospace': {
-    fontFamily: 'inherit',
-  },
-}, { dark: true });
+}, { dark: false });
 
 /* ============================================
    COMBINED THEME

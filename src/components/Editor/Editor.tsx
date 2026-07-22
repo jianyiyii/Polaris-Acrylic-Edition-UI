@@ -37,46 +37,46 @@ import { modernTheme } from './modernTheme';
 
 const customHighlightStyle = HighlightStyle.define([
   // 关键字
-  { tag: tags.keyword, color: '#ff7b72', fontWeight: '500' },
-  { tag: [tags.name, tags.deleted, tags.character, tags.propertyName, tags.macroName], color: '#e6edf3' },
+  { tag: tags.keyword, color: '#cf222e', fontWeight: '500' },
+  { tag: [tags.name, tags.deleted, tags.character, tags.propertyName, tags.macroName], color: '#24292f' },
   // 变量
-  { tag: [tags.variableName], color: '#e6edf3' },
+  { tag: [tags.variableName], color: '#24292f' },
   // 函数
-  { tag: [tags.function(tags.variableName)], color: '#d2a8ff', fontWeight: '500' },
-  { tag: [tags.function(tags.propertyName)], color: '#d2a8ff' },
+  { tag: [tags.function(tags.variableName)], color: '#8250df', fontWeight: '500' },
+  { tag: [tags.function(tags.propertyName)], color: '#8250df' },
   // 类型/类名
-  { tag: [tags.className], color: '#ffa657' },
-  { tag: [tags.typeName], color: '#ffa657' },
+  { tag: [tags.className], color: '#953800' },
+  { tag: [tags.typeName], color: '#953800' },
   // 字符串
-  { tag: tags.string, color: '#a5d6ff' },
+  { tag: tags.string, color: '#0a3069' },
   // 数字
-  { tag: tags.number, color: '#79c0ff' },
+  { tag: tags.number, color: '#0550ae' },
   // 常量/布尔值
-  { tag: [tags.bool, tags.null, tags.special(tags.variableName)], color: '#79c0ff' },
+  { tag: [tags.bool, tags.null, tags.special(tags.variableName)], color: '#0550ae' },
   // 运算符
-  { tag: tags.operator, color: '#ff7b72' },
+  { tag: tags.operator, color: '#cf222e' },
   // 注释
-  { tag: tags.comment, color: '#8b949e', fontStyle: 'italic', opacity: 0.85 },
+  { tag: tags.comment, color: '#6b7280', fontStyle: 'italic' },
   // 标签 (HTML/JSX)
-  { tag: tags.tagName, color: '#7ee787' },
-  { tag: tags.angleBracket, color: '#e6edf3' },
+  { tag: tags.tagName, color: '#116329' },
+  { tag: tags.angleBracket, color: '#24292f' },
   // 属性名
-  { tag: tags.attributeName, color: '#79c0ff' },
+  { tag: tags.attributeName, color: '#0550ae' },
   // 正则表达式
-  { tag: tags.regexp, color: '#a5d6ff' },
+  { tag: tags.regexp, color: '#0a3069' },
   // 模块名
-  { tag: tags.namespace, color: '#d2a8ff' },
+  { tag: tags.namespace, color: '#8250df' },
   // 括号
-  { tag: tags.bracket, color: '#e6edf3' },
+  { tag: tags.bracket, color: '#24292f' },
   // 链接
-  { tag: tags.link, color: '#58a6ff', textDecoration: 'underline' },
+  { tag: tags.link, color: '#0969da', textDecoration: 'underline' },
   // 强调
   { tag: tags.emphasis, fontStyle: 'italic' },
   { tag: tags.strong, fontWeight: '700' },
   // 标题
-  { tag: tags.heading, fontWeight: '600', color: '#e6edf3' },
+  { tag: tags.heading, fontWeight: '700', color: '#111827' },
   // 列表
-  { tag: tags.list, color: '#58a6ff' },
+  { tag: tags.list, color: '#24292f' },
 ]);
 
 // 获取语言扩展

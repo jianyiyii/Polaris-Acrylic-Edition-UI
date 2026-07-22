@@ -199,7 +199,7 @@ export const QuickSwitchContent = memo(function QuickSwitchContent({
             <>
               <StatusSymbol status={activeSession.status} size="sm" />
               <div className="flex-1 min-w-0">
-                <div className="text-xs font-medium text-text-primary truncate">
+                <div className="text-xs font-medium text-gray-800 truncate">
                   {activeSession.title}
                 </div>
                 {/* 工作区按钮：点击展开下拉 */}
@@ -208,8 +208,8 @@ export const QuickSwitchContent = memo(function QuickSwitchContent({
                   onClick={() => handleToggleDropdown(!isWorkspaceDropdownOpen)}
                   className={cn(
                     'flex items-center gap-1 mt-0.5 px-1 py-0.5 rounded',
-                    'text-[10px] text-text-muted',
-                    'hover:bg-background-hover/50 hover:text-text-secondary',
+                    'text-[10px] text-gray-500',
+                    'hover:bg-background-hover/50 hover:text-gray-600',
                     'transition-colors'
                   )}
                 >
@@ -234,8 +234,8 @@ export const QuickSwitchContent = memo(function QuickSwitchContent({
         <div className="max-h-52 overflow-y-auto custom-scrollbar">
           {sessions.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-6 px-3 text-center">
-              <p className="text-xs text-text-muted mb-2">暂无会话</p>
-              <p className="text-[10px] text-text-tertiary">点击下方按钮新建会话</p>
+              <p className="text-xs text-gray-500 mb-2">暂无会话</p>
+              <p className="text-[10px] text-gray-400">点击下方按钮新建会话</p>
             </div>
           ) : (
             sessions.map((session) => (
@@ -264,7 +264,7 @@ export const QuickSwitchContent = memo(function QuickSwitchContent({
               >
                 <span className={cn(
                   'truncate block',
-                  session.isActive ? 'text-primary font-medium' : 'text-text-secondary'
+                  session.isActive ? 'text-primary font-medium' : 'text-gray-600'
                 )}>
                   {session.title}
                 </span>
@@ -286,8 +286,8 @@ export const QuickSwitchContent = memo(function QuickSwitchContent({
                   className={cn(
                     'opacity-0 group-hover:opacity-100 p-0.5 rounded transition-all shrink-0',
                     session.canHandoff
-                      ? 'text-text-muted hover:text-primary hover:bg-primary/10'
-                      : 'text-text-muted/50 cursor-not-allowed'
+                      ? 'text-gray-500 hover:text-primary hover:bg-primary/10'
+                      : 'text-gray-500/50 cursor-not-allowed'
                   )}
                   title={session.canHandoff ? t('handoff.menuItem') : t(session.handoffReasonKey || 'handoff.notEligible')}
                 >
@@ -301,7 +301,7 @@ export const QuickSwitchContent = memo(function QuickSwitchContent({
                   onClick={() => onDeleteSession(session.id)}
                   className={cn(
                     'opacity-0 group-hover:opacity-100 p-0.5 rounded',
-                    'text-text-muted hover:text-danger hover:bg-danger/10',
+                    'text-gray-500 hover:text-danger hover:bg-danger/10',
                     'transition-all shrink-0'
                   )}
                   title="关闭"
@@ -323,8 +323,8 @@ export const QuickSwitchContent = memo(function QuickSwitchContent({
           className={cn(
             'w-full px-2 py-1.5 rounded-lg',
             'border border-dashed border-border-subtle/50',
-            'text-[11px] text-text-muted',
-            'hover:bg-background-hover/30 hover:text-text-secondary hover:border-border/30',
+            'text-[11px] text-gray-500',
+            'hover:bg-background-hover/30 hover:text-gray-600 hover:border-border/30',
             'transition-all duration-150',
             'flex items-center justify-center gap-1'
           )}
@@ -341,8 +341,8 @@ export const QuickSwitchContent = memo(function QuickSwitchContent({
               disabled={isExporting}
               className={cn(
                 'flex items-center gap-1 px-2 py-1 rounded',
-                'text-[10px] text-text-tertiary',
-                'hover:bg-background-hover/50 hover:text-text-secondary',
+                'text-[10px] text-gray-400',
+                'hover:bg-background-hover/50 hover:text-gray-600',
                 'transition-colors',
                 'disabled:opacity-50 disabled:cursor-not-allowed'
               )}
@@ -360,8 +360,8 @@ export const QuickSwitchContent = memo(function QuickSwitchContent({
               onClick={onOpenHistory}
               className={cn(
                 'flex items-center gap-1 px-2 py-1 rounded',
-                'text-[10px] text-text-tertiary',
-                'hover:bg-background-hover/50 hover:text-text-secondary',
+                'text-[10px] text-gray-400',
+                'hover:bg-background-hover/50 hover:text-gray-600',
                 'transition-colors'
               )}
             >
@@ -378,7 +378,7 @@ export const QuickSwitchContent = memo(function QuickSwitchContent({
                 'text-[10px]',
                 isPinned
                   ? 'text-primary bg-primary/10'
-                  : 'text-text-tertiary hover:bg-background-hover/50 hover:text-text-secondary',
+                  : 'text-gray-400 hover:bg-background-hover/50 hover:text-gray-600',
                 'transition-colors'
               )}
               title={isPinned ? '取消钉住' : '钉住面板'}
@@ -503,7 +503,7 @@ const WorkspaceDropdown = memo(function WorkspaceDropdown({
         {/* 工作区列表 */}
         <div className="max-h-48 overflow-y-auto">
           {filteredWorkspaces.length === 0 ? (
-            <div className="py-3 text-center text-xs text-text-tertiary">
+            <div className="py-3 text-center text-xs text-gray-400">
               {t('search.noResults')}
             </div>
           ) : (
@@ -527,7 +527,7 @@ const WorkspaceDropdown = memo(function WorkspaceDropdown({
                   {/* 锁定图标 */}
                   {isCurrent && isLocked && (
                     <div className="px-2">
-                      <Lock className="w-3 h-3 text-text-muted" />
+                      <Lock className="w-3 h-3 text-gray-500" />
                     </div>
                   )}
 
@@ -540,8 +540,8 @@ const WorkspaceDropdown = memo(function WorkspaceDropdown({
                       isCurrent
                         ? 'text-primary'
                         : isLocked
-                          ? 'text-text-tertiary cursor-not-allowed'
-                          : 'text-text-secondary hover:text-text-primary hover:bg-background-hover',
+                          ? 'text-gray-400 cursor-not-allowed'
+                          : 'text-gray-600 hover:text-gray-800 hover:bg-background-hover',
                       isLocked && isCurrent && 'cursor-not-allowed'
                     )}
                   >
@@ -566,7 +566,7 @@ const WorkspaceDropdown = memo(function WorkspaceDropdown({
                         'p-1 rounded transition-colors shrink-0',
                         isContext
                           ? 'text-primary bg-primary/10'
-                          : 'text-text-tertiary hover:text-primary hover:bg-background-hover opacity-0 group-hover:opacity-100'
+                          : 'text-gray-400 hover:text-primary hover:bg-background-hover opacity-0 group-hover:opacity-100'
                       )}
                       title={isContext ? '移除关联' : '添加关联'}
                     >
@@ -587,11 +587,11 @@ const WorkspaceDropdown = memo(function WorkspaceDropdown({
           onClick={() => setShowCreateModal(true)}
           className={cn(
             'w-full flex items-center gap-2 px-3 py-1.5 text-xs',
-            'text-text-secondary hover:text-text-primary hover:bg-background-hover',
+            'text-gray-600 hover:text-gray-800 hover:bg-background-hover',
             'transition-colors'
           )}
         >
-          <FolderPlus className="w-3.5 h-3.5 text-text-muted" />
+          <FolderPlus className="w-3.5 h-3.5 text-gray-500" />
           <span>新增工作区</span>
         </button>
 

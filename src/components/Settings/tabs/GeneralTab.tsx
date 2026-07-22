@@ -452,7 +452,7 @@ export function GeneralTab({ config, onConfigChange, loading }: GeneralTabProps)
                   <span className="text-sm font-medium text-text-primary">Polaris</span>
                   <span className="text-xs text-text-tertiary">09:41</span>
                 </div>
-                <div className="chat-prose prose prose-invert max-w-none">
+                <div className="chat-prose prose max-w-none">
                   <p>{t('chatDisplay.previewAssistant')}</p>
                   <ul>
                     <li>{t('chatDisplay.previewListOne')}</li>

@@ -58,7 +58,7 @@ export const ThinkingBlockRenderer = memo(function ThinkingBlockRenderer({
         <span className="text-sm font-medium text-primary">思考过程</span>
 
         {/* 字数统计 */}
-        <span className="text-xs text-text-tertiary ml-2">
+        <span className="text-xs text-zinc-400 ml-2">
           {charCount > 1000 ? `${(charCount / 1000).toFixed(1)}k` : charCount} 字
         </span>
 
@@ -91,7 +91,7 @@ export const ThinkingBlockRenderer = memo(function ThinkingBlockRenderer({
       {/* 折叠时显示预览 */}
       {isCollapsed && previewText && (
         <div className="px-3 py-1.5 border-t border-primary/10 bg-background-surface/50">
-          <p className="text-xs text-text-tertiary italic truncate">
+          <p className="text-xs text-zinc-400 italic truncate">
             {previewText}
           </p>
         </div>
@@ -101,7 +101,7 @@ export const ThinkingBlockRenderer = memo(function ThinkingBlockRenderer({
       {!isCollapsed && (
         <div className="px-3 py-2 border-t border-primary/10 bg-background-surface/30">
           {/* 完整思考内容 */}
-          <div className="text-sm text-text-secondary whitespace-pre-wrap break-words leading-relaxed">
+          <div className="text-sm text-zinc-700 whitespace-pre-wrap break-words leading-relaxed">
             {block.content}
           </div>
           {/* 流式光标 */}

@@ -93,8 +93,8 @@ export const AssistantBubble = memo(function AssistantBubble({
         <div className="chat-assistant-content w-fit min-w-0 max-w-full rounded-2xl bg-[rgba(255,255,255,0.35)] backdrop-blur-[30px] backdrop-saturate-160 border border-[rgba(255,255,255,0.45)] text-zinc-800 px-3 py-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_24px_rgba(0,0,0,0.06)]">
           {/* 头部信息 + hover 操作 */}
           <div className="flex items-baseline gap-2">
-            <span className="text-sm font-medium text-text-primary">{getEngineDisplayName(message.engineId)}</span>
-            <span className="text-xs text-text-tertiary">
+            <span className="text-sm font-medium text-zinc-800">{getEngineDisplayName(message.engineId)}</span>
+            <span className="text-xs text-zinc-500">
               {new Date(message.timestamp).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })}
             </span>
             {/* Hover 操作栏：复制 + 重新生成（与用户消息「复制 + 编辑」对称） */}
@@ -131,7 +131,7 @@ export const AssistantBubble = memo(function AssistantBubble({
             // 兼容旧格式（content 字符串）
             <MarkdownImageSurface>
               <div
-                className="chat-prose prose prose-invert max-w-none"
+                className="chat-prose prose max-w-none"
                 dangerouslySetInnerHTML={{ __html: formatContent(message.content) }}
               />
             </MarkdownImageSurface>

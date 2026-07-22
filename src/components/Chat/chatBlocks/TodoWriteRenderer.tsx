@@ -30,7 +30,7 @@ const TodoItemComponent = memo(function TodoItemComponent({
         )} />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-sm text-text-primary">{todo.content}</div>
+        <div className="text-sm text-zinc-800">{todo.content}</div>
         <div className="flex items-center gap-2 mt-0.5">
           <span className={clsx('text-xs', statusConfig.color)}>{t(statusConfig.labelKey)}</span>
           <span className="text-xs text-text-muted">#{index + 1}</span>
@@ -64,7 +64,7 @@ export const TodoWriteInputRenderer = memo(function TodoWriteInputRenderer({
             style={{ width: `${percent}%` }}
           />
         </div>
-        <span className="text-xs text-text-tertiary">
+        <span className="text-xs text-zinc-400">
           {data.completed}/{data.total} ({percent}%)
         </span>
       </div>

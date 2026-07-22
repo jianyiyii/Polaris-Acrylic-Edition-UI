@@ -210,21 +210,21 @@ body {
 
 /* 优化的 prose 样式 */
 .prose {
-  --tw-prose-body: #F8F8F8;
-  --tw-prose-headings: rgb(var(--c-text-primary));
-  --tw-prose-lead: #B4B4B8;
-  --tw-prose-links: #60A5FA;
-  --tw-prose-bold: #F8F8F8;
-  --tw-prose-counters: #8E8E93;
-  --tw-prose-bullets: #B4B4B8;
-  --tw-prose-hr: rgba(255, 255, 255, 0.15);
-  --tw-prose-quotes: #B4B4B8;
-  --tw-prose-quote-borders: rgba(255, 255, 255, 0.15);
-  --tw-prose-code: #F8F8F8;
-  --tw-prose-pre-code: #B4B4B8;
-  --tw-prose-pre-bg: #25252B;
-  --tw-prose-th-borders: rgba(255, 255, 255, 0.15);
-  --tw-prose-td-borders: rgba(255, 255, 255, 0.15);
+  --tw-prose-body: #24292f;
+  --tw-prose-headings: #111827;
+  --tw-prose-lead: #57606a;
+  --tw-prose-links: #0969da;
+  --tw-prose-bold: #111827;
+  --tw-prose-counters: #656d76;
+  --tw-prose-bullets: #8b949e;
+  --tw-prose-hr: rgba(0, 0, 0, 0.12);
+  --tw-prose-quotes: #57606a;
+  --tw-prose-quote-borders: rgba(0, 0, 0, 0.12);
+  --tw-prose-code: #24292f;
+  --tw-prose-pre-code: #24292f;
+  --tw-prose-pre-bg: rgba(255, 255, 255, 0.16);
+  --tw-prose-th-borders: rgba(0, 0, 0, 0.12);
+  --tw-prose-td-borders: rgba(0, 0, 0, 0.12);
   line-height: 1.5;
 }
 
@@ -239,8 +239,10 @@ body {
 
 /* Markdown 代码块样式（排除组件自带样式的代码块） */
 .prose pre:not(.code-block-pre) {
-  background-color: #25252B;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 0 0 12px 12px;
   padding: 16px;
   margin: 8px 0;
@@ -253,33 +255,36 @@ body {
 }
 
 .prose :not(pre) > code {
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 2px 8px;
   border-radius: 6px;
-  color: #60A5FA;
+  color: #24292f;
 }
 
-/* 标题样式 */
+/* 标题样式 - VS Code Light 标准 */
 .prose h1 {
   margin-top: 6px;
   margin-bottom: 2px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 24px;
+  color: #111827;
 }
 
 .prose h2 {
   margin-top: 6px;
   margin-bottom: 2px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 20px;
+  color: #111827;
 }
 
 .prose h3 {
   margin-top: 4px;
   margin-bottom: 2px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18px;
+  color: #111827;
 }
 
 .prose h4,
@@ -312,11 +317,13 @@ body {
 
 /* 引用样式 */
 .prose blockquote {
-  border-left: 4px solid rgba(255, 255, 255, 0.2);
-  padding-left: 16px;
+  border-left: 4px solid rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.12);
+  padding: 8px 16px;
   margin: 6px 0;
-  color: #B4B4B8;
+  color: #57606a;
   font-style: italic;
+  border-radius: 0 8px 8px 0;
 }
 
 /* 链接样式 */
@@ -2102,6 +2109,45 @@ body {
   box-shadow:
     inset 0 1px 2px rgba(255, 255, 255, 0.7),
     0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* 亚克力滚动条 — 会话历史等浅色玻璃区域 */
+.acrylic-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.acrylic-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.acrylic-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 999px;
+}
+
+.acrylic-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+/* 会话历史滚动条 — 半透明灰色实心 thumb */
+.session-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.session-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.session-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(80, 80, 80, 0.35);
+  border-radius: 999px;
+}
+
+.session-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(60, 60, 60, 0.55);
 }
 
 /* 浮动层亚克力 — Dropdown/Popover/Selector（通过 FloatingLayer Portal 渲染） */

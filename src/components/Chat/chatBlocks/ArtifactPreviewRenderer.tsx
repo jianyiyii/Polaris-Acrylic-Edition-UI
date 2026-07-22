@@ -125,13 +125,13 @@ export const ArtifactPreviewRenderer = memo(function ArtifactPreviewRenderer({
           <FileText className="h-4 w-4" />
         </div>
         <div className="min-w-0 flex-1">
-          <div className="truncate text-sm font-medium text-text-primary">{block.title}</div>
+          <div className="truncate text-sm font-medium text-zinc-800">{block.title}</div>
           {block.description && (
-            <div className="mt-0.5 truncate text-[11px] text-text-secondary" title={block.description}>
+            <div className="mt-0.5 truncate text-[11px] text-zinc-700" title={block.description}>
               {block.description}
             </div>
           )}
-          <div className="mt-0.5 flex min-w-0 items-center gap-2 text-[11px] text-text-tertiary">
+          <div className="mt-0.5 flex min-w-0 items-center gap-2 text-[11px] text-zinc-400">
             <span className="shrink-0">HTML</span>
             <span className="h-1 w-1 shrink-0 rounded-full bg-text-muted" />
             <span className="shrink-0">{sizeLabel}</span>
@@ -160,7 +160,7 @@ export const ArtifactPreviewRenderer = memo(function ArtifactPreviewRenderer({
                 <span className="h-1 w-1 shrink-0 rounded-full bg-text-muted" />
                 <button
                   type="button"
-                  className="truncate text-left hover:text-text-secondary"
+                  className="truncate text-left hover:text-zinc-700"
                   onClick={copyPath}
                   title={block.sourcePath}
                 >
@@ -173,7 +173,7 @@ export const ArtifactPreviewRenderer = memo(function ArtifactPreviewRenderer({
         <div className="ml-auto flex shrink-0 items-center gap-1">
           <button
             type="button"
-            className="inline-flex h-7 w-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-background-hover hover:text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="inline-flex h-7 w-7 items-center justify-center rounded-md text-zinc-400 transition-colors hover:bg-background-hover hover:text-zinc-800 focus:outline-none focus:ring-2 focus:ring-primary/50"
             onClick={copyHtml}
             title={copied === 'html' ? '已复制 HTML' : '复制 HTML'}
           >
@@ -181,7 +181,7 @@ export const ArtifactPreviewRenderer = memo(function ArtifactPreviewRenderer({
           </button>
           <button
             type="button"
-            className="inline-flex h-7 w-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-background-hover hover:text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="inline-flex h-7 w-7 items-center justify-center rounded-md text-zinc-400 transition-colors hover:bg-background-hover hover:text-zinc-800 focus:outline-none focus:ring-2 focus:ring-primary/50"
             onClick={() => setShowSource((value) => !value)}
             title={showSource ? '收起源码' : '查看源码'}
           >
@@ -189,7 +189,7 @@ export const ArtifactPreviewRenderer = memo(function ArtifactPreviewRenderer({
           </button>
           <button
             type="button"
-            className="inline-flex h-7 w-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-background-hover hover:text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="inline-flex h-7 w-7 items-center justify-center rounded-md text-zinc-400 transition-colors hover:bg-background-hover hover:text-zinc-800 focus:outline-none focus:ring-2 focus:ring-primary/50"
             onClick={downloadHtml}
             title="下载 HTML"
           >
@@ -197,7 +197,7 @@ export const ArtifactPreviewRenderer = memo(function ArtifactPreviewRenderer({
           </button>
           <button
             type="button"
-            className="inline-flex h-7 w-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-background-hover hover:text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="inline-flex h-7 w-7 items-center justify-center rounded-md text-zinc-400 transition-colors hover:bg-background-hover hover:text-zinc-800 focus:outline-none focus:ring-2 focus:ring-primary/50"
             onClick={() => setIsFullscreen(true)}
             title="全屏预览"
           >
@@ -205,7 +205,7 @@ export const ArtifactPreviewRenderer = memo(function ArtifactPreviewRenderer({
           </button>
           <button
             type="button"
-            className="inline-flex h-7 w-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-background-hover hover:text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="inline-flex h-7 w-7 items-center justify-center rounded-md text-zinc-400 transition-colors hover:bg-background-hover hover:text-zinc-800 focus:outline-none focus:ring-2 focus:ring-primary/50"
             onClick={openInBrowser}
             title={isTauri() && block.sourcePath ? '在浏览器打开' : '在新标签页打开'}
           >
@@ -225,7 +225,7 @@ export const ArtifactPreviewRenderer = memo(function ArtifactPreviewRenderer({
           <pre
             className={clsx(
               'max-h-72 overflow-auto rounded-md bg-background-surface p-3',
-              'font-mono text-xs leading-relaxed text-text-secondary'
+              'font-mono text-xs leading-relaxed text-zinc-700'
             )}
           >
             {block.html}
@@ -243,10 +243,10 @@ export const ArtifactPreviewRenderer = memo(function ArtifactPreviewRenderer({
       >
         <div className="flex h-12 shrink-0 items-center gap-2 border-b border-border bg-background-elevated px-4">
           <FileText className="h-4 w-4 text-cyan-400" />
-          <div className="min-w-0 flex-1 truncate text-sm font-medium text-text-primary">{block.title}</div>
+          <div className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-800">{block.title}</div>
           <button
             type="button"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-background-hover hover:text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-md text-zinc-400 transition-colors hover:bg-background-hover hover:text-zinc-800 focus:outline-none focus:ring-2 focus:ring-primary/50"
             onClick={openInBrowser}
             title={isTauri() && block.sourcePath ? '在浏览器打开' : '在新标签页打开'}
           >
@@ -254,7 +254,7 @@ export const ArtifactPreviewRenderer = memo(function ArtifactPreviewRenderer({
           </button>
           <button
             type="button"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-background-hover hover:text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-md text-zinc-400 transition-colors hover:bg-background-hover hover:text-zinc-800 focus:outline-none focus:ring-2 focus:ring-primary/50"
             onClick={() => setIsFullscreen(false)}
             title="关闭"
           >

@@ -21,7 +21,7 @@ function HighlightedText({ text, query }: { text: string; query: string }) {
       <>
         {parts.map((part, i) =>
           regex.test(part) ? (
-            <mark key={i} className="bg-yellow-500/30 text-text-primary px-0.5 rounded font-medium">
+            <mark key={i} className="bg-yellow-500/30 text-zinc-800 px-0.5 rounded font-medium">
               {part}
             </mark>
           ) : (
@@ -60,7 +60,7 @@ const GrepMatchItem = memo(function GrepMatchItem({
         </div>
       )}
       {/* 内容 */}
-      <div className="flex-1 text-xs text-text-secondary font-mono break-all">
+      <div className="flex-1 text-xs text-zinc-700 font-mono break-all">
         <HighlightedText text={match.content} query={query} />
       </div>
     </div>
@@ -87,7 +87,7 @@ export const GrepOutputRenderer = memo(function GrepOutputRenderer({
       </div>
       {/* 超过20个提示 */}
       {data.total > 20 && (
-        <div className="text-xs text-text-tertiary text-center py-1">
+        <div className="text-xs text-zinc-400 text-center py-1">
           {t('tool.moreMatches', { count: data.total - 20 })}
         </div>
       )}

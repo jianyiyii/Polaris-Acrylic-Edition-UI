@@ -148,14 +148,14 @@ export function WorkspaceSelector() {
                   className={`w-full text-left px-2 py-2 rounded-lg text-sm transition-colors ${
                     workspace.id === currentWorkspaceId
                       ? 'text-white'
-                      : 'text-text-secondary hover:text-text-primary'
+                      : 'text-gray-600 hover:text-gray-800'
                   }`}
                 >
                   <div className="font-medium truncate">{workspace.name}</div>
                   <div className={`text-xs truncate ${
                     workspace.id === currentWorkspaceId
                       ? 'text-white/70'
-                      : 'text-text-tertiary'
+                      : 'text-gray-400'
                   }`}>
                     {workspace.path}
                   </div>
@@ -179,7 +179,7 @@ export function WorkspaceSelector() {
                     className={`absolute right-1 top-1 p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity ${
                       workspace.id === currentWorkspaceId
                         ? 'hover:bg-white/20 text-white'
-                        : 'hover:bg-background-surface text-text-tertiary hover:text-danger'
+                        : 'hover:bg-gray-100 text-gray-400 hover:text-red-500'
                     }`}
                     title={t('selector.deleteWorkspace')}
                   >

@@ -51,7 +51,7 @@ function ErrorFallback({
         <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-error" />
         <div className="min-w-0 flex-1">
           <div className="text-sm font-medium text-error">插件卡片加载失败</div>
-          <div className="mt-0.5 truncate text-xs text-text-secondary" title={error}>
+          <div className="mt-0.5 truncate text-xs text-zinc-700" title={error}>
             {error}
           </div>
           <div className="mt-0.5 font-mono text-[11px] text-text-muted">{block.toolName}</div>
@@ -59,7 +59,7 @@ function ErrorFallback({
         <button
           type="button"
           onClick={onRetry}
-          className="flex items-center gap-1 rounded px-2 py-1 text-xs text-text-secondary transition-colors hover:bg-background-hover hover:text-text-primary"
+          className="flex items-center gap-1 rounded px-2 py-1 text-xs text-zinc-700 transition-colors hover:bg-background-hover hover:text-zinc-800"
         >
           <RefreshCw className="h-3 w-3" />
           <span>重试</span>
@@ -93,15 +93,15 @@ function PluginCardFallback({ block }: { block: PluginCardBlock }) {
           MCP
         </div>
         <div className="min-w-0 flex-1">
-          <div className="truncate text-sm font-medium text-text-primary">{block.toolName}</div>
-          <div className="mt-0.5 text-[11px] text-text-tertiary">
+          <div className="truncate text-sm font-medium text-zinc-800">{block.toolName}</div>
+          <div className="mt-0.5 text-[11px] text-zinc-400">
             {block.pluginId} · {block.cardId}
           </div>
         </div>
         <button
           type="button"
           onClick={handleCopy}
-          className="shrink-0 rounded px-2 py-1 text-xs text-text-secondary transition-colors hover:bg-background-hover hover:text-text-primary"
+          className="shrink-0 rounded px-2 py-1 text-xs text-zinc-700 transition-colors hover:bg-background-hover hover:text-zinc-800"
         >
           {copied ? '已复制' : '复制'}
         </button>
@@ -109,7 +109,7 @@ function PluginCardFallback({ block }: { block: PluginCardBlock }) {
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
-        className="flex w-full items-center gap-1.5 px-3 py-2 text-left text-xs text-text-secondary hover:bg-background-hover"
+        className="flex w-full items-center gap-1.5 px-3 py-2 text-left text-xs text-zinc-700 hover:bg-background-hover"
       >
         {expanded ? (
           <ChevronDown className="h-3 w-3 shrink-0" />
@@ -119,7 +119,7 @@ function PluginCardFallback({ block }: { block: PluginCardBlock }) {
         <span className="truncate font-mono">{preview}</span>
       </button>
       {expanded && (
-        <pre className="max-h-72 overflow-auto border-t border-border bg-background-surface px-3 py-2 font-mono text-xs leading-relaxed text-text-secondary">
+        <pre className="max-h-72 overflow-auto border-t border-border bg-background-surface px-3 py-2 font-mono text-xs leading-relaxed text-zinc-700">
           {dataText}
         </pre>
       )}

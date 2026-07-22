@@ -148,8 +148,8 @@ export function MarkdownEditor({ value, onChange, onSave, readOnly = false }: Ma
   return (
     <div className="flex flex-col h-full">
       {/* 工具栏 */}
-      <div className="flex items-center gap-2 px-3 py-1.5 border-b border-border-subtle bg-background-elevated">
-        <div className="flex items-center gap-0.5 bg-background-base rounded-md p-0.5">
+      <div className="flex items-center gap-2 px-3 py-1.5 border-b border-white/20 bg-white/15">
+        <div className="flex items-center gap-0.5 bg-white/20 rounded-md p-0.5">
           <button
             className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${
               viewMode === 'split'
@@ -238,7 +238,7 @@ export function MarkdownEditor({ value, onChange, onSave, readOnly = false }: Ma
           >
             {/* TOC 目录侧边栏 */}
             {showToc && tocHeadings.length > 0 && (
-              <div className="w-[160px] flex-shrink-0 border-r border-border-subtle bg-background-elevated overflow-y-auto p-3">
+              <div className="w-[160px] flex-shrink-0 border-r border-white/20 bg-white/15 overflow-y-auto p-3">
                 <div className="text-[10px] text-text-quaternary uppercase tracking-wider mb-2">目录</div>
                 {tocHeadings.map((h) => (
                   <button
@@ -257,9 +257,9 @@ export function MarkdownEditor({ value, onChange, onSave, readOnly = false }: Ma
             {/* 预览内容 */}
             <div
               ref={previewRef}
-              className="flex-1 overflow-auto bg-background-base"
+              className="flex-1 overflow-auto bg-transparent"
             >
-              <div className="max-w-none px-6 py-4 prose prose-invert prose-sm">
+              <div className="max-w-none px-6 py-4 prose prose-sm">
                 {previewParts.map((part: MarkdownPart, index: number) => {
                   if (part.type === 'mermaid') {
                     return (

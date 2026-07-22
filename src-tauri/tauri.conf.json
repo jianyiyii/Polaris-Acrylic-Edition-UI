@@ -19,7 +19,8 @@
         "decorations": false,
         "hiddenTitle": true,
         "devtools": true,
-        "transparent": true
+        "transparent": true,
+	"theme": "Light"
       }
     ],
     "security": {

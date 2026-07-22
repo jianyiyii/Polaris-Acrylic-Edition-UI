@@ -209,14 +209,14 @@ function KeyValueEditor({
             placeholder={keyPlaceholder}
             value={pair.key}
             onChange={(e) => update(index, { key: e.target.value })}
-            className="flex-1 min-w-0 px-2.5 py-1.5 text-xs font-mono bg-background-surface border border-border rounded-md outline-none focus:border-primary"
+            className="flex-1 min-w-0 px-2.5 py-1.5 text-xs font-mono bg-white/15 border border-white/25 rounded-md outline-none focus:border-primary"
           />
           <input
             type="text"
             placeholder={valuePlaceholder}
             value={pair.value}
             onChange={(e) => update(index, { value: e.target.value })}
-            className="flex-1 min-w-0 px-2.5 py-1.5 text-xs font-mono bg-background-surface border border-border rounded-md outline-none focus:border-primary"
+            className="flex-1 min-w-0 px-2.5 py-1.5 text-xs font-mono bg-white/15 border border-white/25 rounded-md outline-none focus:border-primary"
           />
           <button
             type="button"
@@ -269,7 +269,7 @@ function ProfileCard({
       className={`flex items-center gap-3 p-3 rounded-lg border transition-all cursor-pointer ${
         isActive
           ? 'border-primary bg-primary/5'
-          : 'border-border bg-background-default hover:border-primary/30'
+          : 'border-white/30 bg-white/10 hover:border-primary/30'
       }`}
       onClick={onActivate}
     >
@@ -482,14 +482,15 @@ function ProfileEditorModal({
   }, [form])
 
   const fieldClass =
-    'w-full px-3 py-2 text-sm bg-background-surface border border-border rounded-lg outline-none focus:border-primary'
-  const labelClass = 'block text-xs text-text-secondary mb-1'
-  const sectionClass = 'space-y-3 p-3 bg-white/10 dark:bg-white/5 rounded-lg border border-white/20'
-  const sectionTitleClass = 'text-xs font-semibold text-text-secondary uppercase tracking-wide'
+    'w-full px-3 py-2 text-sm bg-white/15 border border-black/10 rounded-lg outline-none shadow-[inset_0_1px_2px_rgba(255,255,255,0.6)] focus:border-primary focus:bg-white/20 focus:ring-1 focus:ring-primary/30 transition-all'
+  const labelClass = 'block text-xs text-zinc-600 mb-1'
+  const sectionClass = 'space-y-3 p-3 bg-white/8 backdrop-blur-[12px] rounded-lg border border-white/15 divide-y divide-white/10'
+  const sectionTitleClass = 'text-xs font-semibold text-zinc-600 uppercase tracking-wide'
 
   return (
+    <FloatingLayer>
     <div
-      className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-white/10 flex items-center justify-center z-50 p-4"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose()
       }}
@@ -497,9 +498,9 @@ function ProfileEditorModal({
         if (e.key === 'Escape') onClose()
       }}
     >
-      <div className="acrylic-modal w-full max-w-lg max-h-[88vh] flex flex-col">
+      <div className="w-full max-w-lg max-h-[88vh] flex flex-col bg-white/45 backdrop-blur-[24px] backdrop-saturate-150 border border-white/55 rounded-2xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_30px_rgba(0,0,0,0.1)] overflow-hidden">
         {/* 标题栏 */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-border-subtle shrink-0">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-white/20 shrink-0">
           <h2 className="text-base font-semibold text-text-primary">
             {editing ? t('modelProfile.editTitle') : t('modelProfile.addTitle')}
           </h2>
@@ -543,7 +544,7 @@ function ProfileEditorModal({
                   className={`${fieldClass} font-mono text-xs`}
                 />
                 <p className="text-[11px] text-text-tertiary mt-1">
-                  <code className="text-[10px] bg-background-surface px-1 py-0.5 rounded">
+                  <code className="text-[10px] bg-white/10 px-1 py-0.5 rounded">
                     https://api.example.com model-name sk-xxxxxxxx
                   </code>
                 </p>
@@ -770,7 +771,7 @@ function ProfileEditorModal({
                     className={`px-3 py-1.5 text-xs rounded-md border transition-all ${
                       form.targetEngines.includes(engineOption)
                         ? 'border-primary bg-primary/10 text-primary'
-                        : 'border-border bg-background-surface text-text-tertiary hover:border-primary/30'
+                        : 'border-white/20 bg-white/10 text-text-tertiary hover:bg-white/20 hover:border-primary/30'
                     }`}
                   >
                     {t(`modelProfile.targetEngine.${engineOption}`)}
@@ -827,7 +828,7 @@ function ProfileEditorModal({
                           className={`flex-1 px-2 py-1.5 text-xs rounded-md border transition-colors ${
                             isActive
                               ? 'bg-primary/15 border-primary text-primary font-semibold'
-                              : 'bg-background-surface border-border text-text-secondary hover:border-text-tertiary'
+                              : 'bg-transparent border-white/15 text-text-secondary hover:bg-white/10 hover:border-white/25'
                           }`}
                         >
                           {t(`modelProfile.contextWindowPresets.${key}`)}
@@ -909,6 +910,7 @@ function ProfileEditorModal({
         </div>
       </div>
     </div>
+    </FloatingLayer>
   )
 }
 

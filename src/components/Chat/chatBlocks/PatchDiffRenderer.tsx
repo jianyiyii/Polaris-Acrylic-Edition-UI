@@ -162,7 +162,7 @@ export const PatchDiffRenderer = memo(function PatchDiffRenderer({
 
               {/* 删除文件：仅显示状态 */}
               {isExpanded && change.type === 'delete' && (
-                <div className="border-t border-border px-3 py-2 text-xs text-text-tertiary">
+                <div className="border-t border-border px-3 py-2 text-xs text-gray-400">
                   {t('tool.fileDeleted')}
                 </div>
               )}
