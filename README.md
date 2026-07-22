@@ -34,7 +34,7 @@ https://github.com/misxzaiz/Polaris
 由于大量界面样式文件改动，合并上游更新时需要人工处理代码冲突。
 
 ## 效果预览
-（你可以在此粘贴截图图片链接）
+![Polaris Acrylic Edition 预览](docs/assets/preview.png)
 
 ## 编译运行
 ```bash
