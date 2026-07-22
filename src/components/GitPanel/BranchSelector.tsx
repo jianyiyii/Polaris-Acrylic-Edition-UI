@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { GitBranch as GitBranchIcon, Check, ChevronDown, Plus, Loader2, AlertTriangle, Archive } from 'lucide-react'
 import { useGitStore } from '@/stores/gitStore/index'
+import { FloatingLayer } from '@/components/Common'
 import { useWorkspaceStore } from '@/stores/workspaceStore'
 
 type SwitchState = 
@@ -185,8 +185,9 @@ export function BranchSelector() {
           <ChevronDown size={12} className="text-text-tertiary" />
         </button>
 
-        {isOpen && createPortal(
-          <div ref={portalRef} className="w-[min(80vw,320px)] acrylic-modal z-[9999] flex flex-col" style={{ position: 'fixed', top: dropdownRect ? dropdownRect.bottom + 4 : 0, left: dropdownRect ? dropdownRect.left : 0, maxHeight: 'min(60vh, calc(100vh - 100px))' }}>
+        {isOpen && (
+          <FloatingLayer>
+            <div ref={portalRef} className="acrylic-floating w-[min(80vw,320px)] z-[9999] flex flex-col animate-acrylic-enter" style={{ position: 'fixed', top: dropdownRect ? dropdownRect.bottom + 4 : 0, left: dropdownRect ? dropdownRect.left : 0, maxHeight: 'min(60vh, calc(100vh - 100px))' }}>
             <div className="px-3 py-2 border-b border-border flex items-center justify-between shrink-0">
               <span className="text-xs font-medium text-text-secondary">
                 {t('branch.switch')}
@@ -275,8 +276,8 @@ export function BranchSelector() {
                 </>
               )}
             </div>
-          </div>,
-          document.body
+          </div>
+          </FloatingLayer>
         )}
       </div>
 

@@ -1,7 +1,7 @@
 import { useEffect, useCallback, useState, useRef } from 'react';
-import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useFileExplorerStore, useWorkspaceStore, useCommandStore, useToastStore } from '@/stores';
+import { FloatingLayer } from '@/components/Common';
 import { initFileWatcherListener, startFileWatcher, stopFileWatcher } from '@/stores/fileExplorerStore';
 import { FileTree } from './FileTree';
 import { SearchBar } from './SearchBar';
@@ -363,10 +363,11 @@ export function FileExplorer() {
                     setWorkspaceSearchQuery('');
                   }}
                 />
-                {createPortal(
+                {(
+                <FloatingLayer>
                 <div
-                  className="bg-white/45 backdrop-blur-[25px] backdrop-saturate-150 border border-[rgba(255,255,255,0.55)] rounded-xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_24px_rgba(0,0,0,0.08)] z-[9999] overflow-hidden"
-                  style={{ position: 'absolute', top: wsRect ? wsRect.bottom + 4 : 0, left: wsRect ? wsRect.left : 0, width: wsRect?.width }}
+                  className="acrylic-floating z-[9999] overflow-hidden animate-acrylic-enter"
+                  style={{ position: 'fixed', top: wsRect ? wsRect.bottom + 4 : 0, left: wsRect ? wsRect.left : 0, width: wsRect?.width }}
                 >
                     {/* 搜索框 - 工作区超过3个时显示 */}
                     {accessibleWorkspaces.length > 3 && (
@@ -434,8 +435,8 @@ export function FileExplorer() {
                         </>
                       )}
                     </div>
-                  </div>,
-                  document.body
+                  </div>
+                  </FloatingLayer>
                 )}
               </>
             )}
@@ -469,9 +470,10 @@ export function FileExplorer() {
                     className="fixed inset-0 z-10"
                     onClick={() => setShowNewMenu(false)}
                   />
-                  {createPortal(
+                  {(
+                  <FloatingLayer>
                   <div
-                    className="bg-white/45 backdrop-blur-[25px] backdrop-saturate-150 border border-[rgba(255,255,255,0.55)] rounded-xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_24px_rgba(0,0,0,0.08)] z-[9999] overflow-hidden min-w-[120px]"
+                    className="acrylic-floating z-[9999] overflow-hidden min-w-[120px] animate-acrylic-enter"
                     style={{ position: 'absolute', top: newRect ? newRect.bottom + 4 : 0, left: newRect ? newRect.left : 0 }}
                   >
                     <button
@@ -506,8 +508,8 @@ export function FileExplorer() {
                       <IconFolder size={14} />
                       <span>{t('newFolder')}</span>
                     </button>
-                  </div>,
-                  document.body
+                  </div>
+                  </FloatingLayer>
                 )}
                 </>
               )}

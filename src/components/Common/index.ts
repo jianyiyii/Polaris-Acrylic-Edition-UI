@@ -11,6 +11,7 @@ export { ClaudePathSelector } from './ClaudePathSelector';
 export { ErrorBoundary } from './ErrorBoundary';
 export { DropdownMenu } from './DropdownMenu';
 export { AcrylicPanel } from './AcrylicPanel';
+export { FloatingLayer } from './FloatingLayer';
 export { LanguageSwitcher } from './LanguageSwitcher';
 export { ToastContainer } from './Toast';
 export { ConfirmDialog } from './ConfirmDialog';

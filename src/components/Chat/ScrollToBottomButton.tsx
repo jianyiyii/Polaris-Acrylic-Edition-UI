@@ -38,9 +38,9 @@ export const ScrollToBottomButton = memo(function ScrollToBottomButton({
         'absolute bottom-4 right-4 z-30',
         'flex items-center justify-center',
         'w-9 h-9 rounded-full',
-        'bg-[#22222A] border border-border/60',
-        'text-text-secondary hover:text-primary',
-        'shadow-lg shadow-black/20 hover:shadow-xl',
+        'bg-white/35 backdrop-blur-[20px] backdrop-saturate-150 border border-white/45',
+        'text-zinc-600 hover:text-zinc-800',
+        'shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_8px_24px_rgba(0,0,0,0.08)]',
         'pointer-events-auto cursor-pointer',
         'transition-all duration-150 hover:scale-105',
         'animate-in fade-in zoom-in-95 duration-200'

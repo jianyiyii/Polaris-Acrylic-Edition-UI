@@ -8,9 +8,9 @@
  */
 
 import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react'
-import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { ChevronDown, Bot, Cpu, Zap, Shield, Plug } from 'lucide-react'
+import { FloatingLayer } from '@/components/Common'
 import { clsx } from 'clsx'
 import {
   PRESET_AGENTS,
@@ -338,22 +338,17 @@ export function SessionConfigSelector({
 
     const currentValue = getCurrentValue()
 
-    return createPortal(
-      <div
-        ref={portalRef}
-        className="min-w-[180px] max-h-[240px] overflow-y-auto z-[9999] animate-acrylic-enter"
-        style={{
-          position: 'fixed',
-          bottom: `${window.innerHeight - rect.top + 4}px`,
-          left: `${rect.left}px`,
-          background: 'rgba(255, 255, 255, 0.55)',
-          WebkitBackdropFilter: 'blur(25px) saturate(150%)',
-          backdropFilter: 'blur(25px) saturate(150%)',
-          border: '1px solid rgba(255, 255, 255, 0.65)',
-          borderRadius: '0.75rem',
-          boxShadow: 'inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 8px 24px rgba(0, 0, 0, 0.08)',
-        }}
-      >
+    return (
+      <FloatingLayer>
+        <div
+          ref={portalRef}
+          className="acrylic-floating min-w-[180px] max-h-[240px] overflow-y-auto z-[9999] animate-acrylic-enter"
+          style={{
+            position: 'fixed',
+            bottom: `${window.innerHeight - rect.top + 4}px`,
+            left: `${rect.left}px`,
+          }}
+        >
         {items.map((item) => (
           <button
             key={item.value}
@@ -384,8 +379,8 @@ export function SessionConfigSelector({
         >
           ✏️ {t('sessionConfig.custom')}
         </button>
-      </div>,
-      document.body
+      </div>
+      </FloatingLayer>
     )
   }
 

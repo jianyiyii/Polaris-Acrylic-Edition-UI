@@ -10,6 +10,9 @@ import type { WorkspaceTerminalScripts } from './terminalScript'
 /**  引擎 ID */
 export type EngineId = 'claude-code' | 'codex' | 'simple-ai' | 'mimo'
 
+/** 所有可用引擎 ID 列表 */
+export const ALL_ENGINES: EngineId[] = ['claude-code', 'codex', 'simple-ai', 'mimo']
+
 /** 支持的语言 */
 export type Language = 'zh-CN' | 'en-US'
 

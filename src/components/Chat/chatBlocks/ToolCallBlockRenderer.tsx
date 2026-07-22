@@ -235,7 +235,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
     <div
       className={clsx(
         'my-1.5 rounded-lg overflow-hidden w-full transition-all duration-200',
-        'border border-border bg-background-elevated',
+        'border border-white/30 bg-white/20 backdrop-blur-md',
         statusAnimationClass,
         block.status === 'failed' && 'border-error/30 bg-error-faint/50'
       )}
@@ -416,7 +416,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
               {todoData ? (
                 <TodoWriteInputRenderer data={todoData} />
               ) : (
-                <pre className="text-xs text-text-secondary bg-background-surface rounded p-2.5 max-w-full overflow-x-auto font-mono">
+                <pre className="text-xs text-text-secondary bg-white/15 rounded p-2.5 max-w-full overflow-x-auto font-mono">
                   {formatInput(block.input)}
                 </pre>
               )}
@@ -486,7 +486,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
                 <GrepOutputRenderer data={grepData} />
               ) : (
                 <pre className={clsx(
-                  'text-xs text-text-secondary bg-background-surface rounded p-2.5 overflow-x-auto font-mono',
+                  'text-xs text-text-secondary bg-white/15 rounded p-2.5 overflow-x-auto font-mono',
                   showFullOutput ? 'max-h-96 overflow-y-auto' : 'max-h-48 overflow-y-auto'
                 )}>
                   {showFullOutput
@@ -519,7 +519,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
                   {hasInput && (
                     <div>
                       <div className="text-xs text-text-muted mb-1">{t('tool.inputParams')}</div>
-                      <pre className="text-xs text-text-secondary bg-background-surface rounded p-2.5 overflow-x-auto font-mono">
+                      <pre className="text-xs text-text-secondary bg-white/15 rounded p-2.5 overflow-x-auto font-mono">
                         {formatInput(block.input)}
                       </pre>
                     </div>
@@ -527,7 +527,7 @@ export const ToolCallBlockRenderer = memo(function ToolCallBlockRenderer({ block
                   {hasOutput && (
                     <div>
                       <div className="text-xs text-text-muted mb-1">{t('tool.outputResult')}</div>
-                      <pre className="text-xs text-text-secondary bg-background-surface rounded p-2.5 overflow-x-auto font-mono max-h-48 overflow-y-auto">
+                      <pre className="text-xs text-text-secondary bg-white/15 rounded p-2.5 overflow-x-auto font-mono max-h-48 overflow-y-auto">
                         {displayOutput}
                       </pre>
                     </div>

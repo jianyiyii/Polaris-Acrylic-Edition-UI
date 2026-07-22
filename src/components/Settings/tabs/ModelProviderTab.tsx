@@ -12,7 +12,8 @@
  * 由底部「保存」按钮统一持久化到后端 config.json。
  */
 
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
+import { FloatingLayer } from '@/components/Common'
 import { useTranslation } from 'react-i18next'
 import { useModelProfileStore } from '@/stores/modelProfileStore'
 import { useSessionConfig } from '@/stores/sessionConfigStore'
@@ -26,6 +27,7 @@ import type {
   ProfileCategory,
   AuthType,
 } from '@/types'
+import { ALL_ENGINES } from '@/types'
 import { COMMON_PROVIDER_PRESETS, OFFICIAL_API_PROFILE, type ProviderPreset, type ConnectionTestResult, resolveAuthType, resolveTargetEngines, isProfileForEngine } from '@/types/modelProfile'
 import {
   testModelProfileConnection,
@@ -482,12 +484,12 @@ function ProfileEditorModal({
   const fieldClass =
     'w-full px-3 py-2 text-sm bg-background-surface border border-border rounded-lg outline-none focus:border-primary'
   const labelClass = 'block text-xs text-text-secondary mb-1'
-  const sectionClass = 'space-y-3 p-3 bg-background-default rounded-lg border border-border'
+  const sectionClass = 'space-y-3 p-3 bg-white/10 dark:bg-white/5 rounded-lg border border-white/20'
   const sectionTitleClass = 'text-xs font-semibold text-text-secondary uppercase tracking-wide'
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-white/10 backdrop-blur-md flex items-center justify-center z-50 p-4"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose()
       }}
@@ -495,7 +497,7 @@ function ProfileEditorModal({
         if (e.key === 'Escape') onClose()
       }}
     >
-      <div className="bg-background-elevated rounded-xl w-full max-w-lg border border-border shadow-glow max-h-[88vh] flex flex-col">
+      <div className="acrylic-modal w-full max-w-lg max-h-[88vh] flex flex-col">
         {/* 标题栏 */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-border-subtle shrink-0">
           <h2 className="text-base font-semibold text-text-primary">
@@ -938,6 +940,9 @@ export function ModelProviderTab({ config, onConfigChange }: ModelProviderTabPro
   const [editingProfile, setEditingProfile] = useState<ModelProfile | null>(null)
   const [testingProfileId, setTestingProfileId] = useState<string | null>(null)
   const [showPresets, setShowPresets] = useState(false)
+  const presetBtnRef = useRef<HTMLButtonElement>(null)
+  const presetPortalRef = useRef<HTMLDivElement>(null)
+  const [presetRect, setPresetRect] = useState<DOMRect | null>(null)
 
   // 同步 store → config（onConfigChange 回传 SettingsPage）
   const syncToConfig = useCallback(
@@ -1166,16 +1171,24 @@ export function ModelProviderTab({ config, onConfigChange }: ModelProviderTabPro
         </button>
         <div className="relative">
           <button
-            onClick={() => setShowPresets((p) => !p)}
+            ref={presetBtnRef}
+            onClick={() => {
+              setShowPresets((p) => !p)
+              if (presetBtnRef.current) setPresetRect(presetBtnRef.current.getBoundingClientRect())
+            }}
             className="flex items-center gap-1.5 px-3 py-2 text-sm rounded-lg border border-amber-500/40 text-amber-500 hover:bg-amber-500/10 transition-colors"
           >
             <Sparkles size={14} />
             {t('modelProfile.fromPreset')}
           </button>
           {showPresets && (
-            <>
-              <div className="fixed inset-0 z-40" onClick={() => setShowPresets(false)} />
-              <div className="absolute left-0 top-full mt-1 z-50 w-72 p-2 bg-background-elevated rounded-lg border border-border shadow-glow max-h-80 overflow-y-auto">
+            <FloatingLayer>
+              <div className="fixed inset-0 z-[9998]" onClick={() => setShowPresets(false)} />
+              <div
+                ref={presetPortalRef}
+                className="acrylic-floating z-[9999] w-72 p-2 max-h-80 overflow-y-auto animate-acrylic-enter"
+                style={{ position: 'fixed', top: presetRect ? presetRect.bottom + 4 : 0, left: presetRect ? presetRect.left : 0 }}
+              >
                 <p className="text-[11px] text-text-tertiary px-1 py-1">{t('modelProfile.presetHint')}</p>
                 {COMMON_PROVIDER_PRESETS.map((preset) => (
                   <button
@@ -1191,7 +1204,7 @@ export function ModelProviderTab({ config, onConfigChange }: ModelProviderTabPro
                   </button>
                 ))}
               </div>
-            </>
+            </FloatingLayer>
           )}
         </div>
       </div>
